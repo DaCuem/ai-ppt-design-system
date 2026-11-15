@@ -1,0 +1,1218 @@
+{
+  "meta": {
+    "title": "把 PPT 设计变成可执行的规则",
+    "subtitle": "AI PPT Design System v1.1.1 · 系统自述演示",
+    "author": "AI PPT Design System",
+    "lang": "zh-CN",
+    "size": "16:9",
+    "project": "demo-system-overview",
+    "version": "v1.1.1",
+    "speakerMode": "live"
+  },
+  "tokens": {
+    "colors": {
+      "bg": "#F5F2EA",
+      "bgAlt": "#E4DDCD",
+      "fg": "#171A1E",
+      "fgMuted": "#6A6E74",
+      "primary": "#1F3B33",
+      "accent": "#C8501E",
+      "ok": "#2F6F4E",
+      "warn": "#A23B2A"
+    },
+    "fonts": {
+      "display": "Microsoft YaHei",
+      "body": "Microsoft YaHei",
+      "mono": "Cascadia Mono"
+    },
+    "type": {
+      "coverTitle": {
+        "size": 64,
+        "weight": 700,
+        "lineHeight": 1.06,
+        "letterSpacing": 0
+      },
+      "h1": {
+        "size": 44,
+        "weight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0
+      },
+      "h2": {
+        "size": 26,
+        "weight": 700,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      "h3": {
+        "size": 20,
+        "weight": 700,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      "lead": {
+        "size": 24,
+        "weight": 400,
+        "lineHeight": 1.45,
+        "letterSpacing": 0
+      },
+      "body": {
+        "size": 17,
+        "weight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      "caption": {
+        "size": 12,
+        "weight": 400,
+        "lineHeight": 1.35,
+        "letterSpacing": 0
+      },
+      "source": {
+        "size": 11,
+        "weight": 400,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      "pageNumber": {
+        "size": 10,
+        "weight": 400,
+        "lineHeight": 1.0,
+        "letterSpacing": 0
+      },
+      "kpi": {
+        "size": 64,
+        "weight": 700,
+        "lineHeight": 1.0,
+        "letterSpacing": 0
+      },
+      "label": {
+        "size": 11,
+        "weight": 400,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.12
+      },
+      "bodySmall": {
+        "size": 16,
+        "weight": 400,
+        "lineHeight": 1.45,
+        "letterSpacing": 0
+      }
+    },
+    "grid": {
+      "cols": 12,
+      "gutterIn": 0.2,
+      "marginXIn": 0.6,
+      "marginYIn": 0.45,
+      "baselineIn": 0.08
+    },
+    "space": {
+      "xs": 0.12,
+      "sm": 0.24,
+      "md": 0.4,
+      "lg": 0.72,
+      "xl": 1.2
+    }
+  },
+  "slides": [
+    {
+      "id": "s01",
+      "layout": "cover",
+      "gridTemplate": "full-bleed-left",
+      "focalPosition": "ml",
+      "section": "封面",
+      "notes": "开场 20 秒：这套系统的目标不是把每页做得好看，而是让版面可以被计算、被复核、被复现。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "line",
+          "x": 10.98,
+          "y": 1.72,
+          "x2": 10.98,
+          "y2": 6.2,
+          "stroke": "bgAlt",
+          "strokeWidthPt": 1,
+          "w": 0.0,
+          "h": 4.48
+        },
+        {
+          "kind": "rect",
+          "x": 11.3,
+          "y": 1.72,
+          "w": 1.43,
+          "h": 0.06,
+          "fill": "accent"
+        },
+        {
+          "kind": "text",
+          "role": "label",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 8.0,
+          "h": 0.3,
+          "font": "Cascadia Mono",
+          "color": "fgMuted",
+          "text": "AI PPT DESIGN SYSTEM / V1.1.1"
+        },
+        {
+          "kind": "text",
+          "role": "coverTitle",
+          "x": 0.6,
+          "y": 1.72,
+          "w": 8.8,
+          "h": 2.4,
+          "paragraphs": [
+            {
+              "text": "把 PPT 设计"
+            },
+            {
+              "text": "变成可执行的规则"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "lead",
+          "x": 0.6,
+          "y": 4.35,
+          "w": 8.4,
+          "h": 1.3,
+          "text": "同一份 deck.json，既产出可编辑的 pptx，也产出可复核的预览图。"
+        },
+        {
+          "kind": "text",
+          "role": "caption",
+          "x": 0.6,
+          "y": 6.42,
+          "w": 9.5,
+          "h": 0.3,
+          "color": "fgMuted",
+          "text": "8 阶段工作流 · 15 种版式 · 10 种视觉风格 · 5 条命令"
+        },
+        {
+          "kind": "text",
+          "role": "caption",
+          "x": 11.3,
+          "y": 1.92,
+          "w": 1.43,
+          "h": 0.6,
+          "color": "fgMuted",
+          "paragraphs": [
+            {
+              "text": "2026-11"
+            },
+            {
+              "text": "MIT"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "01"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "layout": "statement",
+      "gridTemplate": "single-statement",
+      "focalPosition": "ml",
+      "section": "问题",
+      "notes": "停 2 秒再读标题。这一页只干一件事：把问题钉住。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "label",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 8.0,
+          "h": 0.3,
+          "font": "Cascadia Mono",
+          "color": "fgMuted",
+          "text": "02 — 问题"
+        },
+        {
+          "kind": "text",
+          "role": "h1",
+          "x": 0.6,
+          "y": 2.85,
+          "w": 11.2,
+          "h": 1.75,
+          "paragraphs": [
+            {
+              "text": "模型不缺想象力，"
+            },
+            {
+              "text": "缺的是可核对的约束。"
+            }
+          ]
+        },
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 4.95,
+          "x2": 2.6,
+          "y2": 4.95,
+          "stroke": "accent",
+          "strokeWidthPt": 2,
+          "w": 2.0,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "caption",
+          "x": 0.6,
+          "y": 5.2,
+          "w": 9.6,
+          "h": 0.32,
+          "color": "fgMuted",
+          "text": "约束 = 可计算的阈值 + 可复核的产物，两者都不该装在人脑里。"
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "02"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "layout": "data-focus",
+      "gridTemplate": "3-col-kpi",
+      "focalPosition": "bc",
+      "section": "约束",
+      "notes": "三个数字分别对应高度、对比度、留白：一页里能算错的东西，基本就是这三类。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.55,
+          "w": 12.1,
+          "h": 1.25,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "03 — 三条硬边界",
+                  "size": 12,
+                  "color": "fgMuted",
+                  "font": "Cascadia Mono"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "验收标准写在 schema 里。",
+                  "size": 44,
+                  "weight": 700
+                }
+              ],
+              "spaceBeforePt": 6
+            }
+          ]
+        },
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 3.05,
+          "x2": 4.45,
+          "y2": 3.05,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 3.85,
+          "h": 0
+        },
+        {
+          "kind": "line",
+          "x": 4.72,
+          "y": 3.05,
+          "x2": 8.57,
+          "y2": 3.05,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 3.85,
+          "h": 0
+        },
+        {
+          "kind": "line",
+          "x": 8.84,
+          "y": 3.05,
+          "x2": 12.69,
+          "y2": 3.05,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 3.85,
+          "h": 0
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 0.6,
+          "y": 3.25,
+          "w": 3.85,
+          "h": 2.75,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "1.204",
+                  "size": 56,
+                  "weight": 700,
+                  "color": "accent"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "行盒比",
+                  "size": 12,
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 2
+            },
+            {
+              "text": "高度 = 行数 × 字号 × 1.204 × 行距，打开 PPT 前即可算出。",
+              "spaceBeforePt": 8
+            }
+          ],
+          "lineHeight": 1.25
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 4.72,
+          "y": 3.25,
+          "w": 3.85,
+          "h": 2.75,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "4.5:1",
+                  "size": 56,
+                  "weight": 700,
+                  "color": "accent"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "正文字体对比度",
+                  "size": 12,
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 2
+            },
+            {
+              "text": "低于这条线就换颜色，不靠加粗和小字距离补偿。",
+              "spaceBeforePt": 8
+            }
+          ],
+          "lineHeight": 1.25
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 8.84,
+          "y": 3.25,
+          "w": 3.85,
+          "h": 2.75,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "25%",
+                  "size": 56,
+                  "weight": 700,
+                  "color": "accent"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "留白下限",
+                  "size": 12,
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 2
+            },
+            {
+              "text": "低于这个值就删内容，不缩字号把页面塞满。",
+              "spaceBeforePt": 8
+            }
+          ],
+          "lineHeight": 1.25
+        },
+        {
+          "kind": "text",
+          "role": "source",
+          "x": 0.6,
+          "y": 6.4,
+          "w": 11.0,
+          "h": 0.3,
+          "color": "fgMuted",
+          "text": "数值出处：schema/thresholds.json v1.1.1；1.204 为 LibreOffice 144 dpi 实测行盒比。"
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "03"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "layout": "comparison",
+      "gridTemplate": "5-5-split",
+      "focalPosition": "mc",
+      "section": "对照",
+      "notes": "左右两列刻意不对称叙述：左边写常见失败方式，右边写本系统的替代动作。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.55,
+          "w": 12.1,
+          "h": 1.25,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "04 — 对照",
+                  "size": 12,
+                  "color": "fgMuted",
+                  "font": "Cascadia Mono"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "同一件事，两种做法。",
+                  "size": 44,
+                  "weight": 700
+                }
+              ],
+              "spaceBeforePt": 6
+            }
+          ]
+        },
+        {
+          "kind": "table",
+          "x": 0.6,
+          "y": 3.0,
+          "w": 11.9,
+          "h": 3.25,
+          "table": {
+            "header": [
+              "环节",
+              "多数 AI 出 PPT 的做法",
+              "本系统的做法"
+            ],
+            "rows": [
+              [
+                "版面来源",
+                "边写边猜，溢出靠肉眼发现",
+                "先算所需高度，再定文本框尺寸"
+              ],
+              [
+                "风格一致",
+                "每页各写各的，色值与字号漂移",
+                "令牌驱动，重复度有阈值"
+              ],
+              [
+                "修改成本",
+                "只有 pptx，改一处要重来",
+                "改 deck.json 再重建，pptx 是产物"
+              ],
+              [
+                "验收方式",
+                "打开看，凭感觉说行不行",
+                "渲染 PNG + 机检 P0–P3"
+              ]
+            ],
+            "colWidths": [
+              1.9,
+              5.0,
+              5.0
+            ],
+            "fontSizePt": 13,
+            "headerFill": "bgAlt",
+            "zebra": false,
+            "align": "left",
+            "emphasisCol": 2
+          }
+        },
+        {
+          "kind": "text",
+          "role": "source",
+          "x": 0.6,
+          "y": 6.45,
+          "w": 11.0,
+          "h": 0.3,
+          "color": "fgMuted",
+          "text": "右列每一条都对应仓库里的一个文件或一条阈值，不是口号。"
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "04"
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "layout": "process",
+      "gridTemplate": "single-column-list",
+      "focalPosition": "tl",
+      "section": "工作流",
+      "notes": "前七步都有产出与判据，第八步才交出文件；没有跳过任何一步的捷径。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.55,
+          "w": 12.1,
+          "h": 1.25,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "05 — 工作流",
+                  "size": 12,
+                  "color": "fgMuted",
+                  "font": "Cascadia Mono"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "八个阶段，一条强制顺序。",
+                  "size": 44,
+                  "weight": 700
+                }
+              ],
+              "spaceBeforePt": 6
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 0.6,
+          "y": 2.85,
+          "w": 5.9,
+          "h": 2.15,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "0 需求探索",
+                  "weight": 700
+                },
+                {
+                  "text": "　产出需求确认书，用户点头才继续",
+                  "color": "fgMuted"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "1 内容审计",
+                  "weight": 700
+                },
+                {
+                  "text": "　每页一件事，证据带单位",
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 9
+            },
+            {
+              "runs": [
+                {
+                  "text": "2 方向选择",
+                  "weight": 700
+                },
+                {
+                  "text": "　至少 3 个方向，六维评分",
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 9
+            },
+            {
+              "runs": [
+                {
+                  "text": "3 视觉系统",
+                  "weight": 700
+                },
+                {
+                  "text": "　色彩、字体、网格、图像",
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 9
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 6.8,
+          "y": 2.85,
+          "w": 5.9,
+          "h": 2.15,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "4 页面架构",
+                  "weight": 700
+                },
+                {
+                  "text": "　版式签名排节奏，相邻页不重复",
+                  "color": "fgMuted"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "5 逐页制作",
+                  "weight": 700
+                },
+                {
+                  "text": "　deck.json → pptx → PNG",
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 9
+            },
+            {
+              "runs": [
+                {
+                  "text": "6 质量复核",
+                  "weight": 700
+                },
+                {
+                  "text": "　机检 P0–P3，再看构图",
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 9
+            },
+            {
+              "runs": [
+                {
+                  "text": "7 迭代交付",
+                  "weight": 700
+                },
+                {
+                  "text": "　带版本号，源文件留档",
+                  "color": "fgMuted"
+                }
+              ],
+              "spaceBeforePt": 9
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 0.6,
+          "y": 5.1,
+          "w": 11.6,
+          "h": 0.5,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "门槛：",
+                  "weight": 700,
+                  "color": "accent"
+                },
+                {
+                  "text": "前一阶段的产出没有通过判据，不进入下一阶段。",
+                  "color": "fg"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "05"
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "layout": "evidence",
+      "gridTemplate": "image-7-4-split",
+      "focalPosition": "ml",
+      "section": "证据",
+      "notes": "指着图说：这就是第 4 页，评审时看的是同一张图，不存在“效果图”和“实拍”的差别。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.55,
+          "w": 12.1,
+          "h": 1.25,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "06 — 证据",
+                  "size": 12,
+                  "color": "fgMuted",
+                  "font": "Cascadia Mono"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "这不是效果图。",
+                  "size": 44,
+                  "weight": 700
+                }
+              ],
+              "spaceBeforePt": 6
+            }
+          ]
+        },
+        {
+          "kind": "image",
+          "x": 0.6,
+          "y": 2.85,
+          "w": 6.93,
+          "h": 3.9,
+          "src": "assets/page-04.png",
+          "fit": "cover",
+          "alt": "本 deck 第 4 页的 LibreOffice 渲染截图，内容是两种做法对照表"
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 8.55,
+          "y": 2.9,
+          "w": 4.15,
+          "h": 3.3,
+          "size": 16,
+          "paragraphs": [
+            {
+              "text": "左边是这份 deck 第 4 页的真实渲染输出，1920×1081，由 LibreOffice 生成。",
+              "spaceBeforePt": 0
+            },
+            {
+              "text": "同一份 deck.json 既生成 pptx，也生成这张图。",
+              "spaceBeforePt": 10
+            },
+            {
+              "text": "评审看的就是它：没有另一套“效果图”。",
+              "spaceBeforePt": 10
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "source",
+          "x": 0.6,
+          "y": 6.78,
+          "w": 7.4,
+          "h": 0.26,
+          "color": "fgMuted",
+          "text": "build/preview/slide-04.png · 144 dpi · 渲染后端 native / libreoffice"
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "06"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "layout": "editorial",
+      "gridTemplate": "5-6-asym-split",
+      "focalPosition": "mc",
+      "section": "视觉系统",
+      "notes": "三条规则分别对应色、字、格；说的时候强调“比例和数值”，不要用形容词。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.55,
+          "w": 12.1,
+          "h": 1.25,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "07 — 视觉系统",
+                  "size": 12,
+                  "color": "fgMuted",
+                  "font": "Cascadia Mono"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "三条规则定住全部页面。",
+                  "size": 44,
+                  "weight": 700
+                }
+              ],
+              "spaceBeforePt": 6
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 0.6,
+          "y": 3.0,
+          "w": 5.85,
+          "h": 3.2,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "色彩",
+                  "size": 20,
+                  "weight": 700
+                },
+                {
+                  "text": "　3 个色相上限",
+                  "color": "fgMuted"
+                }
+              ]
+            },
+            {
+              "text": "主色 60%、辅色 30%、强调色 3–15% 面积。",
+              "spaceBeforePt": 14
+            },
+            {
+              "text": "对比度按 4.5:1 校验，不靠加粗糊过去。",
+              "spaceBeforePt": 14
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 6.9,
+          "y": 3.0,
+          "w": 5.8,
+          "h": 3.2,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "字体",
+                  "size": 20,
+                  "weight": 700
+                },
+                {
+                  "text": "　标题 40–72 / 正文 16–24 pt",
+                  "color": "fgMuted"
+                }
+              ]
+            },
+            {
+              "text": "行距 1.25–1.55，中文每行 ≤34 字。",
+              "spaceBeforePt": 14
+            },
+            {
+              "runs": [
+                {
+                  "text": "网格",
+                  "size": 20,
+                  "weight": 700
+                },
+                {
+                  "text": "　12 栏 / 沟 0.2 in",
+                  "color": "fgMuted"
+                }
+              ]
+            },
+            {
+              "text": "安全边距 0.6 × 0.45 in，元素对齐到栏。",
+              "spaceBeforePt": 14
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "source",
+          "x": 0.6,
+          "y": 6.45,
+          "w": 11.5,
+          "h": 0.3,
+          "color": "fgMuted",
+          "text": "完整条见 references/visual-styles.md 与 schema/thresholds.json；风格不是皮肤，是转化规则。"
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "07"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "layout": "closing",
+      "gridTemplate": "full-bleed-left",
+      "focalPosition": "ml",
+      "section": "收尾",
+      "notes": "收尾给三行命令，不讲生态；能跑起来比讲清楚更重要。",
+      "elements": [
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 1.42,
+          "x2": 12.73,
+          "y2": 1.42,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "label",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 8.0,
+          "h": 0.3,
+          "font": "Cascadia Mono",
+          "color": "fgMuted",
+          "text": "08 — 开始"
+        },
+        {
+          "kind": "text",
+          "role": "coverTitle",
+          "x": 0.6,
+          "y": 1.95,
+          "w": 11.5,
+          "h": 1.25,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "装上就能用。",
+                  "size": 64,
+                  "weight": 700
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "body",
+          "x": 0.6,
+          "y": 3.4,
+          "w": 11.8,
+          "h": 0.95,
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "git clone <repo-url> ~/.claude/skills/ai-ppt-design-system",
+                  "font": "mono"
+                }
+              ]
+            },
+            {
+              "runs": [
+                {
+                  "text": "python3 scripts/build_pptx.py --deck source/deck.json",
+                  "font": "mono"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "role": "caption",
+          "x": 0.6,
+          "y": 4.6,
+          "w": 11.3,
+          "h": 0.3,
+          "text": "其余三条：render、qa_check、contact_sheet，用法见 README。"
+        },
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 6.15,
+          "x2": 12.73,
+          "y2": 6.15,
+          "stroke": "fg",
+          "strokeWidthPt": 0.75,
+          "w": 12.13,
+          "h": 0.0
+        },
+        {
+          "kind": "text",
+          "role": "caption",
+          "x": 0.6,
+          "y": 6.35,
+          "w": 11.3,
+          "h": 0.3,
+          "color": "fgMuted",
+          "text": "MIT 许可 · v1.1.1 · 有问题先改 schema/thresholds.json，再改文档"
+        },
+        {
+          "kind": "text",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.42,
+          "w": 0.63,
+          "h": 0.25,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "08"
+        }
+      ]
+    }
+  ]
+}

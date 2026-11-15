@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ai-ppt-design-system/schema/deck.schema.json",
+  "title": "Deck Spec",
+  "description": "单页为单位的声明式版面描述。这是 build_pptx.py / render.py / qa_check.py 的唯一输入契约：同一份 deck.json 必须同时决定 PPTX 画面与预览图。坐标系：单位英寸，原点左上角，尺寸取自 meta.size。",
+  "type": "object",
+  "required": ["meta", "tokens", "slides"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": { "$ref": "#/$defs/meta" },
+    "tokens": { "$ref": "#/$defs/tokens" },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/slide" }
+    }
+  },
+  "$defs": {
+    "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "tokenRef": {
+      "type": "string",
+      "description": "令牌名（如 bg / fg / accent）或直接 #RRGGBB。以 $ 开头表示精确引用令牌，否则先查令牌再当颜色解析。"
+    },
+    "meta": {
+      "type": "object",
+      "required": ["title", "size"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "author": { "type": "string" },
+        "lang": { "type": "string", "default": "zh-CN" },
+        "size": {
+          "description": "16:9 或 4:3，或显式 \"13.333x7.5\"。",
+          "type": "string",
+          "default": "16:9"
+        },
+        "project": { "type": "string", "description": "项目/需求确认书编号，便于回溯" },
+        "version": { "type": "string", "description": "内容版本号，如 v1.2" },
+        "speakerMode": {
+          "type": "string",
+          "enum": ["live", "read-only"],
+          "default": "live",
+          "description": "live=现场讲解（信息密度低）；read-only=独立阅读（允许更高密度）"
+        }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "required": ["colors", "fonts", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "colors": {
+          "type": "object",
+          "required": ["bg", "fg"],
+          "additionalProperties": { "$ref": "#/$defs/hex" },
+          "description": "必须至少含 bg/fg；建议含 bgAlt/fgMuted/primary/secondary/accent/warn/ok。不得只用 #000000 与 #FFFFFF。"
+        },
+        "fonts": {
+          "type": "object",
+          "required": ["display", "body"],
+          "additionalProperties": false,
+          "properties": {
+            "display": { "type": "string", "description": "标题字体族，需为目标机器常见字体或其回退链首项" },
+            "body": { "type": "string" },
+            "mono": { "type": "string" },
+            "fallback": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "type": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/typeScale" },
+          "description": "字号阶梯，键名对应 element.role：coverTitle/h1/h2/h3/lead/body/caption/source/pageNumber/kpi/label。"
+        },
+        "grid": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "cols": { "type": "integer", "default": 12 },
+            "gutterIn": { "type": "number", "default": 0.2 },
+            "marginXIn": { "type": "number", "default": 0.6 },
+            "marginYIn": { "type": "number", "default": 0.45 },
+            "baselineIn": { "type": "number", "default": 0.08 }
+          }
+        },
+        "space": {
+          "type": "object",
+          "additionalProperties": { "type": "number" },
+          "description": "间距刻度，键名 xs/sm/md/lg/xl，单位英寸。"
+        }
+      }
+    },
+    "typeScale": {
+      "type": "object",
+      "required": ["size"],
+      "additionalProperties": false,
+      "properties": {
+        "size": { "type": "number", "description": "pt" },
+        "weight": { "type": "integer", "minimum": 100, "maximum": 900, "default": 400 },
+        "lineHeight": { "type": "number", "default": 1.35 },
+        "letterSpacing": { "type": "number", "default": 0, "description": "pt" }
+      }
+    },
+    "slide": {
+      "type": "object",
+      "required": ["id", "layout", "elements"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^s[0-9]{2,3}$", "description": "如 s01" },
+        "layout": {
+          "type": "string",
+          "description": "版式名，取自 references/layout-recipes.md（如 cover / statement / evidence / comparison / timeline / process / gallery / section / closing / matrix / quote / data-focus）。用于重复度检查，不参与渲染。"
+        },
+        "gridTemplate": {
+          "type": "string",
+          "description": "网格构成签名，如 12col-3block / 6-6-split / full-bleed / 4x2-grid。用于相邻页重复检查。"
+        },
+        "focalPosition": {
+          "type": "string",
+          "enum": ["tl", "tc", "tr", "ml", "mc", "mr", "bl", "bc", "br", "full", "none"],
+          "description": "视觉焦点九宫格位置，用于检查焦点漂移与重复。"
+        },
+        "section": { "type": "string", "description": "所属章节名，用于章节页与页码风格" },
+        "bg": { "$ref": "#/$defs/tokenRef" },
+        "notes": { "type": "string", "description": "演讲者备注，写入 pptx notes；不参与版面检查" },
+        "elements": {
+          "type": "array",
+          "maxItems": 40,
+          "items": { "$ref": "#/$defs/element" }
+        }
+      }
+    },
+    "element": {
+      "type": "object",
+      "required": ["kind", "x", "y", "w", "h"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["text", "rect", "line", "ellipse", "polygon", "image", "chart", "table", "icon"]
+        },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1, "default": 1 },
+        "rotation": { "type": "number", "default": 0 },
+        "name": { "type": "string", "description": "元素语义名，便于 QA 报告定位" },
+        "role": {
+          "type": "string",
+          "enum": ["coverTitle", "h1", "h2", "h3", "lead", "body", "caption", "source", "pageNumber", "kpi", "label", "quote", "note", "decor"],
+          "description": "文本角色；决定字号阶梯回退与检查项"
+        },
+        "text": { "type": "string" },
+        "runs": { "$ref": "#/$defs/runs" },
+        "paragraphs": { "$ref": "#/$defs/paragraphs" },
+        "size": { "type": "number", "description": "pt；缺省取 tokens.type[role].size" },
+        "weight": { "type": "integer" },
+        "color": { "$ref": "#/$defs/tokenRef" },
+        "font": { "type": "string" },
+        "align": { "type": "string", "enum": ["left", "center", "right", "justify"], "default": "left" },
+        "valign": { "type": "string", "enum": ["top", "middle", "bottom"], "default": "top" },
+        "lineHeight": { "type": "number" },
+        "letterSpacing": { "type": "number" },
+        "caps": { "type": "boolean", "default": false },
+        "paddingIn": { "type": "number", "default": 0.04 },
+        "fill": { "$ref": "#/$defs/tokenRef" },
+        "stroke": { "$ref": "#/$defs/tokenRef" },
+        "strokeWidthPt": { "type": "number", "default": 1 },
+        "dash": { "type": "string", "enum": ["solid", "dash", "dot"], "default": "solid" },
+        "corners": { "type": "number", "default": 0, "description": "圆角半径 in；默认 0，圆角必须有信息理由（见 anti-patterns）" },
+        "x2": { "type": "number", "description": "line 端点 x" },
+        "y2": { "type": "number", "description": "line 端点 y" },
+        "points": {
+          "type": "array",
+          "description": "polygon 顶点，绝对坐标 [{x,y},...]",
+          "items": { "type": "object", "required": ["x", "y"], "properties": { "x": { "type": "number" }, "y": { "type": "number" } }, "additionalProperties": false }
+        },
+        "src": { "type": "string", "description": "image 相对路径（相对 deck.json）" },
+        "fit": { "type": "string", "enum": ["cover", "contain", "fill"], "default": "cover" },
+        "crop": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": { "l": { "type": "number" }, "t": { "type": "number" }, "r": { "type": "number" }, "b": { "type": "number" } },
+          "description": "裁切比例 0-1"
+        },
+        "alt": { "type": "string", "description": "替代文本，QA 检查必需（无障碍）" },
+        "chartType": { "type": "string", "enum": ["column", "bar", "line", "area", "pie", "donut", "scatter"] },
+        "chart": { "$ref": "#/$defs/chart" },
+        "table": { "$ref": "#/$defs/table" },
+        "icon": { "type": "string", "description": "icon 名称；优先使用单色几何图形，避免图标堆砌" },
+        "zRole": { "type": "string", "enum": ["bg", "bgDecor", "content", "fgDecor"], "default": "content" }
+      }
+    },
+    "runs": {
+      "type": "array",
+      "description": "同一段落内的富文本片段；与 text 互斥。",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "additionalProperties": false,
+        "properties": {
+          "text": { "type": "string" },
+          "color": { "$ref": "#/$defs/tokenRef" },
+          "weight": { "type": "integer" },
+          "size": { "type": "number" },
+          "font": { "type": "string" },
+          "italic": { "type": "boolean" }
+        }
+      }
+    },
+    "paragraphs": {
+      "type": "array",
+      "description": "多段落文本；每项为一个段落。与 text / runs 互斥。",
+      "items": {
+        "type": "object",
+        "required": [],
+        "anyOf": [ { "required": ["text"] }, { "required": ["runs"] } ],
+        "additionalProperties": false,
+        "properties": {
+          "text": { "type": "string" },
+          "runs": { "$ref": "#/$defs/runs" },
+          "align": { "type": "string", "enum": ["left", "center", "right", "justify"] },
+          "bullet": { "type": "boolean", "default": false },
+          "spaceBeforePt": { "type": "number", "default": 0 },
+          "level": { "type": "integer", "minimum": 0, "maximum": 2, "default": 0 }
+        }
+      }
+    },
+    "chart": {
+      "type": "object",
+      "required": ["categories", "series"],
+      "additionalProperties": false,
+      "properties": {
+        "categories": { "type": "array", "items": { "type": "string" } },
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["values"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "values": { "type": "array", "items": { "type": "number" } },
+              "color": { "$ref": "#/$defs/tokenRef" }
+            }
+          }
+        },
+        "unit": { "type": "string", "description": "单位，必须显示，禁止无单位数字" },
+        "source": { "type": "string", "description": "数据来源，必须显示" },
+        "showValues": { "type": "boolean", "default": false },
+        "showLegend": { "type": "boolean", "default": true },
+        "numberFormat": { "type": "string", "default": "General" },
+        "directLabel": { "type": "boolean", "default": true, "description": "是否直接标注数值/单位而非依赖图例" }
+      }
+    },
+    "table": {
+      "type": "object",
+      "required": ["rows"],
+      "additionalProperties": false,
+      "properties": {
+        "header": { "type": "array", "items": { "type": "string" } },
+        "rows": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } },
+        "colWidths": { "type": "array", "items": { "type": "number" }, "description": "英寸；缺省等分" },
+        "fontSizePt": { "type": "number", "default": 14 },
+        "headerFill": { "$ref": "#/$defs/tokenRef" },
+        "zebra": { "type": "boolean", "default": false },
+        "align": { "type": "string", "enum": ["left", "center", "right"], "default": "left" },
+        "emphasisCol": { "type": "integer", "description": "需要强调的列索引（强调色），-1 表示无" }
+      }
+    }
+  }
+}

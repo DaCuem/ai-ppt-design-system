@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "deck": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\demo\\smoke\\deck.json",
+  "generatedAt": "2026-11-14T23:59:44",
+  "thresholdsVersion": "1.1.0",
+  "canvas": {
+    "widthIn": 13.333,
+    "heightIn": 7.5
+  },
+  "summary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0,
+    "total": 0,
+    "pages": 3,
+    "exitCode": 0
+  },
+  "issues": []
+}

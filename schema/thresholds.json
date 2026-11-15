@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "note": "本文档是本仓库所有量化阈值的唯一真值来源。文档引用阈值必须与此一致；scripts/qa_check.py 直接读取本文件。修改阈值必须先改这里，再同步文档与检查项。",
+  "version": "1.3.0",
+  "basis": {
+    "canvas": "16:9 = 13.333 in x 7.5 in (1280x720 px @96dpi)",
+    "viewing": "投影/大屏，观众距离 3-8 m，页面最小可读字号 11 pt",
+    "language": "以中文为主，中英混排"
+  },
+  "canvas": {
+    "16:9": {
+      "widthIn": 13.333,
+      "heightIn": 7.5,
+      "widthPx": 1280,
+      "heightPx": 720
+    },
+    "4:3": {
+      "widthIn": 10.0,
+      "heightIn": 7.5,
+      "widthPx": 960,
+      "heightPx": 720
+    },
+    "safeMarginIn": {
+      "x": 0.6,
+      "y": 0.45
+    },
+    "safeMarginRatio": {
+      "x": 0.045,
+      "y": 0.06
+    },
+    "grid": {
+      "cols": 12,
+      "gutterIn": 0.2,
+      "baselineIn": 0.08
+    }
+  },
+  "type": {
+    "minPt": {
+      "h1": 36,
+      "h2": 24,
+      "h3": 20,
+      "body": 16,
+      "caption": 11,
+      "pageNumber": 9,
+      "note": 12
+    },
+    "recommendedPt": {
+      "coverTitle": [
+        56,
+        96
+      ],
+      "h1": [
+        40,
+        72
+      ],
+      "h2": [
+        26,
+        40
+      ],
+      "h3": [
+        20,
+        26
+      ],
+      "lead": [
+        24,
+        32
+      ],
+      "body": [
+        16,
+        24
+      ],
+      "caption": [
+        11,
+        14
+      ],
+      "source": [
+        9,
+        11
+      ],
+      "pageNumber": [
+        9,
+        12
+      ],
+      "kpi": [
+        48,
+        96
+      ],
+      "note": [
+        12,
+        15
+      ]
+    },
+    "lineBoxRatio": 1.204,
+    "lineBoxRatioMeasured": "LibreOffice 渲染实测（1920x1081@144dpi）：微软雅黑 / Noto Sans SC / 思源宋体 / Lato 在 60 pt 下均为 1.20，取 1.204 作保守值。文本块所需高度 = 行数 x 字号 x lineBoxRatio x lineHeight + 上下 padding。",
+    "lineHeight": {
+      "h1": [
+        0.95,
+        1.15
+      ],
+      "body": [
+        1.25,
+        1.55
+      ]
+    },
+    "maxCjkCharsPerLine": {
+      "body": 34,
+      "caption": 48,
+      "h1": 16
+    },
+    "maxLinesPerTextBlock": {
+      "body": 6,
+      "caption": 2,
+      "note": 10
+    },
+    "titleBodyRatioMin": 1.3,
+    "titleBodyRatioMax": 3.0,
+    "titleBodyRatioNote": "h1 与 body 的字号比：低于 1.3 层级不分明，高于 3.0 正文退化为注释",
+    "maxTitleChars": 25,
+    "note_maxTitleChars": "标题上限 25 字；超出说明论点没压成一句",
+    "note_role": "note 用于图注式短行、读数清单、层号说明；一行一条，不加句号"
+  },
+  "density": {
+    "maxElementsPerSlide": 14,
+    "maxTextBlocksPerSlide": 4,
+    "textBlockExcludeRoles": [
+      "caption",
+      "source",
+      "pageNumber"
+    ],
+    "maxBulletItemsPerSlide": 6,
+    "maxCharsPerSlide": 220,
+    "minWhitespaceRatio": 0.25,
+    "minInkRatio": 0.06
+  },
+  "contrast": {
+    "bodyText": 4.5,
+    "largeText": 3.0,
+    "nonTextUI": 3.0,
+    "largeTextPt": {
+      "regular": 24,
+      "bold": 18.66
+    }
+  },
+  "color": {
+    "maxHuesPerDeck": 3,
+    "areaShareDefault": {
+      "primary": 0.6,
+      "secondary": 0.3,
+      "accent": 0.1
+    },
+    "accentAreaShareRange": [
+      0.03,
+      0.15
+    ],
+    "saturationCapNormal": 0.85,
+    "maxFontFamilies": 3,
+    "note_maxFontFamilies": "全 deck 字族 ≤3：display + body + mono"
+  },
+  "charts": {
+    "barWidthRatio": [
+      0.55,
+      0.7
+    ],
+    "barGapPct": [
+      30,
+      45
+    ],
+    "lineWidthPt": [
+      2,
+      3
+    ],
+    "pieMaxSectors": 5,
+    "areaOpacity": [
+      0.2,
+      0.4
+    ],
+    "maxSeries": 4,
+    "forbid3D": true,
+    "requireUnitAndSource": true
+  },
+  "repetition": {
+    "maxSameLayoutAdjacent": 1,
+    "maxSameLayoutShare": 0.35,
+    "signatureFields": [
+      "layout",
+      "gridTemplate",
+      "focalPosition"
+    ]
+  },
+  "rhythm": {
+    "maxConsecutiveDenseSlides": 2,
+    "minVisualBreakEvery": 4,
+    "denseSlideDefinition": "可见字数 >= 180 且留白率 < 50%（两条件同时满足才算'密'）",
+    "note_manual": "本节是人工判定项：qa_check.py 不实现（'密'与'换气'需要语义判断，机器判会误报）。阶段 4 排完页后逐页对照，结论写进 records/qa-report.md 的节奏段。阈值本身仍由本文件唯一提供。"
+  },
+  "qa": {
+    "levels": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "blockOnP0": true,
+    "overflowToleranceIn": 0.02,
+    "overlapToleranceIn": 0.05,
+    "overflowRatioBlockP0": 0.3,
+    "note_overflowRatioBlockP0": "溢出超过框高 30% 直接判 P0；同时要求 needed 绝对超出 0.02in，避免小框误报",
+    "minImagePpi": 110,
+    "minImagePpiBlock": 80,
+    "minImagePpi_note": "IMG-01：image 元素的有效像素密度 = 像素宽 / 版面英寸。低于 minImagePpi 报 P2（投影与打印会糊），低于 minImagePpiBlock 报 P1（直接不可用）。全宽 12.13 in 需 ≥ 1335 px。"
+  },
+  "copy": {
+    "note": "文案槽位字数与 AI 感判定。copy_check.py 全部读本段，代码里不写死词表与数字。",
+    "limits": {
+      "coverTitle": 20,
+      "lead": 64,
+      "h1": 25,
+      "h2": 30,
+      "h3": 34,
+      "body": 220,
+      "bullet": 34,
+      "kpi": 40,
+      "label": 24,
+      "caption": 72,
+      "source": 72,
+      "quote": 60,
+      "note": 160
+    },
+    "limitsScope": "按 16:9 版面容量推的上限（不是审美偏好）：coverTitle 20 = 两行×10 字；lead 48 = 两行×24 字；h1 取 type.maxTitleChars；body 为整页正文合计；bullet 为单条依据；kpi 含数字+单位+一行说明；caption/source 为单行可读上限",
+    "sentenceMaxChars": 45,
+    "paragraphRepeatMin": 3,
+    "emptyPhrases": [
+      "具有重要意义",
+      "具有重要价值",
+      "有效提升",
+      "全面提升",
+      "进一步深化",
+      "持续赋能",
+      "形成闭环",
+      "打造生态",
+      "赋能",
+      "抓手",
+      "保驾护航",
+      "奠定坚实基础",
+      "注入新动能",
+      "开启新篇章",
+      "迈上新台阶",
+      "再上新台阶",
+      "提供有力支撑",
+      "发挥重要作用"
+    ],
+    "fillerAdjectives": [
+      "显著",
+      "充分",
+      "全面",
+      "深入",
+      "有效",
+      "极大",
+      "高度",
+      "极致",
+      "无缝",
+      "一站式",
+      "全方位",
+      "多维度"
+    ],
+    "aiPatterns": [
+      "不仅.{0,12}而且",
+      "既.{0,10}又.{0,10}还",
+      "在这个.{0,10}的时代",
+      "随着.{0,12}的不断",
+      "从.{0,8}到.{0,8}的转变",
+      "如果说.{0,12}那么",
+      "不是.{0,10}而是.{0,10}",
+      "在.{0,6}的背景下",
+      "值得注意的是",
+      "综上所述",
+      "综合来看",
+      "总而言之"
+    ],
+    "slopSeverity": {
+      "emptyPhrase": "P1",
+      "aiPattern": "P1",
+      "fillerAdjective": "P2",
+      "sentenceTooLong": "P2",
+      "paragraphUniform": "P2",
+      "repeatedPhrase": "P3",
+      "titleNotClaim": "P3",
+      "missingSource": "P2",
+      "unreviewedMarker": "P1"
+    },
+    "note_review": "是否通过用户审核、是否像 AI、是否接受，都是流程门禁，脚本只查可计算项。机检 0 条 ≠ 文案达标；用户没答复要记 [假设] 并在交付说明里点名。",
+    "repeatedPhraseMin": 4,
+    "note_verdict": "下列分级只是可数事实的严重度，不构成「像不像 AI」的判定。判定权与验收权在用户：脚本与文档只负责指出位置，最终由用户说像不像、接受不接受（references/copywriting-antislop.md §1、§5）。"
+  }
+}

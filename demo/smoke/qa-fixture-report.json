@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0.0",
+  "deck": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\demo\\smoke\\qa-fixture.json",
+  "generatedAt": "2026-11-14T23:59:43",
+  "thresholdsVersion": "1.1.0",
+  "canvas": {
+    "widthIn": 13.333,
+    "heightIn": 7.5
+  },
+  "summary": {
+    "P0": 2,
+    "P1": 9,
+    "P2": 5,
+    "P3": 3,
+    "total": 19,
+    "pages": 6,
+    "exitCode": 1
+  },
+  "issues": [
+    {
+      "page": 2,
+      "slideId": "s02",
+      "severity": "P2",
+      "checkId": "REP-02",
+      "check": "版式占比过高",
+      "element": "版式签名",
+      "message": "签名 standard / G2 / ml 占 3/6 页 = 50% > 上限 35%",
+      "fix": "同一版式签名占比 ≤ 35%；连续卡片页改用 comparison / timeline 等不同版式",
+      "status": "待修复"
+    },
+    {
+      "page": 3,
+      "slideId": "s03",
+      "severity": "P1",
+      "checkId": "CON-01",
+      "check": "对比度不足",
+      "element": "body-lowcontrast",
+      "message": "对比度 2.42:1 < 3.0:1（文字 #9AA0A6 / 背景 #F7F5F0，24pt，大字）",
+      "fix": "文字与背景对比度 ≥ 4.5:1（大字 ≥ 3:1）；半透明元素按叠加后的实色计算",
+      "status": "待修复"
+    },
+    {
+      "page": 3,
+      "slideId": "s03",
+      "severity": "P1",
+      "checkId": "CON-01",
+      "check": "对比度不足",
+      "element": "caption-lowcontrast",
+      "message": "对比度 2.42:1 < 4.5:1（文字 #9AA0A6 / 背景 #F7F5F0，12pt）",
+      "fix": "文字与背景对比度 ≥ 4.5:1（大字 ≥ 3:1）；半透明元素按叠加后的实色计算",
+      "status": "待修复"
+    },
+    {
+      "page": 3,
+      "slideId": "s03",
+      "severity": "P1",
+      "checkId": "OVF-01",
+      "check": "文本溢出",
+      "element": "body-overflow",
+      "message": "文本溢出 0.17in（needed 1.67in > box 1.50in；3 行）",
+      "fix": "缩短文本、按阶梯降 1–2 pt，或把 h 加大到 needed_h_in；不要依赖 PowerPoint 自动缩放",
+      "status": "待修复"
+    },
+    {
+      "page": 3,
+      "slideId": "s03",
+      "severity": "P1",
+      "checkId": "REP-01",
+      "check": "相邻页版式重复",
+      "element": "版式签名",
+      "message": "与上一页第 2 页版式签名相同（standard / G2 / ml）",
+      "fix": "相邻两页换版式：layout / gridTemplate / focalPosition 至少改一项",
+      "status": "待修复"
+    },
+    {
+      "page": 4,
+      "slideId": "s04",
+      "severity": "P0",
+      "checkId": "OVF-02",
+      "check": "文本严重溢出",
+      "element": "title-too-long",
+      "message": "文本严重溢出 1.57in（needed 2.57in > box 1.00in，超出 157% > 上限 30%）",
+      "fix": "溢出 > 框高 30%：删减字数或拆页；正文每行 ≤ 34 字",
+      "status": "待修复"
+    },
+    {
+      "page": 4,
+      "slideId": "s04",
+      "severity": "P1",
+      "checkId": "REP-01",
+      "check": "相邻页版式重复",
+      "element": "版式签名",
+      "message": "与上一页第 3 页版式签名相同（standard / G2 / ml）",
+      "fix": "相邻两页换版式：layout / gridTemplate / focalPosition 至少改一项",
+      "status": "待修复"
+    },
+    {
+      "page": 4,
+      "slideId": "s04",
+      "severity": "P2",
+      "checkId": "CNT-04",
+      "check": "标题过长",
+      "element": "title-too-long",
+      "message": "标题 26 字 > 上限 25 字",
+      "fix": "标题压到 ≤ 25 字；细节移到副标题或正文",
+      "status": "待修复"
+    },
+    {
+      "page": 4,
+      "slideId": "s04",
+      "severity": "P2",
+      "checkId": "COL-01",
+      "check": "颜色非法或未登记",
+      "element": "body-brandcolor",
+      "message": "color 引用的颜色 'brand-blue' 既不在 tokens.colors 也不是合法 #RRGGBB",
+      "fix": "颜色只写 tokens.colors 的名字或 #RRGGBB；先补 token 再引用",
+      "status": "待修复"
+    },
+    {
+      "page": 4,
+      "slideId": "s04",
+      "severity": "P3",
+      "checkId": "REP-03",
+      "check": "焦点位置连续重复",
+      "element": "focalPosition",
+      "message": "焦点位置 ml 连续 3 页相同（第 2–4 页）",
+      "fix": "焦点连续 3 页相同：至少一页把焦点移到另一侧，或改为 full",
+      "status": "待修复"
+    },
+    {
+      "page": 5,
+      "slideId": "s05",
+      "severity": "P1",
+      "checkId": "CNT-01",
+      "check": "图片缺替代文本",
+      "element": "proof-shot",
+      "message": "image 缺 alt（src=qa-shot.png）",
+      "fix": "给 image 补 alt：描述图片承载的信息，不写文件名或“示意图”",
+      "status": "待修复"
+    },
+    {
+      "page": 5,
+      "slideId": "s05",
+      "severity": "P1",
+      "checkId": "CNT-02",
+      "check": "图表缺单位或来源",
+      "element": "trend",
+      "message": "chart 缺 unit 与 source（chartType=column）",
+      "fix": "chart 必须填 unit 与 source，并把两者显示在图表附近",
+      "status": "待修复"
+    },
+    {
+      "page": 5,
+      "slideId": "s05",
+      "severity": "P2",
+      "checkId": "DEN-02",
+      "check": "文本块超限",
+      "element": "页面",
+      "message": "文本块 5 个 > 上限 4 个（已排除 role=caption/source/pageNumber）",
+      "fix": "每页文本块 ≤ 4 个；同组信息合并进一个多段落文本框",
+      "status": "待修复"
+    },
+    {
+      "page": 6,
+      "slideId": "s07",
+      "severity": "P0",
+      "checkId": "GEO-01",
+      "check": "越出画布",
+      "element": "decor-blob",
+      "message": "越出画布（右 0.77in；画布 13.333×7.500 in）",
+      "fix": "把 x/y/w/h 收回到画布内：0 ≤ x ≤ 13.333-w in、0 ≤ y ≤ 7.5-h in；满版装饰改用 zRole=bg 并允许出血",
+      "status": "待修复"
+    },
+    {
+      "page": 6,
+      "slideId": "s07",
+      "severity": "P1",
+      "checkId": "STR-01",
+      "check": "slide id 不连续",
+      "element": "slide.id",
+      "message": "slide id 不连续：第 6 页应为 s06，实际为 s07",
+      "fix": "slide id 必须从 s01 起连续递增且唯一",
+      "status": "待修复"
+    },
+    {
+      "page": 6,
+      "slideId": "s07",
+      "severity": "P1",
+      "checkId": "TYP-01",
+      "check": "字号低于下限",
+      "element": "kpi-small",
+      "message": "字号 17.0pt < h2 的 minPt 24pt",
+      "fix": "字号提到 role 的 minPt 之上：h1 36 / h2 24 / h3 20 / body 16 / caption 11 / pageNumber 9 pt",
+      "status": "待修复"
+    },
+    {
+      "page": 6,
+      "slideId": "s07",
+      "severity": "P2",
+      "checkId": "GEO-03",
+      "check": "越出安全边距",
+      "element": "eyebrow",
+      "message": "越出安全边距：上 0.25in（应 ≥ 0.45in）",
+      "fix": "内容元素 x ≥ 0.6 in、y ≥ 0.45 in，右/下边界各留 0.6 in / 0.45 in",
+      "status": "待修复"
+    },
+    {
+      "page": 6,
+      "slideId": "s07",
+      "severity": "P3",
+      "checkId": "CNT-03",
+      "check": "缺页码",
+      "element": "页面",
+      "message": "缺页码（layout=data）",
+      "fix": "在每页（封面/封底除外）放 role=pageNumber 的页码元素",
+      "status": "待修复"
+    },
+    {
+      "page": 6,
+      "slideId": "s07",
+      "severity": "P3",
+      "checkId": "COL-02",
+      "check": "字号不在阶梯",
+      "element": "kpi-small",
+      "message": "字号 17.0pt 不在 tokens.type 阶梯（10、12、22、24、26、30、44、48、64 pt）",
+      "fix": "字号取 tokens.type 阶梯里的值，不要出现 17 pt 这类阶梯外字号",
+      "status": "待修复"
+    }
+  ]
+}

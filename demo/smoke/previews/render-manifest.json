@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "pptx": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\demo\\smoke\\deck.pptx",
+  "backend": "dsh-native",
+  "backendDetail": "native / libreoffice",
+  "dpi": 144.0,
+  "pageCount": 3,
+  "requestedPages": [
+    1,
+    2,
+    3
+  ],
+  "images": [
+    {
+      "page": 1,
+      "filename": "slide-01.png",
+      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\demo\\smoke\\previews\\slide-01.png",
+      "width": 1920,
+      "height": 1081
+    },
+    {
+      "page": 2,
+      "filename": "slide-02.png",
+      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\demo\\smoke\\previews\\slide-02.png",
+      "width": 1920,
+      "height": 1081
+    },
+    {
+      "page": 3,
+      "filename": "slide-03.png",
+      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\demo\\smoke\\previews\\slide-03.png",
+      "width": 1920,
+      "height": 1081
+    }
+  ],
+  "missingFonts": [],
+  "generatedAt": "2026-11-15T10:46:18+08:00"
+}

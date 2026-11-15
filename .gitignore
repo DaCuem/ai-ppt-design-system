@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 渲染/构建临时产物（示例的正式产物已随仓库提交，勿删）
+*.tmp
+*.log
+_scratch/
+_scratch.*
+__scratch__/
+
+# 本机路径泄漏保护：任何含绝对路径的临时探测记录
+_probe_*/
+
+# 打包产物（通过 GitHub Release 分发，不入库）
+dist/

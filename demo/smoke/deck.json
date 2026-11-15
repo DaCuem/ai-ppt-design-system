@@ -1,0 +1,553 @@
+{
+  "meta": {
+    "title": "deck.json 最小可运行样例",
+    "subtitle": "3 页：封面 / 文字与图形 / 图表与表格",
+    "author": "AI PPT 设计系统",
+    "lang": "zh-CN",
+    "size": "16:9",
+    "version": "1.0",
+    "project": "smoke-test"
+  },
+  "tokens": {
+    "colors": {
+      "bg": "#0F1621",
+      "bgAlt": "#18212F",
+      "fg": "#F2F5F8",
+      "fgMuted": "#A7B4C4",
+      "primary": "#3D7BFF",
+      "accent": "#F2B24A",
+      "ok": "#3FBF87",
+      "warn": "#E4572E"
+    },
+    "fonts": {
+      "display": "Microsoft YaHei",
+      "body": "Microsoft YaHei",
+      "mono": "Cascadia Mono"
+    },
+    "type": {
+      "coverTitle": {
+        "size": 60,
+        "weight": 700,
+        "lineHeight": 1.12,
+        "letterSpacing": 0
+      },
+      "h1": {
+        "size": 44,
+        "weight": 700,
+        "lineHeight": 1.15,
+        "letterSpacing": 0
+      },
+      "h2": {
+        "size": 28,
+        "weight": 600,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      "h3": {
+        "size": 22,
+        "weight": 600,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      "lead": {
+        "size": 20,
+        "weight": 400,
+        "lineHeight": 1.45,
+        "letterSpacing": 0
+      },
+      "body": {
+        "size": 18,
+        "weight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      "caption": {
+        "size": 12,
+        "weight": 400,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      "source": {
+        "size": 11,
+        "weight": 400,
+        "lineHeight": 1.35,
+        "letterSpacing": 0
+      },
+      "pageNumber": {
+        "size": 10,
+        "weight": 400,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      "kpi": {
+        "size": 56,
+        "weight": 700,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      "label": {
+        "size": 14,
+        "weight": 600,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.04
+      }
+    },
+    "grid": {
+      "cols": 12,
+      "gutterIn": 0.2,
+      "marginXIn": 0.6,
+      "marginYIn": 0.45,
+      "baselineIn": 0.08
+    },
+    "space": {
+      "xs": 0.12,
+      "sm": 0.24,
+      "md": 0.4,
+      "lg": 0.72,
+      "xl": 1.2
+    }
+  },
+  "slides": [
+    {
+      "id": "s01",
+      "layout": "cover",
+      "section": "开篇",
+      "gridTemplate": "asymmetric-left",
+      "focalPosition": "ml",
+      "bg": "bg",
+      "notes": "封面只承担一个任务：让观众在 3 秒内知道这是什么、它凭什么可信。不要放目录、不要放团队名单。",
+      "elements": [
+        {
+          "kind": "rect",
+          "name": "左侧色条",
+          "zRole": "bgDecor",
+          "x": 0,
+          "y": 0,
+          "w": 0.18,
+          "h": 7.5,
+          "fill": "primary"
+        },
+        {
+          "kind": "ellipse",
+          "name": "右侧环",
+          "zRole": "bgDecor",
+          "x": 8.6,
+          "y": 0.35,
+          "w": 4.6,
+          "h": 4.6,
+          "fill": "primary",
+          "opacity": 0.1,
+          "stroke": "primary",
+          "strokeWidthPt": 1.5
+        },
+        {
+          "kind": "text",
+          "name": "主标题",
+          "role": "coverTitle",
+          "color": "fg",
+          "x": 1.0,
+          "y": 1.5,
+          "w": 7.4,
+          "h": 2.35,
+          "text": "把 PPT 设计\n变成可执行的规则"
+        },
+        {
+          "kind": "line",
+          "name": "标题下分隔线",
+          "x": 1.0,
+          "y": 3.92,
+          "w": 3.6,
+          "h": 0,
+          "x2": 4.6,
+          "y2": 3.92,
+          "stroke": "accent",
+          "strokeWidthPt": 2
+        },
+        {
+          "kind": "text",
+          "name": "副标题",
+          "color": "fgMuted",
+          "x": 1.0,
+          "y": 4.2,
+          "w": 7.4,
+          "h": 0.9,
+          "runs": [
+            {
+              "text": "deck.json 进，pptx 出",
+              "color": "accent",
+              "weight": 700,
+              "size": 22
+            },
+            {
+              "text": "　每一页都能被机器复查",
+              "color": "fgMuted",
+              "size": 20
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "样例说明",
+          "role": "caption",
+          "color": "fgMuted",
+          "x": 1.0,
+          "y": 5.42,
+          "w": 7.2,
+          "h": 0.6,
+          "text": "最小样例：11 类元素全覆盖，清单见 demo/README。"
+        },
+        {
+          "kind": "text",
+          "name": "页码",
+          "role": "pageNumber",
+          "color": "fgMuted",
+          "x": 1.0,
+          "y": 6.75,
+          "w": 1.2,
+          "h": 0.28,
+          "text": "01 / 03"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "layout": "content-split",
+      "section": "原则",
+      "gridTemplate": "split-2",
+      "focalPosition": "mr",
+      "bg": "bgAlt",
+      "notes": "这一页演示文字排版能力：标题、分隔线、带项目符号的多段正文、卡片内文字，以及图形的填充、描边、透明度。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "页标题",
+          "role": "h1",
+          "color": "fg",
+          "x": 0.9,
+          "y": 0.8,
+          "w": 7.2,
+          "h": 0.95,
+          "text": "一页只讲一个观点"
+        },
+        {
+          "kind": "line",
+          "name": "标题分隔线",
+          "x": 0.9,
+          "y": 1.86,
+          "w": 7.0,
+          "h": 0,
+          "x2": 7.9,
+          "y2": 1.86,
+          "stroke": "primary",
+          "strokeWidthPt": 3,
+          "dash": "solid"
+        },
+        {
+          "kind": "text",
+          "name": "正文条目",
+          "role": "body",
+          "color": "fg",
+          "x": 0.9,
+          "y": 2.1,
+          "w": 6.5,
+          "h": 2.35,
+          "paragraphs": [
+            {
+              "text": "标题说结论，正文只给证据。",
+              "bullet": false
+            },
+            {
+              "text": "每条证据带数字与单位，不写形容词。",
+              "bullet": true
+            },
+            {
+              "text": "一页最多 6 条项目符号，第 7 条挪到下一页。",
+              "bullet": true
+            },
+            {
+              "text": "同一份 deck.json 同时决定 PPTX 与预览图。",
+              "bullet": true
+            }
+          ]
+        },
+        {
+          "kind": "rect",
+          "name": "要点卡片",
+          "x": 0.9,
+          "y": 4.8,
+          "w": 6.5,
+          "h": 1.5,
+          "fill": "bg",
+          "stroke": "primary",
+          "strokeWidthPt": 1,
+          "corners": 0.14
+        },
+        {
+          "kind": "text",
+          "name": "卡片文字",
+          "role": "h3",
+          "color": "accent",
+          "x": 1.15,
+          "y": 5.0,
+          "w": 6.0,
+          "h": 1.1,
+          "text": "验收标准写在 schema 里，\n不写在文档里。"
+        },
+        {
+          "kind": "image",
+          "name": "测试图",
+          "x": 8.0,
+          "y": 1.05,
+          "w": 4.4,
+          "h": 2.4,
+          "src": "assets/test-image-1200x800.png",
+          "fit": "cover",
+          "alt": "测试图：40 像素栅格、四周边框与四角方向标记"
+        },
+        {
+          "kind": "text",
+          "name": "配图说明",
+          "role": "caption",
+          "color": "fgMuted",
+          "x": 8.0,
+          "y": 3.55,
+          "w": 4.4,
+          "h": 0.75,
+          "text": "图 1　1200×800 源图按 cover 裁成 11:6；\n栅格仍是正方形，说明没有变形。"
+        },
+        {
+          "kind": "ellipse",
+          "name": "强调圆点",
+          "zRole": "fgDecor",
+          "x": 11.35,
+          "y": 4.9,
+          "w": 1.15,
+          "h": 1.15,
+          "fill": "accent",
+          "opacity": 0.9
+        },
+        {
+          "kind": "polygon",
+          "name": "三角块",
+          "x": 8.0,
+          "y": 5.0,
+          "w": 1.3,
+          "h": 1.3,
+          "points": [
+            {
+              "x": 8.0,
+              "y": 5.0
+            },
+            {
+              "x": 9.3,
+              "y": 5.0
+            },
+            {
+              "x": 9.3,
+              "y": 6.3
+            }
+          ],
+          "fill": "primary",
+          "opacity": 0.85,
+          "stroke": "primary",
+          "strokeWidthPt": 1
+        },
+        {
+          "kind": "text",
+          "name": "三角块标注",
+          "role": "label",
+          "color": "fgMuted",
+          "x": 9.6,
+          "y": 5.55,
+          "w": 1.6,
+          "h": 0.4,
+          "text": "polygon"
+        },
+        {
+          "kind": "text",
+          "name": "页码",
+          "role": "pageNumber",
+          "color": "fgMuted",
+          "x": 12.0,
+          "y": 6.72,
+          "w": 0.7,
+          "h": 0.28,
+          "text": "02"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "layout": "data",
+      "section": "验证",
+      "gridTemplate": "split-2",
+      "focalPosition": "ml",
+      "bg": "bg",
+      "notes": "图表和表格都是 PowerPoint 原生对象：拿到 pptx 的人可以直接双击改数据，不需要回到源码。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "页标题",
+          "role": "h1",
+          "color": "fg",
+          "x": 0.9,
+          "y": 0.75,
+          "w": 6.4,
+          "h": 0.9,
+          "text": "一份 deck 两种视图"
+        },
+        {
+          "kind": "text",
+          "name": "引导句",
+          "role": "lead",
+          "color": "fgMuted",
+          "x": 0.9,
+          "y": 1.7,
+          "w": 6.4,
+          "h": 0.55,
+          "text": "pptx 给人看，png 给机器看。"
+        },
+        {
+          "kind": "chart",
+          "name": "元素覆盖统计",
+          "x": 0.9,
+          "y": 2.32,
+          "w": 6.5,
+          "h": 3.3,
+          "chartType": "column",
+          "chart": {
+            "categories": [
+              "版式",
+              "文字",
+              "图形",
+              "图表",
+              "表格"
+            ],
+            "series": [
+              {
+                "name": "元素数",
+                "values": [
+                  3,
+                  4,
+                  3,
+                  1,
+                  1
+                ],
+                "color": "primary"
+              },
+              {
+                "name": "检查项",
+                "values": [
+                  2,
+                  3,
+                  2,
+                  2,
+                  2
+                ],
+                "color": "accent"
+              }
+            ],
+            "unit": "项",
+            "source": "demo/smoke/deck.json",
+            "showValues": true,
+            "showLegend": true,
+            "numberFormat": "0"
+          }
+        },
+        {
+          "kind": "text",
+          "name": "流水线标注",
+          "role": "label",
+          "caps": true,
+          "letterSpacing": 0.08,
+          "color": "fgMuted",
+          "x": 0.9,
+          "y": 6.3,
+          "w": 4.2,
+          "h": 0.3,
+          "text": "deck -> pptx -> png"
+        },
+        {
+          "kind": "table",
+          "name": "验收表",
+          "x": 8.0,
+          "y": 2.32,
+          "w": 4.5,
+          "h": 2.55,
+          "table": {
+            "header": [
+              "检查项",
+              "阈值",
+              "实测"
+            ],
+            "rows": [
+              [
+                "页数",
+                "3 页",
+                "3 页"
+              ],
+              [
+                "缺图",
+                "0 张",
+                "0 张"
+              ],
+              [
+                "元素",
+                "≤14/页",
+                "11"
+              ],
+              [
+                "渲染",
+                "1920×1081",
+                "1920×1081"
+              ]
+            ],
+            "colWidths": [
+              1.5,
+              1.4,
+              1.6
+            ],
+            "fontSizePt": 13,
+            "headerFill": "primary",
+            "zebra": true,
+            "align": "left",
+            "emphasisCol": 2
+          }
+        },
+        {
+          "kind": "text",
+          "name": "阈值出处",
+          "role": "caption",
+          "color": "fgMuted",
+          "x": 8.0,
+          "y": 4.97,
+          "w": 4.5,
+          "h": 0.6,
+          "text": "阈值取自 schema/thresholds.json，\n不在这里另立一套数字。"
+        },
+        {
+          "kind": "icon",
+          "name": "通过标记",
+          "x": 12.2,
+          "y": 0.8,
+          "w": 0.36,
+          "h": 0.36,
+          "icon": "check",
+          "fill": "ok",
+          "zRole": "content"
+        },
+        {
+          "kind": "text",
+          "name": "页码",
+          "role": "pageNumber",
+          "color": "fgMuted",
+          "x": 12.0,
+          "y": 6.75,
+          "w": 0.7,
+          "h": 0.28,
+          "text": "03"
+        }
+      ]
+    }
+  ]
+}

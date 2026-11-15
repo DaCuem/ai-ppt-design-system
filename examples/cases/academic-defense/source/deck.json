@@ -1,0 +1,1553 @@
+{
+  "meta": {
+    "title": "遮荫覆盖率决定步行热舒适",
+    "subtitle": "学术答辩案例 · 演示用虚构样本数据",
+    "author": "案例作者：examples-author",
+    "lang": "zh-CN",
+    "size": "16:9",
+    "project": "academic-defense-case",
+    "version": "v1.0.0",
+    "speakerMode": "live"
+  },
+  "tokens": {
+    "colors": {
+      "bg": "#0E1620",
+      "bgAlt": "#1B2733",
+      "fg": "#EDE6D8",
+      "fgMuted": "#8C99A6",
+      "accent": "#C8A24A",
+      "line": "#35485A"
+    },
+    "fonts": {
+      "display": "Source Han Serif SC",
+      "body": "Noto Sans SC",
+      "mono": "Cascadia Mono"
+    },
+    "type": {
+      "coverTitle": {
+        "size": 60,
+        "weight": 700,
+        "lineHeight": 1.06,
+        "letterSpacing": 0
+      },
+      "h1": {
+        "size": 40,
+        "weight": 700,
+        "lineHeight": 1.1,
+        "letterSpacing": 0
+      },
+      "h2": {
+        "size": 26,
+        "weight": 700,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      "lead": {
+        "size": 26,
+        "weight": 400,
+        "lineHeight": 1.45,
+        "letterSpacing": 0
+      },
+      "body": {
+        "size": 18,
+        "weight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      "caption": {
+        "size": 12,
+        "weight": 400,
+        "lineHeight": 1.35,
+        "letterSpacing": 0
+      },
+      "source": {
+        "size": 11,
+        "weight": 400,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      "pageNumber": {
+        "size": 10,
+        "weight": 400,
+        "lineHeight": 1.0,
+        "letterSpacing": 0
+      },
+      "kpi": {
+        "size": 64,
+        "weight": 700,
+        "lineHeight": 1.0,
+        "letterSpacing": 0
+      }
+    },
+    "grid": {
+      "cols": 12,
+      "gutterIn": 0.2,
+      "marginXIn": 0.6,
+      "marginYIn": 0.45,
+      "baselineIn": 0.08
+    },
+    "space": {
+      "xs": 0.12,
+      "sm": 0.24,
+      "md": 0.4,
+      "lg": 0.72,
+      "xl": 1.2
+    }
+  },
+  "slides": [
+    {
+      "id": "s01",
+      "layout": "cover",
+      "gridTemplate": "full-bleed-left",
+      "focalPosition": "ml",
+      "section": "封面",
+      "notes": "开场 30 秒：一句话说清研究对象与样本规模，先给结论再给背景。",
+      "elements": [
+        {
+          "kind": "rect",
+          "name": "edge-bar",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 0.42,
+          "h": 7.5,
+          "fill": "accent",
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 1.0,
+          "y": 1.15,
+          "w": 8.0,
+          "h": 0.3,
+          "align": "left",
+          "color": "accent",
+          "text": "硕士学位论文答辩 · 2026 年 11 月"
+        },
+        {
+          "kind": "text",
+          "name": "deck-title",
+          "role": "coverTitle",
+          "x": 1.0,
+          "y": 1.55,
+          "w": 11.4,
+          "h": 1.25,
+          "font": "Source Han Serif SC",
+          "text": "遮荫覆盖率决定步行热舒适"
+        },
+        {
+          "kind": "line",
+          "name": "title-rule",
+          "x": 1.0,
+          "y": 3.12,
+          "x2": 5.6,
+          "y2": 3.12,
+          "w": 4.6,
+          "h": 0.0,
+          "stroke": "accent",
+          "strokeWidthPt": 1.5,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "lead",
+          "role": "lead",
+          "x": 1.0,
+          "y": 3.3,
+          "w": 11.4,
+          "h": 0.72,
+          "text": "3 条街道、42 个测点、6 周：把遮荫变成可核算的参数"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 1.0,
+          "y": 5.55,
+          "w": 9.0,
+          "h": 0.3,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "答辩人　林知远　　指导教师　周明远 教授"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 1.0,
+          "y": 5.92,
+          "w": 9.0,
+          "h": 0.3,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "建筑技术科学　　2026 年 11 月"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "layout": "statement",
+      "gridTemplate": "single-statement",
+      "focalPosition": "mc",
+      "section": "研究起点",
+      "notes": "先把三档实测数字摆出来：0 / 31 / 48 % 覆盖率对应 38.4 / 34.1 / 32.2 °C。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "01",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   研究起点",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.35,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "先降 4.3 °C，再降 1.9 °C"
+        },
+        {
+          "kind": "text",
+          "name": "lead",
+          "role": "lead",
+          "x": 0.6,
+          "y": 2.55,
+          "w": 9.9,
+          "h": 2.1,
+          "text": "覆盖率 0 的无遮荫路面 38.4 °C；31% 的单侧行道树降到 34.1 °C；48% 的双侧连续树冠 32.2 °C。降温不是等比例的。"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 5.35,
+          "w": 9.9,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "单位 °C；同年夏季晴天 12:00–14:00 均值，n=34 天。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "02"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "layout": "data-focus",
+      "gridTemplate": "3-col-kpi",
+      "focalPosition": "bc",
+      "section": "研究规模",
+      "notes": "样本规模与被解释变量的极差，三个数字讲完。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "02",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   研究规模",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.15,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "42 个测点，6 周连续观测"
+        },
+        {
+          "kind": "text",
+          "name": "kpi",
+          "role": "kpi",
+          "x": 0.6,
+          "y": 2.7,
+          "w": 3.6,
+          "h": 1.1,
+          "color": "accent",
+          "text": "42"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 3.95,
+          "w": 3.6,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "个测点，三条街道各 14 个"
+        },
+        {
+          "kind": "text",
+          "name": "kpi",
+          "role": "kpi",
+          "x": 4.75,
+          "y": 2.7,
+          "w": 3.6,
+          "h": 1.1,
+          "color": "accent",
+          "text": "6"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 4.75,
+          "y": 3.95,
+          "w": 3.6,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "周连续观测，逐时记录"
+        },
+        {
+          "kind": "text",
+          "name": "kpi",
+          "role": "kpi",
+          "x": 8.9,
+          "y": 2.7,
+          "w": 3.6,
+          "h": 1.1,
+          "color": "accent",
+          "text": "48"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 8.9,
+          "y": 3.95,
+          "w": 3.6,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "个百分点：覆盖率极差"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 5.55,
+          "w": 11.0,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "2025 年 7–8 月逐时记录；剔除雨天与大风日后 34 个有效日。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "03"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "layout": "process",
+      "gridTemplate": "single-column-list",
+      "focalPosition": "tl",
+      "section": "研究路径",
+      "notes": "四步都有产出：点位表、逐时表、分组表、组间差。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "03",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   研究路径",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "四步把观测变成可比的量"
+        },
+        {
+          "kind": "line",
+          "name": "step-rail",
+          "x": 0.42,
+          "y": 2.2,
+          "x2": 0.42,
+          "y2": 5.75,
+          "w": 0.0,
+          "h": 3.55,
+          "stroke": "accent",
+          "strokeWidthPt": 1.0,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 0.95,
+          "y": 2.15,
+          "w": 9.6,
+          "h": 3.8,
+          "paragraphs": [
+            {
+              "text": "① 布点　A / B / C 三条街道各布 14 点，间距 25 m。",
+              "spaceBeforePt": 0
+            },
+            {
+              "text": "② 采集　1.5 m 高、距立面 1 m，逐时记录气温、湿度、风速。",
+              "spaceBeforePt": 40
+            },
+            {
+              "text": "③ 归算　按所在断面的冠层覆盖率分三档，统一到 12:00–14:00 均值。",
+              "spaceBeforePt": 40
+            },
+            {
+              "text": "④ 对比　同一天气型下做组间差，剔除雨天与大风日。",
+              "spaceBeforePt": 40
+            }
+          ]
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "04"
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "layout": "evidence",
+      "gridTemplate": "image-7-4-split",
+      "focalPosition": "ml",
+      "section": "场地与样本",
+      "notes": "先看场地，再说测点怎么落。图是示意，不是实测底图。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "04",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   场地与样本",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "三条街道，42 个等距测点"
+        },
+        {
+          "kind": "image",
+          "name": "site-plan",
+          "x": 0.6,
+          "y": 1.75,
+          "w": 7.5,
+          "h": 4.69,
+          "src": "assets/fig-site-plan.png",
+          "fit": "contain",
+          "alt": "场地平面示意图：42 个测点沿 A、B、C 三条街道等距分布，比例尺 0–200 m"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 6.4,
+          "w": 7.5,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "图 1　场地平面：A 无遮荫、B 单侧行道树、C 双侧连续树冠（示意，非实测底图）"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 8.5,
+          "y": 1.92,
+          "w": 4.2,
+          "h": 1.75,
+          "text": "A 24 m 无遮荫，B 18 m 单侧行道树，C 21 m 双侧连续树冠；三条街各 14 点，间距 25 m。"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 8.5,
+          "y": 3.95,
+          "w": 4.2,
+          "h": 1.1,
+          "text": "夏 7–8 月逐时记录，剔除雨天与大风日后剩 34 个有效日。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "05"
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "layout": "comparison",
+      "gridTemplate": "5-5-split",
+      "focalPosition": "mc",
+      "section": "对照设计",
+      "notes": "两档遮荫结构：覆盖率只多 17 个百分点，风速却掉了 44%，四项指标不同步。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "05",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   对照设计",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "覆盖率涨 17 点，风速掉 44%"
+        },
+        {
+          "kind": "table",
+          "name": "group-compare",
+          "x": 0.6,
+          "y": 1.95,
+          "w": 11.9,
+          "h": 3.4,
+          "table": {
+            "header": [
+              "指标",
+              "单侧行道树",
+              "双侧连续树冠"
+            ],
+            "rows": [
+              [
+                "遮荫覆盖率 %",
+                "31",
+                "48"
+              ],
+              [
+                "正午地表温度 °C",
+                "34.1",
+                "32.2"
+              ],
+              [
+                "正午 UTCI °C",
+                "32.4",
+                "30.1"
+              ],
+              [
+                "平均风速 m/s",
+                "0.9",
+                "0.5"
+              ]
+            ],
+            "colWidths": [
+              4.9,
+              3.5,
+              3.5
+            ],
+            "fontSizePt": 14,
+            "headerFill": "bgAlt",
+            "zebra": false,
+            "align": "left",
+            "emphasisCol": 2
+          }
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 5.62,
+          "w": 9.6,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "样本：2025 年 7–8 月，34 个有效日，12:00–14:00 均值；右下为两档结构。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "06"
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "layout": "data-focus",
+      "gridTemplate": "bar-horizontal",
+      "focalPosition": "tr",
+      "section": "主结果",
+      "notes": "条形长度编码降温幅度，不是绝对温度；绝对值写在左侧标签里。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "06",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   主结果",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "双侧树冠降温 6.2 °C"
+        },
+        {
+          "kind": "line",
+          "name": "axis",
+          "x": 2.9,
+          "y": 2.28,
+          "x2": 2.9,
+          "y2": 5.5,
+          "w": 0.0,
+          "h": 3.22,
+          "stroke": "fgMuted",
+          "strokeWidthPt": 1.0
+        },
+        {
+          "kind": "line",
+          "name": "base-mark",
+          "x": 2.9,
+          "y": 2.71,
+          "x2": 3.35,
+          "y2": 2.71,
+          "w": 0.45,
+          "h": 0.0,
+          "stroke": "fgMuted",
+          "strokeWidthPt": 1.0
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 2.54,
+          "w": 2.15,
+          "h": 0.34,
+          "align": "right",
+          "color": "fg",
+          "text": "无遮荫　38.4 °C（基准）"
+        },
+        {
+          "kind": "rect",
+          "name": "bar-1",
+          "x": 2.9,
+          "y": 3.4000000000000004,
+          "w": 5.236290322580644,
+          "h": 0.52,
+          "fill": "accent"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 3.49,
+          "w": 2.15,
+          "h": 0.34,
+          "align": "right",
+          "color": "fg",
+          "text": "单侧行道树　34.1 °C"
+        },
+        {
+          "kind": "rect",
+          "name": "bar-2",
+          "x": 2.9,
+          "y": 4.35,
+          "w": 7.55,
+          "h": 0.52,
+          "fill": "accent"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 4.4399999999999995,
+          "w": 2.15,
+          "h": 0.34,
+          "align": "right",
+          "color": "fg",
+          "text": "双侧连续树冠　32.2 °C"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 2.9,
+          "y": 5.62,
+          "w": 9.3,
+          "h": 0.9,
+          "text": "条形长度 = 相对无遮荫的降温幅度，单位 °C；n=34 天，12:00–14:00 均值。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "07"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "layout": "evidence",
+      "gridTemplate": "image-8-5-split",
+      "focalPosition": "ml",
+      "section": "机理",
+      "notes": "冬季同一个剖面：整条街道落影，说明遮荫与采光是同一个几何问题的两面。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "07",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   机理",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "冬季同一街道全天落在阴影里"
+        },
+        {
+          "kind": "image",
+          "name": "canyon-section",
+          "x": 0.6,
+          "y": 1.72,
+          "w": 7.6,
+          "h": 4.28,
+          "src": "assets/fig-section.png",
+          "fit": "contain",
+          "alt": "街道峡谷剖面示意图：街宽 24 m，左楼 45 m、右楼 30 m，冬至正午太阳高度角 22.6° 时地面与立面遮荫区"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 6.1,
+          "w": 7.6,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "图 2　街道峡谷剖面与冬至正午遮荫投影（示意，非实测）"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 8.55,
+          "y": 1.92,
+          "w": 4.1,
+          "h": 3.4,
+          "text": "冬至正午高度角 22.6°，30 m 建筑在 24 m 街宽内的投影约 72 m，整条街道无直射光；夏季同位置日均日照 4.1 h。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "08"
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "layout": "matrix",
+      "gridTemplate": "4x4-table",
+      "focalPosition": "br",
+      "section": "结果矩阵",
+      "notes": "四项指标一起看，覆盖率不是唯一解释变量。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "08",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   结果矩阵",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "三个场景，四项指标"
+        },
+        {
+          "kind": "table",
+          "name": "result-matrix",
+          "x": 0.6,
+          "y": 1.95,
+          "w": 11.9,
+          "h": 3.2,
+          "table": {
+            "header": [
+              "指标",
+              "无遮荫",
+              "单侧行道树",
+              "双侧连续树冠"
+            ],
+            "rows": [
+              [
+                "正午地表温度 °C",
+                "38.4",
+                "34.1",
+                "32.2"
+              ],
+              [
+                "正午 UTCI °C",
+                "34.8",
+                "32.4",
+                "30.1"
+              ],
+              [
+                "平均风速 m/s",
+                "0.6",
+                "0.9",
+                "0.5"
+              ],
+              [
+                "夏季日均日照 h",
+                "6.2",
+                "5.0",
+                "4.1"
+              ]
+            ],
+            "colWidths": [
+              4.5,
+              2.4,
+              2.5,
+              2.5
+            ],
+            "fontSizePt": 14,
+            "headerFill": "bgAlt",
+            "zebra": false,
+            "align": "left",
+            "emphasisCol": 3
+          }
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 5.42,
+          "w": 9.6,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "数值为 12:00–14:00 逐时均值，n=34 天；风速取 1.5 m 高。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "09"
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "layout": "editorial",
+      "gridTemplate": "5-6-asym-split",
+      "focalPosition": "mc",
+      "section": "讨论",
+      "notes": "两个会让结论失效的变量：风速与时段，都在数据里。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "09",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   讨论",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 0.95,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "覆盖率之外，还有两个变量"
+        },
+        {
+          "kind": "line",
+          "name": "col-rule",
+          "x": 6.05,
+          "y": 2.2,
+          "x2": 6.05,
+          "y2": 5.4,
+          "w": 0.0,
+          "h": 3.2,
+          "stroke": "line",
+          "strokeWidthPt": 1.0,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 2.2,
+          "w": 5.2,
+          "h": 0.34,
+          "align": "left",
+          "color": "accent",
+          "text": "变量一　风速"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 0.6,
+          "y": 2.65,
+          "w": 5.2,
+          "h": 1.2,
+          "text": "1.5 m/s 以上时，对流带走大部分显热，遮荫的降温收益被抵消。"
+        },
+        {
+          "kind": "text",
+          "name": "kpi",
+          "role": "kpi",
+          "x": 0.6,
+          "y": 3.98,
+          "w": 3.4,
+          "h": 1.16,
+          "color": "accent",
+          "text": "40 %"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 5.2,
+          "w": 5.2,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "降温收益被抵消的比例"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 6.45,
+          "y": 2.2,
+          "w": 5.4,
+          "h": 0.34,
+          "align": "left",
+          "color": "accent",
+          "text": "变量二　时段"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 6.45,
+          "y": 2.65,
+          "w": 5.4,
+          "h": 2.0,
+          "text": "14:00 后太阳方位改变，东西向街道的阴影转移到北侧；同一条街，单侧树冠在下午失去遮荫。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "10"
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "layout": "statement",
+      "gridTemplate": "single-statement",
+      "focalPosition": "bl",
+      "section": "局限",
+      "notes": "主动说清边界：样本、变量、范围、外推。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "10",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   局限",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.15,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "这份结论的适用边界"
+        },
+        {
+          "kind": "text",
+          "name": "body",
+          "role": "body",
+          "x": 0.6,
+          "y": 2.35,
+          "w": 10.6,
+          "h": 3.9,
+          "paragraphs": [
+            {
+              "text": "样本：单一校区 6 周观测，冬季只有 3 天定点测量。",
+              "spaceBeforePt": 0
+            },
+            {
+              "text": "变量：风速与湿度只记录，未做控制变量实验。",
+              "spaceBeforePt": 30
+            },
+            {
+              "text": "范围：18–24 m 街宽、建筑高度比 2–3 的校园步行道。",
+              "spaceBeforePt": 30
+            },
+            {
+              "text": "外推：湿热带与干热气候需重做夏季基线。",
+              "spaceBeforePt": 30
+            }
+          ]
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "11"
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "layout": "statement",
+      "gridTemplate": "single-statement",
+      "focalPosition": "tl",
+      "section": "结论",
+      "notes": "结论是一个动作顺序，不是一句感想。",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "eyebrow",
+          "role": "caption",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 6.0,
+          "h": 0.3,
+          "runs": [
+            {
+              "text": "11",
+              "size": 12,
+              "color": "accent",
+              "font": "Cascadia Mono"
+            },
+            {
+              "text": "   /   结论",
+              "size": 12,
+              "color": "fgMuted"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "name": "headline",
+          "role": "h1",
+          "x": 0.6,
+          "y": 1.35,
+          "w": 12.13,
+          "h": 0.9,
+          "font": "Source Han Serif SC",
+          "text": "先定遮荫结构，再算覆盖率"
+        },
+        {
+          "kind": "text",
+          "name": "lead",
+          "role": "lead",
+          "x": 0.6,
+          "y": 2.55,
+          "w": 11.2,
+          "h": 2.0,
+          "text": "设计顺序改为：先选连续冠层还是单侧树列、先定挡光与挡风的朝向，再用覆盖率校核收益。两段降温斜率不同，等比例折算会把后段算偏。"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 0.6,
+          "y": 5.3,
+          "w": 11.2,
+          "h": 0.34,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "三档实测：0 / 31 / 48 % 对应 38.4 / 34.1 / 32.2 °C，n=34 天。"
+        },
+        {
+          "kind": "line",
+          "name": "footer-rule",
+          "x": 0.6,
+          "y": 6.8,
+          "x2": 12.73,
+          "y2": 6.8,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "line",
+          "strokeWidthPt": 0.75,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "page-number",
+          "role": "pageNumber",
+          "x": 12.1,
+          "y": 6.78,
+          "w": 0.63,
+          "h": 0.26,
+          "align": "right",
+          "color": "fgMuted",
+          "text": "12"
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "layout": "closing",
+      "gridTemplate": "full-bleed-left",
+      "focalPosition": "ml",
+      "section": "收尾",
+      "notes": "留 8 分钟问答；结论页停在屏幕上。",
+      "elements": [
+        {
+          "kind": "rect",
+          "name": "edge-bar",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 0.42,
+          "h": 7.5,
+          "fill": "accent",
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "closing-title",
+          "role": "coverTitle",
+          "x": 1.0,
+          "y": 2.55,
+          "w": 11.4,
+          "h": 1.2,
+          "font": "Source Han Serif SC",
+          "text": "谢谢，请评委指正"
+        },
+        {
+          "kind": "line",
+          "name": "closing-rule",
+          "x": 1.0,
+          "y": 3.95,
+          "x2": 4.6,
+          "y2": 3.95,
+          "w": 3.6,
+          "h": 0.0,
+          "stroke": "accent",
+          "strokeWidthPt": 1.5,
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "name": "caption",
+          "role": "caption",
+          "x": 1.0,
+          "y": 4.2,
+          "w": 9.0,
+          "h": 0.3,
+          "align": "left",
+          "color": "fgMuted",
+          "text": "答辩人　林知远　·　建筑技术科学　·　2026 年 11 月"
+        }
+      ]
+    }
+  ]
+}

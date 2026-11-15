@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0.0",
+  "checkedAt": "2026-11-15T10:46:40",
+  "deck": "demo\\smoke\\copy-fixture.json",
+  "thresholdsVersion": "1.3.0",
+  "pages": 3,
+  "summary": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 5,
+    "P3": 2
+  },
+  "issues": [
+    {
+      "level": "P1",
+      "check": "CP-01",
+      "page": "s03",
+      "where": "role=h1",
+      "message": "文案 30 字，超过 h1 的 25 字上限",
+      "fix": "删修饰词与重复句，不缩字号；或按 copywriting-patterns §3 拆到别的槽位"
+    },
+    {
+      "level": "P1",
+      "check": "CP-02",
+      "page": "s01",
+      "where": "空话短语",
+      "message": "命中空话短语「赋能」",
+      "fix": "整句删除，不要换一个同义词顶替（见 copywriting-antislop §2 特征 1）"
+    },
+    {
+      "level": "P1",
+      "check": "CP-02",
+      "page": "s02",
+      "where": "空话短语",
+      "message": "命中空话短语「进一步深化」",
+      "fix": "整句删除，不要换一个同义词顶替（见 copywriting-antislop §2 特征 1）"
+    },
+    {
+      "level": "P1",
+      "check": "CP-04",
+      "page": "s01",
+      "where": "AI 句式",
+      "message": "命中模板句式「不仅.{0,12}而且」：不仅提升运营效率，而且",
+      "fix": "拆成两句直陈，或只保留最有力的一项（见 copywriting-antislop §2 特征 3–4）"
+    },
+    {
+      "level": "P1",
+      "check": "CP-10",
+      "page": "s03",
+      "where": "残留标记",
+      "message": "文案里还有「待确认」",
+      "fix": "文案未定稿不得进制作；确认后从 deck.json 删除标记（见 workflows/01b S9）"
+    },
+    {
+      "level": "P2",
+      "check": "CP-03",
+      "page": "s02",
+      "where": "形容词密度",
+      "message": "本页出现 5 个填充形容词：显著、全面、深入、全方位、多维度",
+      "fix": "每个形容词换成可核对的量或动作；实在没有量就删"
+    },
+    {
+      "level": "P2",
+      "check": "CP-03",
+      "page": "s03",
+      "where": "形容词密度",
+      "message": "本页出现 5 个填充形容词：显著、全面、深入、有效、多维度",
+      "fix": "每个形容词换成可核对的量或动作；实在没有量就删"
+    },
+    {
+      "level": "P2",
+      "check": "CP-05",
+      "page": "s02",
+      "where": "长句",
+      "message": "单句 52 字（上限 45）：我们通过对多维度数据的全面深入分析发现该方案在高…",
+      "fix": "在逗号处断成两句；把状语（条件/范围）挪到单独一句"
+    },
+    {
+      "level": "P2",
+      "check": "CP-06",
+      "page": "s02",
+      "where": "role=body 第 1–3 段",
+      "message": "连续 3 段字数几乎相同（16、16、16），读起来是对仗排比",
+      "fix": "打散其中一至两段：改成 8 字以内的短句，或扩到 30 字以上"
+    },
+    {
+      "level": "P2",
+      "check": "CP-07",
+      "page": "s03",
+      "where": "出处缺失",
+      "message": "本页含数字但没有 source 槽位",
+      "fix": "补一行出处的条件与口径（例：n=3，45 ℃ 环温，1200–3600 rpm）；虚构数据写「演示数据（虚构）」"
+    },
+    {
+      "level": "P3",
+      "check": "CP-08",
+      "page": "s02",
+      "where": "role=h1",
+      "message": "标题像话题名「项目背景」，读不出主张",
+      "fix": "改成可判断真假的一句话：加数字，或改成「A 决定 B」结构"
+    },
+    {
+      "level": "P3",
+      "check": "CP-09",
+      "page": "s03",
+      "where": "重复短语",
+      "message": "「本次优化」在本页出现 4 次",
+      "fix": "同页只保留一次；其余改成指代或删掉"
+    }
+  ],
+  "exitCode": 1,
+  "manualChecks": [
+    "句子像不像人写的",
+    "每页是否只有一个主张",
+    "事实口径是否成立",
+    "与用户原意是否一致"
+  ]
+}

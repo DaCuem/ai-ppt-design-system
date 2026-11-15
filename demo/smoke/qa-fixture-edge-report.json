@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1.0.0",
+  "deck": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\demo\\smoke\\qa-fixture-edge.json",
+  "generatedAt": "2026-11-14T23:59:44",
+  "thresholdsVersion": "1.1.0",
+  "canvas": {
+    "widthIn": 13.333,
+    "heightIn": 7.5
+  },
+  "summary": {
+    "P0": 1,
+    "P1": 0,
+    "P2": 6,
+    "P3": 3,
+    "total": 10,
+    "pages": 3,
+    "exitCode": 1
+  },
+  "issues": [
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P2",
+      "checkId": "COL-03",
+      "check": "字体族过多",
+      "element": "tokens.fonts",
+      "message": "全 deck 出现 4 个字族（Cascadia Mono、Georgia、Microsoft YaHei、SimHei），上限 3 个",
+      "fix": "全 deck 字族 ≤ 3 个（display + body + mono）；装饰性字体并入 body",
+      "status": "待修复"
+    },
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P2",
+      "checkId": "DEN-01",
+      "check": "元素数超限",
+      "element": "页面",
+      "message": "元素 16 个 > 上限 14 个",
+      "fix": "每页元素 ≤ 14 个；合并纯装饰元素",
+      "status": "待修复"
+    },
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P2",
+      "checkId": "DEN-02",
+      "check": "文本块超限",
+      "element": "页面",
+      "message": "文本块 8 个 > 上限 4 个（已排除 role=caption/source/pageNumber）",
+      "fix": "每页文本块 ≤ 4 个；同组信息合并进一个多段落文本框",
+      "status": "待修复"
+    },
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P2",
+      "checkId": "DEN-03",
+      "check": "bullet 超限",
+      "element": "页面",
+      "message": "bullet 8 条 > 上限 6 条",
+      "fix": "每页 bullet ≤ 6 条；其余下沉到下一页或改为一句话结论",
+      "status": "待修复"
+    },
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P2",
+      "checkId": "DEN-04",
+      "check": "字数超限",
+      "element": "页面",
+      "message": "字数 235 字 > 上限 220 字",
+      "fix": "每页字数 ≤ 220 字；删掉形容词与重复表述",
+      "status": "待修复"
+    },
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P2",
+      "checkId": "OVF-03",
+      "check": "每行字数超限",
+      "element": "body-longline",
+      "message": "每行 37 字 > 上限 34 字/行（role=body）",
+      "fix": "每行中文字数压到 body 34 / h1 16 / caption 48 字以内；加宽文本框或分栏",
+      "status": "待修复"
+    },
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P3",
+      "checkId": "OVF-04",
+      "check": "段行数超限",
+      "element": "caption-4lines",
+      "message": "段落 3 行 > 上限 2 行（role=caption）",
+      "fix": "正文段落 ≤ 6 行、caption ≤ 2 行；超出改为要点或拆页",
+      "status": "待修复"
+    },
+    {
+      "page": 1,
+      "slideId": "s01",
+      "severity": "P3",
+      "checkId": "OVL-01",
+      "check": "文本块重叠",
+      "element": "overlap-a/overlap-b",
+      "message": "文本块重叠 2.40×0.40in（容差 0.05in）",
+      "fix": "两个文本块间距拉到 0.05 in 以上；重叠会遮挡文字",
+      "status": "待修复"
+    },
+    {
+      "page": 2,
+      "slideId": "s02",
+      "severity": "P3",
+      "checkId": "DEN-05",
+      "check": "留白比例不足",
+      "element": "页面",
+      "message": "留白比例 19% < 下限 25%（内容覆盖 81%）",
+      "fix": "元素并集面积占比降到 ≤ 75%，为页面留出 ≥ 25% 的空白区",
+      "status": "待修复"
+    },
+    {
+      "page": 3,
+      "slideId": "s03",
+      "severity": "P0",
+      "checkId": "GEO-02",
+      "check": "宽或高非正",
+      "element": "zero-size",
+      "message": "尺寸非正：w=0.000in h=1.000in（必须 > 0）",
+      "fix": "w/h 必须 > 0；line 用 x2/y2 表达端点，不要用 0 厚度",
+      "status": "待修复"
+    }
+  ]
+}

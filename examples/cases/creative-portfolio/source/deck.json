@@ -1,0 +1,1545 @@
+{
+  "meta": {
+    "title": "夜航 NIGHTWAVE 音乐节视觉系统",
+    "size": "16:9",
+    "lang": "zh-CN",
+    "version": "1.0.0",
+    "project": "NIGHTWAVE",
+    "subtitle": "创意提案 · 纯黑一色体系",
+    "author": "演示样本"
+  },
+  "tokens": {
+    "colors": {
+      "bg": "#080808",
+      "fg": "#F5F5F0",
+      "fgMuted": "#8C8C86",
+      "accent": "#FF3D2E",
+      "ink": "#111111",
+      "ruleDark": "#3A3A34",
+      "card": "#2A2A28",
+      "monoMuted": "#6E6E66",
+      "muted2": "#55554F",
+      "tone01": "#8C8C86",
+      "tone02": "#FF3D2E",
+      "tone03": "#111111",
+      "tone04": "#3A3A34",
+      "tone05": "#2A2A28",
+      "tone06": "#6E6E66",
+      "tone07": "#55554F"
+    },
+    "fonts": {
+      "display": "Source Han Serif SC",
+      "body": "Microsoft YaHei",
+      "mono": "Cascadia Mono"
+    },
+    "type": {
+      "coverTitle": {
+        "size": 96,
+        "weight": 700,
+        "lineHeight": 1.0
+      },
+      "h1": {
+        "size": 64,
+        "weight": 700,
+        "lineHeight": 1.05
+      },
+      "quote": {
+        "size": 44,
+        "weight": 400,
+        "lineHeight": 1.3
+      },
+      "body": {
+        "size": 22,
+        "weight": 400,
+        "lineHeight": 1.55
+      },
+      "caption": {
+        "size": 13,
+        "weight": 400,
+        "lineHeight": 1.35
+      },
+      "label": {
+        "size": 11,
+        "weight": 400,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.14
+      },
+      "source": {
+        "size": 11,
+        "weight": 400,
+        "lineHeight": 1.3
+      },
+      "kpi": {
+        "size": 88,
+        "weight": 700,
+        "lineHeight": 1.0
+      },
+      "pageNumber": {
+        "size": 10,
+        "weight": 400,
+        "lineHeight": 1.0
+      }
+    }
+  },
+  "slides": [
+    {
+      "id": "s01",
+      "layout": "cover",
+      "focalPosition": "ml",
+      "gridTemplate": "hero-stack",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 0.62,
+          "y": 1.02,
+          "w": 9.5,
+          "h": 0.26,
+          "role": "label",
+          "lineHeight": 1.3,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "NIGHTWAVE  /  2026 独立音乐节  /  视觉系统提案",
+                  "color": "#F5F5F0",
+                  "font": "mono"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 0.58,
+          "y": 1.62,
+          "w": 11.6,
+          "h": 3.55,
+          "role": "coverTitle",
+          "lineHeight": 1.05,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "夜航",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "NIGHTWAVE",
+                  "weight": 700,
+                  "color": "#FF3D2E",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 2.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "rect",
+          "x": 0.6,
+          "y": 5.2,
+          "w": 4.6,
+          "h": 0.05,
+          "fill": "#FF3D2E"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 5.42,
+          "w": 11.6,
+          "h": 1.24,
+          "role": "body",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "提案方　三方工作室",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                },
+                {
+                  "text": "　/　",
+                  "color": "#8C8C86",
+                  "font": "body"
+                },
+                {
+                  "text": "2026-11-14",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                },
+                {
+                  "text": "　/　",
+                  "color": "#8C8C86",
+                  "font": "body"
+                },
+                {
+                  "text": "REV A",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "交付　1 套主视觉　·　3 款招贴　·　12 件现场导视",
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 4.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 6.72,
+          "w": 9.5,
+          "h": 0.32,
+          "role": "source",
+          "lineHeight": 1.3,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "演示样本：虚构项目、虚构客户、虚构作品，用于说明版式与信息层级",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "01",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "layout": "statement",
+      "focalPosition": "ml",
+      "gridTemplate": "single-statement",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 0.72,
+          "w": 6.0,
+          "h": 0.26,
+          "role": "label",
+          "lineHeight": 1.3,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "01 / 主张",
+                  "color": "#FF3D2E",
+                  "font": "mono"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#FF3D2E"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 1.5,
+          "w": 11.4,
+          "h": 2.9,
+          "role": "quote",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "别让它像发布会。",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "像一张能从墙上撕下来的海报。",
+                  "weight": 700,
+                  "color": "#FF3D2E",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 12.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 4.95,
+          "w": 7.6,
+          "h": 1.35,
+          "role": "body",
+          "lineHeight": 1.6,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "这句话决定了后面每一页的取舍：字号先定，颜色只用一色，图先于字。",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "02",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "layout": "image-focus",
+      "focalPosition": "full",
+      "gridTemplate": "full-bleed",
+      "elements": [
+        {
+          "kind": "image",
+          "x": 0.0,
+          "y": 0.0,
+          "w": 13.333,
+          "h": 7.5,
+          "src": "assets/imported-01.jpg",
+          "alt": "需人工补：这张图承载什么信息",
+          "zRole": "bgDecor"
+        },
+        {
+          "kind": "text",
+          "x": 0.7,
+          "y": 5.05,
+          "w": 7.4,
+          "h": 1.3,
+          "role": "h1",
+          "lineHeight": 1.1,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "把频谱切成两半",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 0.7,
+          "y": 6.52,
+          "w": 8.2,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "WORK 01　主视觉：黑底 + 单一朱红，横带把圆切成两半，留一道 54 mm 的缝",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "03",
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#8C8C86"
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "layout": "data-focus",
+      "focalPosition": "bc",
+      "gridTemplate": "3-col-numbers",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 0.6,
+          "w": 10.8,
+          "h": 1.28,
+          "role": "h1",
+          "lineHeight": 1.1,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "三个数字，三种尺度",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 0.62,
+          "y": 2.35,
+          "w": 3.7,
+          "h": 2.7,
+          "role": "kpi",
+          "lineHeight": 1.2,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "12",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "组艺人",
+                  "size": 22.0,
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 6.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "两天主舞台，单场 90 分钟",
+                  "size": 13.0,
+                  "weight": 700,
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 6.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 4.78,
+          "y": 2.35,
+          "w": 3.7,
+          "h": 2.7,
+          "role": "kpi",
+          "lineHeight": 1.2,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "4800",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "张门票",
+                  "size": 22.0,
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 6.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "开票 11 分钟售罄（演示值）",
+                  "size": 13.0,
+                  "weight": 700,
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 6.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 8.94,
+          "y": 2.35,
+          "w": 3.7,
+          "h": 2.7,
+          "role": "kpi",
+          "lineHeight": 1.2,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "1+3",
+                  "weight": 700,
+                  "color": "#FF3D2E",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "套视觉 + 三款招贴",
+                  "size": 22.0,
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 6.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "所有物料共用同一套网格",
+                  "size": 13.0,
+                  "weight": 700,
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 6.0
+            }
+          ],
+          "color": "#FF3D2E"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 5.55,
+          "w": 11.9,
+          "h": 0.3,
+          "role": "source",
+          "lineHeight": 1.3,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "口径：全部为演示样本，售罄时间与人数为虚构值，不对应任何真实场次",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "04",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "layout": "gallery",
+      "focalPosition": "mc",
+      "gridTemplate": "3-up-grid",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 0.5,
+          "w": 10.8,
+          "h": 1.28,
+          "role": "h1",
+          "lineHeight": 1.1,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "三款招贴，一套骨架",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "image",
+          "x": 0.6,
+          "y": 2.05,
+          "w": 3.9,
+          "h": 4.2,
+          "src": "assets/imported-02.jpg",
+          "alt": "需人工补：这张图承载什么信息"
+        },
+        {
+          "kind": "image",
+          "x": 4.72,
+          "y": 2.05,
+          "w": 3.9,
+          "h": 4.2,
+          "src": "assets/imported-03.jpg",
+          "alt": "需人工补：这张图承载什么信息"
+        },
+        {
+          "kind": "image",
+          "x": 8.84,
+          "y": 2.05,
+          "w": 3.9,
+          "h": 4.2,
+          "src": "assets/imported-04.jpg",
+          "alt": "需人工补：这张图承载什么信息"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 6.35,
+          "w": 3.9,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "A　同心弧：把低频的震感画成线",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 4.72,
+          "y": 6.35,
+          "w": 3.9,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "B　网点：人群密度的一张热图",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 8.84,
+          "y": 6.35,
+          "w": 3.9,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "C　跨界圆：一张纸对折后的样子",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "05",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "layout": "comparison",
+      "focalPosition": "mc",
+      "gridTemplate": "two-up",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 0.52,
+          "w": 11.4,
+          "h": 1.28,
+          "role": "h1",
+          "lineHeight": 1.1,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "标题试了两版，选了短的",
+                  "weight": 700,
+                  "color": "#111111",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#111111"
+        },
+        {
+          "kind": "rect",
+          "x": 6.66,
+          "y": 2.2,
+          "w": 0.03,
+          "h": 2.3,
+          "fill": "#111111"
+        },
+        {
+          "kind": "rect",
+          "x": 6.66,
+          "y": 2.2,
+          "w": 0.03,
+          "h": 2.3,
+          "fill": "#111111"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 2.3,
+          "w": 5.6,
+          "h": 1.6,
+          "role": "h1",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "夜航音乐节",
+                  "color": "#6E6E66",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#6E6E66"
+        },
+        {
+          "kind": "text",
+          "x": 6.96,
+          "y": 2.3,
+          "w": 5.6,
+          "h": 1.6,
+          "role": "h1",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "夜航",
+                  "color": "#111111",
+                  "font": "display"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#111111"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 4.0,
+          "w": 5.6,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "A　全称 + 无衬线　→　3 m 外六个字糊成一块，现场导视不可读",
+                  "color": "#3A3A34",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#3A3A34"
+        },
+        {
+          "kind": "text",
+          "x": 6.96,
+          "y": 4.0,
+          "w": 5.6,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "B　两字 + 衬线　→　字面方，笔画粗，30 m 外仍可辨",
+                  "color": "#3A3A34",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#3A3A34"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 6.28,
+          "w": 11.9,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "两版都按 3 m（会议桌）与 30 m（场外导视）两处看过；第二版在 30 m 处仍然可读，留用。",
+                  "color": "#3A3A34",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#3A3A34"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "06",
+                  "color": "#55554F",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#55554F"
+        }
+      ],
+      "bg": "#F2EFE6"
+    },
+    {
+      "id": "s07",
+      "layout": "quote",
+      "focalPosition": "mr",
+      "gridTemplate": "big-quote",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 3.4,
+          "y": 1.0,
+          "w": 9.3,
+          "h": 0.26,
+          "role": "label",
+          "lineHeight": 1.3,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "03 / 客户原话 · 2026-10",
+                  "color": "#FF3D2E",
+                  "font": "mono"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#FF3D2E"
+        },
+        {
+          "kind": "text",
+          "x": 3.4,
+          "y": 1.55,
+          "w": 9.3,
+          "h": 3.0,
+          "role": "quote",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "「不要做得像发布会，",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            },
+            {
+              "runs": [
+                {
+                  "text": "像一张能撕下来的海报。」",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right",
+              "spaceBeforePt": 10.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 3.4,
+          "y": 4.95,
+          "w": 7.6,
+          "h": 1.1,
+          "role": "body",
+          "lineHeight": 1.6,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "这句话把整份提案从「舞台大屏」推回到「印刷物」。",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "07",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "layout": "timeline",
+      "focalPosition": "bl",
+      "gridTemplate": "three-phase",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 0.5,
+          "w": 11.4,
+          "h": 1.28,
+          "role": "h1",
+          "lineHeight": 1.1,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "三周，从主视觉到现场导视",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "line",
+          "x": 0.6,
+          "y": 2.55,
+          "x2": 12.73,
+          "y2": 2.55,
+          "w": 12.13,
+          "h": 0.0,
+          "stroke": "#2A2A28",
+          "strokeWidthPt": 2.0
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 2.85,
+          "w": 3.6,
+          "h": 2.6,
+          "role": "body",
+          "lineHeight": 1.6,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "W1",
+                  "size": 11.0,
+                  "color": "#FF3D2E",
+                  "font": "mono"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "主视觉定稿",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 8.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "两轮筛选，输出 3 个方向的 A3 打样",
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 8.0
+            }
+          ],
+          "color": "#FF3D2E"
+        },
+        {
+          "kind": "text",
+          "x": 4.72,
+          "y": 2.85,
+          "w": 3.6,
+          "h": 2.6,
+          "role": "body",
+          "lineHeight": 1.6,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "W2",
+                  "size": 11.0,
+                  "color": "#FF3D2E",
+                  "font": "mono"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "招贴与票面",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 8.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "3 款招贴、2 版票面，同步给印厂看色",
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 8.0
+            }
+          ],
+          "color": "#FF3D2E"
+        },
+        {
+          "kind": "text",
+          "x": 8.84,
+          "y": 2.85,
+          "w": 3.6,
+          "h": 2.6,
+          "role": "body",
+          "lineHeight": 1.6,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "W3",
+                  "size": 11.0,
+                  "color": "#FF3D2E",
+                  "font": "mono"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "现场导视",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 8.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "12 件导视落地，含 4 块 6 m 立牌",
+                  "color": "#8C8C86",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 8.0
+            }
+          ],
+          "color": "#FF3D2E"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 6.05,
+          "w": 11.9,
+          "h": 0.36,
+          "role": "caption",
+          "lineHeight": 1.4,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "排期为演示假设：不含印刷与场地审批时间，实际留 5 个工作日缓冲",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "08",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "layout": "closing",
+      "focalPosition": "br",
+      "gridTemplate": "contact-band",
+      "elements": [
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 1.35,
+          "w": 8.2,
+          "h": 1.28,
+          "role": "h1",
+          "lineHeight": 1.1,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "下一步",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 0.6,
+          "y": 2.85,
+          "w": 7.2,
+          "h": 2.4,
+          "role": "body",
+          "lineHeight": 1.6,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "10-21 前",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                },
+                {
+                  "text": "　确认主视觉方向，选 A/B/C 其一。",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "11-04 前",
+                  "weight": 700,
+                  "color": "#F5F5F0",
+                  "font": "body"
+                },
+                {
+                  "text": "　招贴开印，同步出票面。",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 10.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "本提案为演示样本，报价与排期均属虚构。",
+                  "color": "#FF3D2E",
+                  "font": "body"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 14.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "rect",
+          "x": 8.55,
+          "y": 2.85,
+          "w": 0.05,
+          "h": 2.6,
+          "fill": "#2A2A28"
+        },
+        {
+          "kind": "text",
+          "x": 8.95,
+          "y": 2.9,
+          "w": 3.7,
+          "h": 2.5,
+          "role": "label",
+          "lineHeight": 1.3,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "三方工作室 / STUDIO THIRD",
+                  "color": "#F5F5F0",
+                  "font": "mono"
+                }
+              ],
+              "align": "left"
+            },
+            {
+              "runs": [
+                {
+                  "text": "hello@studio-third.example",
+                  "color": "#8C8C86",
+                  "font": "mono"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 10.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "档期　2026-12 起可接新案",
+                  "color": "#8C8C86",
+                  "font": "mono"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 10.0
+            },
+            {
+              "runs": [
+                {
+                  "text": "本案编号　NW-2026-01",
+                  "color": "#8C8C86",
+                  "font": "mono"
+                }
+              ],
+              "align": "left",
+              "spaceBeforePt": 10.0
+            }
+          ],
+          "color": "#F5F5F0"
+        },
+        {
+          "kind": "text",
+          "x": 11.9,
+          "y": 7.0,
+          "w": 0.82,
+          "h": 0.22,
+          "role": "pageNumber",
+          "lineHeight": 1.0,
+          "valign": "top",
+          "paragraphs": [
+            {
+              "runs": [
+                {
+                  "text": "09",
+                  "color": "#F5F5F0",
+                  "font": "body"
+                }
+              ],
+              "align": "right"
+            }
+          ],
+          "color": "#F5F5F0"
+        }
+      ]
+    }
+  ]
+}
