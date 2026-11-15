@@ -25,7 +25,7 @@ AI 需要具备：文件读写、执行 shell。没有 shell 也能用，但第 
 ## 方式二：手动安装
 
 ```bash
-git clone <仓库链接> <技能目录>/ai-ppt-design-system
+git clone https://github.com/DaCuem/ai-ppt-design-system <技能目录>/ai-ppt-design-system
 ```
 
 常见宿主的技能目录：
