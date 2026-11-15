@@ -2,10 +2,13 @@
 name: ai-ppt-design-system
 description: 通用 PPT / 演示文稿设计系统。当用户要做、改版或诊断一份 PPT（课程汇报、学术报告、项目或竞赛答辩、产品介绍、商业提案、求职作品集、工作汇报）时使用。先渐进式探索需求并出具需求确认书，再按内容选视觉方向、建立视觉系统、规划整份页面节奏，用 deck.json 声明式版面生成可编辑 PPTX，渲染成图后逐页视觉质检并迭代交付。不用于只写文案、只做图片或只处理表格的请求。
 license: MIT
-version: 1.4.5
+version: 1.5.0
 ---
 
 # AI PPT 设计系统（主控制器）
+
+> **定位**（见 [docs/lighthouse-plan.md](docs/lighthouse-plan.md)）：一个以设计知识库为核心、通过工作流指导 AI 做设计决策、再用各媒介专用工具链完成实现与检查的**通用 AI 设计系统**。PPT 是第一种被完整实现的媒介，不是最终边界。
+> **能力边界**：某个能力做到什么程度、能不能对外这么说，查 [docs/capability-status.md](docs/capability-status.md)。规划中的能力不许说成已实现。
 
 本文件是**执行控制器**，不是设计教材。它规定：什么情况下启动、按什么顺序做、每步必须产出什么、读到哪个阈值、什么情况下**必须停下来**。
 
@@ -77,6 +80,9 @@ version: 1.4.5
 | 需要图片 / 生成图 | `references/imagery-guide.md` §5.0 先问授权与工具（第 0 关）、§1 角色、§5 降级、§5.2 生成四道关、§5.3 像素密度 | `assets/licenses.md`（许可记录） |
 | 质检 / 诊断 | `workflows/06_quality-assurance.md`、`references/anti-patterns.md`、`references/accessibility-and-legibility.md` | — |
 | 用户说满意 / 要不要记住偏好 | `references/preference-memory.md`（**先问再记，只存本机、不上传**） | `templates/preference-entry.md`、`scripts/pref_memory.py` |
+| 怕跑偏 / 要判断方向对不对 | `docs/lighthouse-plan.md` §3（跑偏判据）、§10（方向审查 10 问） | `docs/capability-status.md` |
+| 要知道某能力到什么程度 / 能不能对外说 | `docs/capability-status.md`（四级：已验证 / 已实现未验证 / 实验中 / 仅规划） | `docs/design-core-boundary.md`（这条规则属于共享核心还是幻灯片适配层） |
+| 做新媒介（文档 / 固定版面 / 网页）前 | `docs/stage0-direction-evidence.md`（门禁 G0）、`templates/media-proposal.md`（立项 10 问） | `docs/evaluation/ablation-protocol.md` |
 
 **禁止**一次性读取整个 `references/`。每次只读当前阶段需要的最多 2 份，读完立刻产出，再读下一份。
 
@@ -163,6 +169,7 @@ python scripts/pref_memory.py --forget mem-…    # 删单条
 16. 交付物里有空话短语、AI 模板句式、无出处的数字；或为了让句子通顺改动用户的数字与结论方向（`references/copywriting-antislop.md` §2、§5）。
 17. 把两件本该由用户拍板的事替用户拍了：**判定「像不像 AI」**与**宣布「改好了/已通过」**；或把「我自己润色了一遍」当成去 AI 味；或未获许可就联网检索、下载、安装外部工具（`copywriting-antislop.md` §1、§5，`discovery/conversation-guide.md` F11）。
 18. 未经用户同意就写偏好记录，或把记忆文件放到仓库 / 网盘 / 任何联网位置；写入前没把条目原文给用户过目（`references/preference-memory.md` §1–§2）。
+19. 把"仅规划 / 实验中"的能力说成已实现，或把"机器 QA 全过"说成"设计优秀"；在门禁 G0 未过时对外宣传"支持多种媒介"（`docs/capability-status.md`、`docs/lighthouse-plan.md` §8）。
 
 ---
 

@@ -2,8 +2,9 @@
 
 | 项 | 内容 |
 |---|---|
-| 文档 | 操作书（执行层）。决策与边界看 [v2-plan.md](v2-plan.md)，两份按同一套编号交叉引用 |
-| 版本 | R2（2026-11-15）。R1 经外部审阅后修订，逐条处理见 [v2-revision-notes.md](v2-revision-notes.md) |
+| 文档 | 操作书（执行层）。决策边界看 [v2-plan.md](v2-plan.md)；方向基准看 [lighthouse-plan.md](lighthouse-plan.md) |
+| 版本 | R3（2026-11-15）。R2→R3 与灯塔对齐的逐条改动见 [v2-revision-notes.md](v2-revision-notes.md) |
+| 范围 | 覆盖阶段 1A–2C（旧称 P0–P4）。**阶段 0（方向证据）另有专册** [stage0-direction-evidence.md](stage0-direction-evidence.md) |
 | 读者 | 我（执行）。你验收时只需看 §2.6 / §3.3 / §4.2 与附录 |
 | 环境 | Windows 11 + PowerShell 7。**本文所有命令在 PowerShell 下验证，CMD 语法不保证** |
 | 原则 | 每步都有命令、预期输出、证据落点、失败处理；没有证据的步骤不算完成 |
@@ -20,6 +21,7 @@
 | 具体敲什么命令、文件写到哪、失败怎么办 | 本文 |
 | 某条阈值是多少 | 规划书第 7 章（唯一权威）与 `schema/presets.json` |
 | 某项 QA 判什么、需要什么输入 | 规划书第 8 章（映射表）+ 本文各阶段 |
+| 阶段 0（方向证据 / A·B 消融）怎么做 | [stage0-direction-evidence.md](stage0-direction-evidence.md)（**本文不重复**） |
 
 ### 0.2 R1 的十二处"只写了做什么、没写怎么做"，本轮逐条补位
 
@@ -39,6 +41,19 @@
 | G12 | 验收证据散落，不知存哪 | §1.6（证据落点表） |
 
 ---
+
+### 0.3 阶段编号映射（本文与灯塔、规划书怎么对应）
+
+| 旧编号（本章名） | 灯塔阶段 | 规划书阶段 | 发布版本 |
+|---|---|---|---|
+| —（另一册） | 阶段 0 方向证据 | 阶段 0 | 1.5.0 |
+| P0 | 阶段 1（文档）·骨架 | 阶段 1A | 1.6.0 |
+| P1 | 阶段 1（文档）·完整 | 阶段 1B | 1.7.0 |
+| P2 | 阶段 2（固定版面/PDF）·设计导出 | 阶段 2A | 1.8.0 |
+| P3 | 阶段 2·PDF 改版 | 阶段 2B | 1.9.0 |
+| P4 | 阶段 2·验收发布 | 阶段 2C | 1.10.0 |
+
+**本文章名继续用 P0–P4**，因为它们已写进 S1–S12 步骤号与验收表；看到 P0 就当作“阶段 1A”读。保留旧编号是为了不重写三百多行步骤，不代表两套制度。
 
 ## 1. 通用约定（所有阶段共用）
 
@@ -110,9 +125,20 @@ preset: print-A4 (source: cli)
 
 ---
 
-## 2. P0：文档最小闭环（4 页 / 6 种块）
+### 1.7 知识 ID 与决策记录（阶段 0 起强制）
 
-### 2.1 完成定义（与规划书 9.3 同一份，A0-1…A0-7）
+每个关键设计决策都要能回答“读了哪几条规则”，否则知识库就是资料库。两件事：
+
+1. **记录**：每个产物目录下写 `knowledge_refs.json`（格式见 [stage0-direction-evidence.md](stage0-direction-evidence.md) 第 4 节）。只记关键决策（方向、版式结构、色彩角色、字号层级），不记微调。
+2. **编号**：被实际引用过的高价值规则才分配 `KP-<文件短码>-<两位序号>`（如 `KP-LAY-05`）。**本轮（R3）只定规则不回填**，第一轮实验后再给被用过的规则编号。
+
+不记的后果：无法证明知识参与了决策，阶段 0 的结论只能停在“已接入工作流”一级。
+
+---
+
+## 2. P0（阶段 1A）：文档最小闭环（4 页 / 6 种块）
+
+### 2.1 完成定义（与规划书 9.5 同一份，A0-1…A0-7）
 
 A0-1 schema 通过 → A0-2 docx 生成 → A0-3 pdf 4 页 → A0-4 4 张 PNG → A0-5 三层 QA（L2 仅 docx 结构项）→ A0-6 目视 6 项 → A0-7 PPT 回归。**七条全过才算 P0 完成。**
 
@@ -252,7 +278,7 @@ SUMMARY P0=0 P1=0 P2=… P3=… exit=0
 
 ---
 
-## 3. P1：文档完整能力（10–15 页样张 + 30 页压力测试）
+## 3. P1（阶段 1B）：文档完整能力（10–15 页正文 + 30 页压力测试）
 
 ### 3.1 新增能力
 
@@ -327,7 +353,7 @@ row.height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
 
 ---
 
-## 4. P2：固定版面与设计型导出
+## 4. P2（阶段 2A）：固定版面与设计型导出
 
 ### 4.1 preset 生效（规划书第 7 章是唯一权威）
 
@@ -390,7 +416,7 @@ SVG 的 `<desc>` 里写明"含位图化元素 N 个"。
 
 ---
 
-## 5. P3：既有 PDF 受限改版
+## 5. P3（阶段 2B）：既有 PDF 的受限改版
 
 ### 5.1 五步流水线
 
@@ -459,7 +485,7 @@ def mix(a, b, t):          # 逐通道 a*(1-t) + b*t，与 qa_check.py 的 blend
 
 ---
 
-## 6. P4：综合验收与发布（不写新功能）
+## 6. P4（阶段 2C）：综合验收与发布（不写新功能）
 
 1. 五案例定稿：`technical-report`（24–28 页）、`research-brief`（6 页版）、`one-pager`（2 页）、`a4-poster`（1 页）、`pdf-rebuild`（8 页）。
 2. 跑 V9–V20（定义见 `docs/v2-validation-report.md`）。
@@ -467,9 +493,9 @@ def mix(a, b, t):          # 逐通道 a*(1-t) + b*t，与 qa_check.py 的 blend
 4. 打包与解包复验：
 
 ```powershell
-& $PY $REPO\scripts\pack.py --out dist\ai-ppt-design-system-v1.9.0.zip
-Expand-Archive dist\ai-ppt-design-system-v1.9.0.zip -DestinationPath $env:TEMP\v19 -Force
-& $PY "$env:TEMP\v19\ai-ppt-design-system\scripts\selfcheck.py" --strict
+& $PY $REPO\scripts\pack.py --out dist\ai-ppt-design-system-v1.10.0.zip
+Expand-Archive dist\ai-ppt-design-system-v1.10.0.zip -DestinationPath $env:TEMP\v110 -Force
+& $PY "$env:TEMP\v110\ai-ppt-design-system\scripts\selfcheck.py" --strict
 ```
 
 判据：解包副本 `selfcheck --strict` 全 0；`demo` QA 仍 `0/0/0/0`；新增六命令 `--help` 全部 rc=0。

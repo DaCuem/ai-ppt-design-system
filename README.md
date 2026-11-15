@@ -2,8 +2,9 @@
 
 <!-- selfcheck-ignore-banned：本文件在"通病"一栏里引用反例原话，属于必须出现的引用 -->
 
-> 一个能被任意 AI 直接下载执行的 **PPT 设计系统**。
-> 不是模板库，不是提示词合集，而是「问清楚 → 判断方向 → 定规则 → 排节奏 → 生成 → 自查 → 交付」的完整流程，外加一套真的能跑的工具链。
+> 一个能被任意 AI 直接下载执行的**通用 AI 设计系统**：以设计知识库为核心，用工作流指导 AI 做设计决策，再用各媒介的工具链完成实现、检查与交付。
+> **PPT 是第一种被完整实现和验证的媒介，不是项目的最终边界。** 下一步是文档（docx/pdf）与固定版面，路线见 [docs/lighthouse-plan.md](docs/lighthouse-plan.md)。
+> 不是模板库，不是提示词合集：是「问清楚 → 判断方向 → 定规则 → 排节奏 → 生成 → 自查 → 交付」的完整流程，外加一套真的能跑的工具链。
 
 ---
 
@@ -100,6 +101,11 @@ examples/                3 份分析示例 + 3 个完整案例（学术 / 工程
 demo/                    8 页旗舰示例：deck.json、pptx、逐页 PNG、总览图、QA 报告
 assets/                  素材与许可记录规范
 docs/                    环境报告、验证报告、需求探索测试记录、阶段性总结
+                         `lighthouse-plan.md` 灯塔级长期规划（契约级：定位、原则 P1–P7、跑偏判据、阶段 0–4、评估制度）
+                         `capability-status.md` 能力状态四级表（已验证 / 已实现未验证 / 实验中 / 仅规划）
+                         `design-core-boundary.md` 共享设计核心 vs 幻灯片适配层 vs 新媒介
+                         `stage0-direction-evidence.md` 阶段 0 方向证据操作手册（A/B 消融、门禁 G0）
+                         `evaluation/` 基准任务、消融协议、结果目录；`decisions/` ADR 决策记录
                          `project-summary.md` 做到哪 / 凭什么 / 还差什么
                          `v2-plan.md` + `v2-plan-ops.md` 文档与固定版面分支的规划书与操作书（尚未开工）
                          `v2-revision-notes.md` 上面两份按外部审阅意见修订的逐条处理记录
