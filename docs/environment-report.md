@@ -43,7 +43,7 @@
 | pandas | 3.0.1 | 数据表读取与统计 |
 | python-docx | 1.2.0 | 用户提供 Word 素材时提取内容 |
 
-Python 绝对路径：`D:\Software\DSH_Desktop\DSH Desktop\resources\office-runtime\primary-runtime\dependencies\python\python.exe`
+Python 绝对路径：`<python.exe>`
 
 ### 2.2 PPTX 生成（已实测）
 

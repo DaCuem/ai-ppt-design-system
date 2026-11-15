@@ -54,7 +54,7 @@
 
 默认顺序 **P1 → P2 → P3**。P1 不可用且用户不同意 P2 时，直接 P3，**不得退回"我自己改一遍"**。
 
-本机已装的实例（2026-11-15 核验）：`C:/Users/h2965/AppData/Roaming/dsh-desktop/harness/profiles/.generations/live/dsh-guizang-design+0.1.4+330d5fbdea42/node_modules/dsh-guizang-design/skills/humanizer-zh/SKILL.md`（20,527 B，中文，MIT）。换了机器就是"没装"，走 P2——不要在文档里假设它一定存在。
+本机已装的实例（2026-11-15 核验）：`<HOST_ROOT>/profiles/.generations/live/dsh-guizang-design+0.1.4+330d5fbdea42/node_modules/dsh-guizang-design/skills/humanizer-zh/SKILL.md`（20,527 B，中文，MIT）。换了机器就是"没装"，走 P2——不要在文档里假设它一定存在。
 
 ## 4. 联网选工具的标准（GitHub 优先）
 

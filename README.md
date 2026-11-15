@@ -99,8 +99,10 @@ scripts/                 probe / build_pptx / render / qa_check / contact_sheet 
 examples/                3 份分析示例 + 3 个完整案例（学术 / 工程 / 创意）
 demo/                    8 页旗舰示例：deck.json、pptx、逐页 PNG、总览图、QA 报告
 assets/                  素材与许可记录规范
-docs/                    环境报告、验证报告、需求探索测试记录
-                        其中 `docs/project-summary.md` 是阶段性总结（做到哪、凭什么、还差什么）
+docs/                    环境报告、验证报告、需求探索测试记录、阶段性总结
+                         `project-summary.md` 做到哪 / 凭什么 / 还差什么
+                         `v2-plan.md` + `v2-plan-ops.md` 文档与固定版面分支的规划书与操作书（尚未开工）
+                         `v2-revision-notes.md` 上面两份按外部审阅意见修订的逐条处理记录
 ```
 
 ---
@@ -174,7 +176,7 @@ docs/                    环境报告、验证报告、需求探索测试记录
 
 ## 许可
 
-本仓库的文档与脚本采用 MIT 许可（见 [LICENSE](LICENSE)）。字体、图片、图表数据等外部素材的许可**不随本仓库授予**，须按 [assets/licenses.md](assets/licenses.md) 单独记录与核验。
+本仓库的文档与脚本采用 MIT 许可（见 [LICENSE](LICENSE)；`LICENSE` 只放标准 MIT 正文，便于 GitHub 正确识别）。字体、图片、图表数据等外部素材的许可**不随本仓库授予**，边界与引用规范见 [NOTICE.md](NOTICE.md)，记录方法见 [assets/licenses.md](assets/licenses.md)。
 
 ## 贡献
 

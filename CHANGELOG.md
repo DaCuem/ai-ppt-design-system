@@ -2,6 +2,39 @@
 
 格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)；版本号遵循语义化版本。
 
+## [1.4.3] - 2026-11-15
+
+### 修正：发布包的三个已知瑕疵（用户 m02159 指出）
+
+1.4.0 发布包里有三处会影响公开仓库观感的问题，本轮逐个修掉：
+
+- **`install.md` 占位符**：第 28 行的 `<仓库链接>` 改为真实仓库地址 `https://github.com/DaCuem/ai-ppt-design-system`（1.4.2 之前已修，本轮复查确认 0 命中）。
+- **本机绝对路径**：含用户名的主目录路径与宿主安装目录路径出现在 18 个文件里（4 份渲染 manifest、5 份 qa 报告、`docs/v2-plan.md`、`docs/v2-plan-ops.md`、`docs/environment-report.md`、`references/copywriting-antislop.md`、`scripts/README.md`、`scripts/build_pptx.py`、`demo/smoke/qa-smoke-log.md`）。统一替换为 `<python.exe>`、`<office-cli.mjs>`、`<HOST_ROOT>` 三个占位符；manifest 的 `inputPath` 与 `images[].path` 改为仓库内相对路径。复查 0 命中（`scripts/render.py` 里的 `%APPDATA%\dsh-desktop\…` 是宿主适配逻辑，不含用户名，保留）。
+- **LICENSE 被 GitHub 识别为 "Other"**：原因是 MIT 正文之后追加了 `---` 与一段中文说明，licencee 全文比对时判为未知许可。处理：`LICENSE` 恢复为 **21 行标准 MIT**（逐字节对齐模板）；第三方素材说明移到新增的 `NOTICE.md`，并在 `README.md` 的许可段加上指向。
+
+其他：新增 `NOTICE.md`（不随 MIT 授权的四类内容 + 引用规范 + 5 条检查清单）；`docs/project-summary.md` 时间线补 1.4.2 与 1.4.3 两行；发布包重新打为 `ai-ppt-design-system-v1.4.3.zip`。
+
+## [1.4.2] - 2026-11-15
+
+### 修正：版本号策略（只改文档）
+
+- 1.4.1 里把「版本号建议」理解成发布编号并改成 `v2.0.0 → v2.4.0`，是误读。该建议针对**功能开发顺序**（先做编号小的功能、顺序不能颠倒），不是发布编号。
+- 发布号改回**正常迭代**：`1.4.1 → 1.5.0（P0）→ 1.6.0（P1）→ 1.7.0（P2）→ 1.8.0（P3）→ 1.9.0（P4 只加案例与文档）`；本文档标题里的 `v2` 只作功能线名称，不写进版本号与交付文件名。
+- 同步修改：`docs/v2-plan.md` §9.1 版本列、§12、附录 D2、§1.3 形态图注；`docs/v2-plan-ops.md` §6 打包命令；`docs/v2-revision-notes.md` §1.4 与一致性表。
+
+## [1.4.1] - 2026-11-15
+
+### 修订：v2 规划书与操作书（R2，按外部审阅意见）
+
+- `docs/v2-plan.md` → R2：P0 收敛为 **4 页 / 6 种块**（去掉 `toc`）；新增「承诺 / 不承诺」清单、`recolor` 统计口径、PPT 回归基线（zip 成员 CRC，不比文件 sha）、四档 preset 唯一权威表、23 项新 QA 映射表（合计 65 项）。
+- `docs/v2-plan-ops.md` → R2：全文 PowerShell 与 `$PY / $NODE / $CLI / $REPO` 四个变量；补齐 12 处「只写做什么、没写怎么做」的缺口（G1–G12）；三层 QA 输入约定（`skipped > 0` 不许签收）；页数四段判据；SVG 与 `layers.json` 的能力边界；每阶段 `regress_ppt.py` 三个 diff 必须全 0。
+- `docs/v2-revision-notes.md`：九条外部建议逐条给处理结论（采纳 / 部分采纳 / 不采纳 + 理由）、17 项一致性检查、6 项待决策或待验证。
+
+### 说明
+
+- 本轮**只改文档，不动代码**；P0 仍未开工。
+- 版本号一节已被 1.4.2 修正：外部建议针对的是**功能开发顺序**而非发布编号；发布号按正常迭代走。
+
 ## [1.4.0] - 2026-11-15
 
 ### 新增：本地偏好记忆（跨形态通用）

@@ -1,11 +1,11 @@
-# AI PPT 设计系统 · v2.0 补全规划与操作书
+# AI PPT 设计系统 · v2 补全规划书（R2）
 
 | 项 | 内容 |
 |---|---|
-| 版本 | 规划稿 v1.0（待确认） |
-| 日期 | 2026-11-15 |
-| 依据 | 你给的 v1.1 实施框架（1108 行 / 11 章）+ 本次需求：PDF 从零做、改既有 PDF、兼顾 Word、偏设计方向的 PNG/PSD |
-| 现状基线 | 本仓库 v1.1.2（159 文件 / 16.87 MB / 30 个 check id），PPT 分支已端到端验证 |
+| 文档 | 规划书（决策层）。执行层是 [v2-plan-ops.md](v2-plan-ops.md)，两份按同一套编号交叉引用 |
+| 版本 | R2（2026-11-15）。R1 经外部审阅后修订，逐条处理见 [v2-revision-notes.md](v2-revision-notes.md) |
+| 依据 | 你给的 v1.1 实施框架 + 本次需求（PDF 从零做 / 改既有 PDF / 兼顾 Word / 偏设计方向的 PNG·PSD）+ 外部审阅意见 |
+| 现状基线 | 本仓库 **v1.4.0**：177 文件 / 17.13 MB / 42 个 check id（`qa_check` 30 + `copy_check` 12），PPT 与文案分支已端到端验证 |
 | 读者 | 你（决策与验收）、我（执行）、将来接手的人（复现） |
 | 状态 | **等你看完点头才开工**；开工前不改任何脚本行为 |
 
@@ -15,36 +15,37 @@
 
 ### 0.1 它是什么
 
-不是需求清单，是**可执行的操作书**：每一阶段写清「交付什么文件 → 用什么命令产出 → 拿什么判据验收 → 不达标就停」。你看完只需要做三件事：确认范围（第 1 章）、确认顺序（第 9 章）、确认边界（附录 B）。
+不是需求清单，是**可执行的规划**：每一阶段写清「交付什么文件 → 用什么命令产出 → 拿什么判据验收 → 不达标就停」。你看完只需做三件事：确认范围（第 1 章）、确认顺序（第 9 章）、确认边界（附录 B）。
 
-### 0.2 与 v1.1 规范的关系
+### 0.2 与既有能力的关系
 
-| v1.1 已有的 | v2.0 怎么处理 |
+| 已有的 | v2 怎么处理 |
 |---|---|
-| 8 阶段工作流（0 需求探索 → 7 迭代交付） | **不动**。加一条分支：阶段 5 产出"文档"时走 `05b`，其余阶段共用 |
-| 设计知识库（风格/版式/字体/色彩/图像/图表/反模式） | **不动**，直接复用。文档形态只新增字号与版面的映射规则 |
-| spec-first 主路径（JSON → 生成器 → 产物 → 渲染 → 复核） | **沿用同一条思路**：`doc.json → docx → pdf → 逐页 PNG → 目视复核` |
-| 30 个 check id 的机器质检 | **不动**。文档形态另起 `qa_doc.py`，共享分级与报告格式 |
-| 三条红线（不虚构/不设默认风格/不覆盖原件） | **不动**，并新增 3 条（附录 B） |
+| 8 阶段工作流（0 需求探索 → 7 迭代交付，含 1.5 文案） | **不动**。阶段 5 产出"文档/固定版面/改版"时走分支，其余阶段共用 |
+| 设计知识库（10 风格 / L01–L15 / AP-01–16 / 字体·色彩·图像·图表） | **不动**，直接复用。文档形态只新增"块模型 + 打印字号档" |
+| spec-first 主路径（JSON → 生成器 → 产物 → 渲染 → 复核） | **沿用同一条思路**：`doc.json → docx → pdf → 逐页 PNG → 三层 QA → 目视复核` |
+| 42 个 check id 的机器质检 | **不动**。文档形态另起 `qa_doc.py`（三层输入），共享 P0–P3 分级与报告格式 |
+| 偏好记忆（v1.4.0） | **不动**。文档任务的偏好同样走 `pref_memory.py`，`kind` 记 `doc` |
 
 ### 0.3 三种读法
 
-- **只想知道结论**：读第 1 章 + 第 9 章的两张表 + 附录 B。
-- **要验收**：读第 10 章验收总表，每条都给了命令与判据。
+- **只想知道结论**：读第 1 章 + 第 9 章两张表 + 附录 B。
+- **要验收**：读第 10 章验收总表，每条都有命令、输入、预期、证据落点、是否阻断。
 - **要复现或接手**：从第 4 章目录树、第 5–8 章模型与契约读起，附录 C 是复制即用的命令序列。
 
-### 0.4 术语（沿用 + 新增）
+### 0.4 术语
 
 沿用：版式、版式签名、文本块、留白（必须带数值）、阈值唯一真值、spec-first。
 
-新增四个：
+新增：
 
 | 术语 | 定义 |
 |---|---|
-| **产物形态** | 一次任务的最终交付类型：演示稿（slide）/ 文档（doc）/ 固定版面设计（page）/ 既有文件改版（rebuild） |
-| **文档块** | `doc.json` 里最小的内容单位，共 12 种：标题、段落、列表、表格、图、图注、引文、提示框、代码、分页、目录、脚注组 |
-| **preset** | 一套绑定的阈值组合（画布尺寸 + 字号档 + 行距 + 边距 + 密度），任务开始时选定，中途不换 |
-| **同源双出** | 一份 `doc.json` 同时产出可编辑 DOCX 与 PDF，两者页码一致（差异超出 ±1 页即判 P1） |
+| **产物形态** | 一次任务的最终交付类型：演示稿（slide）/ 文档（doc）/ 固定版面（page）/ 既有文件改版（rebuild） |
+| **文档块** | `doc.json` 里最小的内容单位，共 12 种；**P0 只实现 6 种**（见 5.3） |
+| **preset** | 一套绑定的阈值组合（画布尺寸 + 字号档 + 行距 + 边距 + 密度），任务开始时选定，中途不换；权威定义只在第 7 章 |
+| **静态目录占位** | P0 用普通标题 + 段落写出的目录页，条目是死的文本，不代表自动目录功能（自动目录是 P1 的 `toc` 块） |
+| **三层 QA** | 按输入对象分的三档检查：Schema QA（`doc.json`）/ DOCX QA（`.docx`）/ PDF·Render QA（`.pdf` 或 PNG），见第 8 章 |
 
 ---
 
@@ -52,21 +53,51 @@
 
 ### 1.1 要解决的三件事
 
-| 编号 | 需求（你的原话） | v2.0 的解法 |
+| 编号 | 需求（你的原话） | v2 的解法 |
 |---|---|---|
 | N1 | 「PDF 一般是完整的文档，可不可以兼顾 Word 制作」 | 新增**文档分支**：`doc.json` → `build_docx.py` → `.docx`（可编辑）→ `export_pdf.py` → `.pdf`。一份源两种交付 |
-| N2 | 「从零做一个或者是修改 pdf」 | 从零：走 N1，或走"固定版面设计"（A4/A3 单页、海报、画册跨页）。修改：`pdf_rebuild.py` 走"逐页底图 + 覆盖层重排"（能力边界见 1.2） |
-| N3 | 「也不排除要更偏向设计的方向（可能也要求 png 或者 psd）」 | PNG 已有（`render.py` 任意画布）。新增 `export_svg.py`（真矢量、文字可编辑）与 `export_layers.py`（分层 PNG 包 + 坐标清单）。**PSD 二进制不做**，理由见 1.2 |
+| N2 | 「从零做一个或者是修改 pdf」 | 从零：走 N1，或走"固定版面设计"（A4/A3 单页、海报、画册跨页）。修改：`pdf_rebuild.py` 走"逐页底图 + 覆盖层重排"（能力边界见 1.2.1） |
+| N3 | 「也不排除要更偏向设计的方向（可能也要求 png 或者 psd）」 | PNG 已有（`render.py` 任意画布）。新增 `export_svg.py`（受支持元素的矢量导出）与 `export_layers.py`（分层 PNG 包 + 坐标清单）。**PSD 二进制不做**，理由见 1.2 |
 
-### 1.2 明确不做（这一节比"做什么"更重要）
+### 1.2 明确不做
 
 | 不做 | 原因（实测，不是推测） |
 |---|---|
 | **PDF 文字级编辑**（改原 PDF 里的字） | 本机 Python 无任何 PDF 库（`fitz/pypdf/pdfplumber` 全部 ModuleNotFoundError），环境禁止 `pip install`；office-cli 只能把 PDF 渲成 PNG，不能回写内容流。自写 PDF 解析器只对极简单文件有效，误伤风险高于收益 |
 | **PSD 二进制写入** | 无 `psd_tools`/`pytoshop`；8BPS 分层格式手写需处理通道、图层组、混合模式、智能对象，出错时 Photoshop 直接判文件损坏。替代品是 SVG + 分层 PNG，能进 PS 继续编辑，代价是"不是一个 .psd 文件" |
 | **网页 / 长图 / H5** | 现有模型是固定画布 + 绝对坐标，没有流式布局与断点概念。硬做会得到"不能响应式的网页"，不如不做 |
-| **提升 AI 生图质量** | 这属于图像生成能力，不是版式技能；v1.1.1 只解决了"生成图必须有结构核对与像素密度门槛" |
-| **Word 里做复杂域**（交叉引用自动编号、题注域、Zotero 域） | python-docx 1.2.0 无对应 API，需手写 OOXML 且 LibreOffice 转换行为不稳。降级方案见 6.2.6（编号由生成器算好写成纯文本） |
+| **提升 AI 生图质量** | 属于图像生成能力，不是版式技能；v1.1.1 只解决"生成图必须有结构核对与像素密度门槛" |
+| **Word 里做复杂域**（交叉引用自动编号、题注域、Zotero 域） | python-docx 1.2.0 无对应 API，需手写 OOXML 且 LibreOffice 转换行为不稳。降级方案：编号由生成器算好写成纯文本 |
+| **复杂 PDF 背景自动修复** | 位图遮挡无法可靠恢复渐变、纹理、照片背景。列为未来方向，不进验收（见 1.2.1） |
+
+### 1.2.1 既有 PDF 改版：承诺什么、不承诺什么
+
+**v2 承诺（P3 验收范围）**：
+
+1. 原页面整体作为底图保留，底图 ≥150 dpi；
+2. 对**纯色或简单背景**区域做遮挡（`mask`）并填充指定色；
+3. 在指定位置叠加新的文字、形状、图片（覆盖层用 `deck.json` 元素语法）；
+4. 对明确指定的局部颜色做**像素级重映射**（`recolor`，容差与统计口径见 1.2.2）；
+5. 输出改版前后对照图（`before/after` 并排 PNG）与 `changes.md`。
+
+**v2 明确不承诺**：
+
+- 自动修复复杂纹理 / 渐变 / 照片背景（遮不住就是遮不住，脚本会报告"该区域背景复杂度高，建议人工重排"）；
+- 自动恢复被遮挡的原始内容；
+- 编辑 PDF 内部的原生文字（导出后文字不可选中、不可搜索）；
+- 对任意 PDF 做到"无损改版"；
+- 页面重排（把原页面的段落重新流式排版）——那是"从零做"，走 N1。
+
+### 1.2.2 `recolor` 的统计口径（替代原来的"95%"）
+
+| 项 | 定义 |
+|---|---|
+| 统计区域 | 由 `recolor.region` 指定（`x,y,w,h` 英寸，转像素后取整）；未指定时取整页排除 `recolor.excludePixels` 命中的像素 |
+| 原色判定 | 在 sRGB 下计算 RGB 欧氏距离：`d = sqrt((r-r0)² + (g-g0)² + (b-b0)²)`，`d ≤ tolerance` 记为"目标像素"（`tolerance` 默认 30，范围 0–60） |
+| 抗锯齿边缘 | 与背景主色差落在 `1.0–1.35` 倍容差区间的像素视为边缘，**只替换 50% 混合色**，且**不计入**统计分母 |
+| 分母 | 符合条件的"目标像素"总数（不含边缘、不含 `excludePixels`） |
+| 替换率 | `已替换目标像素 / 目标像素总数`；**只作为 P3 的辅助异常检测**（<90% 提示人工复核），**不作为验收判据** |
+| 验收看什么 | 对照图人工复核 + `changes.md` 逐条列"改了哪页/哪个区域/怎么改/为什么" |
 
 ### 1.3 一份知识库，四种形态
 
@@ -82,55 +113,56 @@
    deck.json        doc.json                 deck.json(A4/A3)     pdf + rebuild.json
    → pptx           → docx → pdf             → pptx → pdf/png     → 底图 + 覆盖层 → pdf
    → png            → png(逐页)              → svg / 分层 png     → png(对照)
-   （现状，不动）    （新增，v2.0 主线）        （新增，v1.2）        （新增，v2.1，受限）
+   （现状，不动）    （新增，P0+P1 阶段）      （新增，P2 阶段）      （新增，P3 阶段，受限）
 ```
 
-### 1.4 成功判据（六条，都可测）
+### 1.4 成功判据（六条，都能被第 10 章的命令证明）
 
-1. 一份 8 页 A4 文档，`doc.json` 一份源，产出 `.docx` 与 `.pdf`，页码一致（差 ≤1 页），`qa_doc.py` 报 `P0=0`。
-2. 同一份 `doc.json` 只改 `tokens` 的字体与主色（≤6 个值），重建后版面不塌、QA 仍 `P0=0`（对应 v1.1 的 V2 验证思路）。
-3. A4 海报：`deck.json` + `preset=print-A4` → PDF 与 PNG，`qa_check.py`（含新增 `PRT-01/02`）`P0=0`。
-4. 任意一页 `deck.json` 可导出 SVG，浏览器打开后文字仍是文字（可用 Ctrl+F 搜到），形状无错位（与 PNG 叠图比对，位置差 ≤2 px @150dpi）。
-5. 既有 PDF 改版：输入 8 页 PDF，输出 8 页 PDF，底图 ≥150 dpi，无叠影/重影，色彩重映射后目视一致（差异区域由人工确认清单记录）。
-6. 三个文档案例（技术报告 / 研究摘要 / 一页纸方案）落盘，各自带 `brief.md`、`source/doc.json`、`build/`、`README.md`，QA 全绿。
+1. 一份文档两种交付：任一份 `doc.json` 产出 `.docx` 与 `.pdf`，三层 QA 全跑且各自输入对象正确（第 8 章）。
+2. 换 tokens 不塌：只改 ≤6 个字体/颜色值，重建后版面不塌、三层 QA 仍全绿。
+3. 打印形态：A4 海报经 `preset=print-A4` 出 PDF 与 PNG，`PRT-01/02` 无 P0/P1。
+4. 矢量导出：受支持元素清单内的页面导出 SVG，文字仍是文字；**不支持的 `chart`/`table` 渲染为位图并写进跳过报告**（不静默丢弃）。
+5. 改版受限但可交付：8 页 PDF → 8 页 PDF，底图 ≥150 dpi，遮挡区域无残留（对照图人工确认），`changes.md` 条目与改动一致。
+6. 五个案例（技术报告 / 研究摘要 / 一页纸 / A4 海报 / PDF 改版）各自带 `brief.md`、`source/`、`build/`、`README.md`、三层 QA 记录。
 
 ---
 
-## 2. 现状盘点（v1.1.2 实测）
+## 2. 现状盘点（v1.4.0 实测）
 
 ### 2.1 仓库数字
 
 | 目录 | 文件数 | 体积 | 说明 |
 |---|---|---|---|
 | 根目录 | 7 | 41.6 KB | SKILL / README / CONTRIBUTING / install / CHANGELOG / LICENSE / .gitignore |
-| `discovery/` | 5 | 62.6 KB | 5 份探索规范 + 问题库 + 对照表 |
-| `references/` | 11 | 169.5 KB | 10 种风格、10 条原则、L01–L15 版式、AP-01–16 反模式、6 份专项、延伸阅读 |
-| `workflows/` | 8 | 74.7 KB | 00 需求探索 → 07 迭代交付 |
-| `templates/` | 6 | 15.3 KB | 需求确认书 / 项目简报 / 设计提案 / 大纲 / 逐页规格 / QA 报告 |
+| `discovery/` | 5 | 67.8 KB | 探索规范 + 问题库（Q1–Q38）+ 对照表 |
+| `references/` | 14 | 195.1 KB | 10 种风格、10 条原则、L01–L15、AP-01–16、6 份专项、延伸阅读、文案规格、去 AI 味、偏好记忆 |
+| `workflows/` | 9 | 87.6 KB | 00 → 07 + 01b 文案 |
+| `templates/` | 9 | 26.1 KB | 需求确认书 / 简报 / 文案稿 / 换模型交接词 / 提案 / 大纲 / 单页规格 / QA 报告 / 偏好条目 |
 | `examples/` | 71 | 14,363.5 KB | 3 份分析示例 + 3 个完整案例（含 pptx 与预览图） |
-| `scripts/` | 15 | 493.0 KB | 6 条命令 + 3 个库 + selfcheck + README |
-| `schema/` | 2 | 17.2 KB | `deck.schema.json`、`thresholds.json`（v1.1.0） |
-| `docs/` | 3 | 35.8 KB | 环境报告、验证报告、发现测试 |
-| 合计 | **159** | **16.87 MB** | zip 15.23 MB / sha256 `6eb8c747ce0bc224` |
+| `scripts/` | 17 | 502.7 KB | probe / build_pptx / render / qa_check / contact_sheet / copy_check / pref_memory / selfcheck + 3 库 + README |
+| `schema/` | 2 | 19.7 KB | `deck.schema.json`、`thresholds.json`（v1.3.0） |
+| `docs/` | 6 | 125.8 KB | 环境 / 验证 / 发现测试 / 阶段总结 / 本规划书 / 操作书 |
+| 合计 | **177** | **17.13 MB** | zip 15.36 MB / sha256 `6208ab9d…` |
 
 ### 2.2 已验证能力（都跑过，数字是产物体积）
 
 | 通路 | 命令 | 实测产物 |
 |---|---|---|
-| PPTX 生成 | `build_pptx.py --deck demo/source/deck.json --out demo/build/deck.pptx` | 8 页 / 156,719 B / 字体 2 族 |
-| PPTX → PNG | `render.py` 或 `office-cli render --dpi 144` | 1920×1081×8，147 KB/页量级 |
+| PPTX 生成 | `build_pptx.py --deck demo/source/deck.json --out demo/build/deck.pptx` | 8 页 / 156,716 B / 字体 2 族 |
+| PPTX → PNG | `render.py` 或 `office-cli render --dpi 144` | 1920×1081×8 |
 | PPTX → PDF | `office-cli convert --input deck.pptx --output deck.pdf` | 8 页 / 404,760 B / `%PDF-1.7` |
 | A4 竖版版面 | `deck.json` 的 `meta.size = "8.268x11.693"` | 1 页 / 28,634 B → 渲染 1241×1754 px @150 dpi |
 | DOCX 生成 → PDF | python-docx 生成 → `convert` | 37,568 B → 30,485 B / 1 页（告警 `missingFonts:["Courier"]`） |
 | PDF → PNG | `office-cli render --input x.pdf --pages 1,2 --dpi 150` | pdfium 后端 / 128,460 B + 81,885 B |
-| 机器质检 | `qa_check.py --deck ... --json` | 30 个 check id，demo/三案例均 `P0=0 P1=0 P2=0 P3=0` |
+| 版面质检 | `qa_check.py` | 30 个 check id，demo/三案例均 `0/0/0/0` |
+| 文案质检 | `copy_check.py` | 12 个 check id，正例 P1=0，负向 fixture 命中 11 项 |
 
 ### 2.3 本机依赖与硬限制
 
 - Python 3.12.14 可用包：`python-docx 1.2.0`、`python-pptx 1.0.2`、`openpyxl 3.1.5`、`lxml 6.1.3`、`Pillow 12.3.0`、`numpy 2.3.5`、`pandas 3.0.1`。
 - **缺**：任何 PDF 库、`reportlab`、`psd_tools`、`cairosvg/svglib`、`matplotlib`、`fontTools`、`yaml`、`jinja2`。
 - 渲染/转换后端：DSH 自带 `office-cli`（LibreOffice 内核 + pdfium），能力 = 转换（docx/xlsx/pptx ↔ pdf）+ 逐页栅格化。**不带 PDF 内容编辑**。
-- 无 MS Office / WPS / COM；不许 `pip install`。
+- 无 MS Office / WPS / COM；无 Inkscape / Illustrator；不许 `pip install`。
 - 字体 240 个（微软雅黑、思源宋体 Heavy、Noto Sans SC、Lato、Cascadia Mono 等），转换时缺字体告警可用于校验。
 
 ### 2.4 缺口表
@@ -138,18 +170,32 @@
 | 需要 | 现在有 | 差什么 |
 |---|---|---|
 | 文档级排版（标题层级/页眉页脚/目录/表格跨页） | 无 | `doc.schema.json` + `build_docx.py` |
-| 文档级质检 | 无（`qa_check.py` 只认 slide 画布） | `qa_doc.py` + 文档阈值 |
-| 打印尺寸的音量档位 | 只有 `slide-16x9` 的字号标准（正文 ≥16 pt） | `presets`：`print-A4` / `print-A3` |
-| PDF 交付 | 能转换，但脚本里没封装 | `export_pdf.py`（校验页数/缺字体） |
-| 矢量导出 | 无 | `export_svg.py` |
-| 分层交付（给设计师继续做） | 无 | `export_layers.py` |
-| 既有 PDF 改版 | 能渲成图 | `pdf_rebuild.py`（底图 + 覆盖层 + 色彩重映射） |
+| 文档级质检（能看 docx 与 pdf 的真实属性） | 无（`qa_check.py` 只认 slide 画布） | `qa_doc.py`（三层输入） |
+| 打印尺寸的字号档位 | 只有 `slide-16x9`（正文 ≥16 pt） | `presets`：`print-A4` / `print-A3` / `print-letter` |
+| PDF 交付 | 能转换，但脚本里没封装 | `export_pdf.py`（校验页数/缺字体/可栅格化） |
+| 矢量导出 | 无 | `export_svg.py`（受支持元素） |
+| 分层交付 | 无 | `export_layers.py` |
+| 既有 PDF 改版 | 能渲成图 | `pdf_rebuild.py`（底图 + 覆盖层 + 颜色重映射） |
+
+### 2.5 PPT 回归基线（开工前先冻结）
+
+冻结对象（2026-11-15，v1.4.0）：
+
+| 冻结项 | 内容 | 比对方式 |
+|---|---|---|
+| 代码 | `scripts/*.py`、`scripts/lib/*.py` | 文件 SHA-256 清单 `docs/ppt-baseline.json` |
+| Schema | `schema/deck.schema.json`、`schema/thresholds.json` | 同上 |
+| 产物 | `demo/build/deck.pptx`、三案例 `build/deck.pptx` | **zip 成员 CRC 清单**（PPTX 内含时间戳，文件级 sha 会变，不能只靠它） |
+| 质检结果 | demo / smoke / 三案例的 `qa.json` 与 `copy.json` 摘要 | 逐项对比 `SUMMARY` 行 |
+| 视觉 | `demo/build/contact-sheet.png`、三案例 contact sheet | 逐页 PNG 像素差 ≤0.5% 视为一致（LibreOffice 版本不变时） |
+
+基线不达标即停：新增功能导致的任何 baseline 差异，必须先解释清楚再继续。
 
 ---
 
 ## 3. 四种产出形态的判定
 
-### 3.1 判定顺序（每次都先走这一张表）
+### 3.1 判定顺序（每次都先走这张表）
 
 | 用户手上有什么 / 要什么 | 走哪种形态 | 首条命令 |
 |---|---|---|
@@ -157,17 +203,17 @@
 | 要发出去读，有分段、章节、目录、页码 | B 文档 | `build_docx.py` |
 | 单页/多页的版面作品（海报、一页纸、画册跨页、信息图） | C 固定版面 | `build_pptx.py` + `preset=print-*` |
 | 已经有一份 PDF，要改设计/改版式 | D 改版 | `pdf_rebuild.py` |
-| 只改 PDF 里几行字 | **不接**，改为：要源文件（docx/keynote/figma），或按 D 重新排 | — |
+| 只改 PDF 里几行字 | **不接**：要源文件，或按 D 重排 | — |
 | 要 .psd | 改交付 **SVG + 分层 PNG**，并说明差异 | `export_svg.py` / `export_layers.py` |
 
 ### 3.2 四种形态的产物矩阵
 
-| 形态 | 主产物 | 附带产物 | 质检脚本 |
+| 形态 | 主产物 | 附带产物 | 质检 |
 |---|---|---|---|
 | A 演示稿 | `.pptx` | `.pdf`、逐页 `.png`、`contact-sheet.png`、`qa.md/json` | `qa_check.py` |
-| B 文档 | `.docx` + `.pdf` | 逐页 `.png`、`qa.md/json` | `qa_doc.py` |
+| B 文档 | `.docx` + `.pdf` | 逐页 `.png`、`qa.md/json`（三层） | `qa_doc.py` |
 | C 固定版面 | `.pdf` + `.png` | `.pptx`（可编辑源）、`.svg`、分层 png 包 | `qa_check.py`（+PRT 项） |
-| D 改版 | `.pdf` | 对照图（before/after 并排）、改动清单 `.md` | `qa_check.py` + 人工清单 |
+| D 改版 | `.pdf` | 对照图、`changes.md` | `qa_check.py` + 人工清单 |
 
 ---
 
@@ -175,64 +221,67 @@
 
 ### 4.1 新增（14 个文件 / 2 个目录）
 
-| 路径 | 职责（一句话） |
-|---|---|
-| `schema/doc.schema.json` | 文档模型：`meta` + `tokens` + `sections[].blocks[]`，12 种块 |
-| `schema/presets.json` | 四档 preset 的阈值绑定（slide / A4 / A3 / letter），阈值仍只有这一处真值 |
-| `scripts/build_docx.py` | `doc.json` → `.docx`（样式注入、TOC 域、页眉页脚、表格跨页、图片缩放） |
-| `scripts/export_pdf.py` | `.docx`/`.pptx` → `.pdf`，校验页数、缺字体、文件可打开 |
-| `scripts/qa_doc.py` | 文档级质检 15 项 + 复用图片像素密度检查 |
-| `scripts/export_svg.py` | 一页 `deck.json` → 单文件 `.svg`（文字仍是文字，图片内联 base64） |
-| `scripts/export_layers.py` | 一页/一套 → 分层 PNG 包（`layers/*.png` + `layers.json`，可被 PS 逐层导入） |
-| `scripts/pdf_rebuild.py` | 既有 PDF → 逐页底图 → 新 `deck.json` → 新 PDF（含色彩重映射与改动清单） |
-| `references/document-typography.md` | 文档排版规范（字号/行距/行长/页边/页眉页脚基线/图表编号） |
-| `references/document-structure.md` | 文档结构规范（章节深度、目录、表/图/式编号、参考文献、附录） |
-| `templates/doc-brief.md` | 文档任务简报模板 |
-| `templates/doc-outline.md` | 文档大纲模板（章节 → 每节一句话任务 → 预估页数） |
-| `workflows/05b_document-production.md` | 阶段 5 的文档分支（块级制作顺序、每页放什么、表格与图注怎么落） |
-| `examples/docs/<case>/` | 3 个文档案例目录（结构同现有 slide 案例） |
+| 路径 | 职责（一句话） | 首实现 |
+|---|---|---|
+| `schema/doc.schema.json` | 文档模型：`meta` + `tokens` + `sections[].blocks[]`，12 种块 | P0（6 种）/ P1（其余） |
+| `schema/presets.json` | 四档 preset 的阈值绑定（slide / A4 / A3 / letter） | P0 |
+| `scripts/build_docx.py` | `doc.json` → `.docx`（样式注入、页眉页脚、表格跨页、图片缩放） | P0（TOC 域 P1） |
+| `scripts/export_pdf.py` | `.docx`/`.pptx` → `.pdf`，校验页数、缺字体、可栅格化 | P0 |
+| `scripts/qa_doc.py` | 三层文档质检（`--doc` / `--docx` / `--pdf` / `--preview-dir`） | P0（L1+L3）/ P1（L2） |
+| `scripts/export_svg.py` | 一页 `deck.json` → 单文件 `.svg`（受支持元素；`chart`/`table` 位图化 + 跳过报告） | P2 |
+| `scripts/export_layers.py` | 一页/一套 → 分层 PNG 包（`layers/*.png` + `layers.json`） | P2 |
+| `scripts/pdf_rebuild.py` | 既有 PDF → 逐页底图 → 覆盖层 → 新 PDF（含颜色重映射与 `changes.md`） | P3 |
+| `references/document-typography.md` | 文档排版规范（字号/行距/行长/页边/页眉页脚基线/图表编号） | P0 |
+| `references/document-structure.md` | 文档结构规范（章节深度、目录、表图编号、参考文献、附录） | P1 |
+| `templates/doc-brief.md` | 文档任务简报模板 | P0 |
+| `templates/doc-outline.md` | 文档大纲模板（章节 → 每节一句话任务 → 预估页数） | P1 |
+| `workflows/05b_document-production.md` | 阶段 5 的文档分支（块级制作顺序、每页放什么、表图怎么落） | P0 |
+| `examples/docs/<case>/` | 3 个文档案例目录（结构同现有 slide 案例） | P4 |
 
 ### 4.2 修改（7 个文件，都只加段不改旧行为）
 
 | 文件 | 改哪一段 | 加什么 |
 |---|---|---|
-| `SKILL.md` | 第 2 节「任务形态」 | 加"产物形态判定表"（第 3.1 节的表），并指向 `05b` |
-| `SKILL.md` | 第 6 节「硬指标」 | 加一行"文档形态的硬指标见 `references/document-typography.md`" |
+| `SKILL.md` | 第 2 节「任务形态」 | 加产物形态判定表（3.1），指向 `05b` |
+| `SKILL.md` | 第 5 节「硬指标」 | 加一行"文档形态的硬指标见 `references/document-typography.md`" |
 | `SKILL.md` | 路由表 | 加 4 行：要 docx / 要 pdf / 要 svg / 要改 PDF |
 | `schema/thresholds.json` | 顶层加 `presets` 指针 + `print` 段 | 打印字号与边距阈值（第 7 章），顶层结构保持兼容 |
-| `scripts/README.md` | 命令表 + check id 表 | 加 5 条命令、18 个 check id |
-| `README.md` | 第 1 节 + 结构树 | 一句话说明"三种形态"，结构树补新文件 |
-| `CHANGELOG.md` | 版本段 | `[1.2.0]` / `[2.0.0]` / `[2.1.0]` 三段 |
+| `scripts/README.md` | 命令表 + check id 表 | 加 6 条命令、23 个 check id（第 8 章）、三层 QA 说明 |
+| `README.md` | 第 1 节 + 结构树 | 一句话说明"四种形态"，结构树补新文件 |
+| `CHANGELOG.md` | 版本段 | `[2.0.0]` / `[2.2.0]` / `[2.3.0]` / `[2.4.0]` 四段 |
 
 ### 4.3 不动（红线）
 
-- `deck.schema.json` 的字段与 `build_pptx.py` 的输出行为：**一字节都不改**。唯一例外：允许新增**可选**参数 `--preset`，不带该参数时输出必须与 v1.1.2 逐字节一致（比对方法见 [v2-plan-ops.md §4.2](v2-plan-ops.md)）。
-- 现有 30 个 check id 的编号、判据与分级：新增项只能加在 `PRT-*` / `DOC-*` / `PDF-*` / `EXP-*` 命名空间。
-- demo 与三个 slide 案例的产物：v2.0 完成后重新回归一次，QA 必须仍是 `0/0/0/0`。
+- `deck.schema.json` 的字段与 `build_pptx.py` 的**默认输出行为**：一字节都不改。唯一例外：允许新增**可选**参数 `--preset`，不带该参数时输出必须与 v1.4.0 逐字节一致（比对方法：解 zip 逐成员 CRC，期望"差异 0"）。
+- 现有 42 个 check id 的编号、判据与分级：新增项只能加在 `PRT-*` / `DOC-*` / `PDF-*` / `EXP-*` 命名空间。
+- demo 与三个 slide 案例的产物：每个阶段收尾都回归一次（第 2.5 节基线），QA 必须仍是 `0/0/0/0`。
 
-### 4.4 v2.0 完成后的目录树（只标新增）
+### 4.4 全部阶段完成后的目录树（只标新增）
 
 ```text
 ai-ppt-design-system/
 ├── SKILL.md                        # 改：加产物形态判定表 + 4 条路由
 ├── README.md  install.md  CHANGELOG.md  LICENSE  CONTRIBUTING.md
 ├── discovery/                      # 不动（5）
-├── references/                     # 11 + 2（document-typography / document-structure）
-├── workflows/                      # 8 + 1（05b_document-production）
-├── templates/                      # 6 + 2（doc-brief / doc-outline）
+├── references/                     # 14 + 2（document-typography / document-structure）
+├── workflows/                      # 9 + 1（05b_document-production）
+├── templates/                      # 9 + 2（doc-brief / doc-outline）
 ├── schema/
 │   ├── deck.schema.json            # 不动
 │   ├── doc.schema.json             # 新增
 │   ├── thresholds.json             # 改：加 print 段
 │   └── presets.json                # 新增
-├── scripts/                        # 15 + 6 → 21（build_docx / export_pdf / qa_doc / export_svg / export_layers / pdf_rebuild）
+├── scripts/                        # 17 + 6 → 23
 ├── examples/
 │   ├── cases/                      # 不动（3 个 slide 案例）
-│   └── docs/                       # 新增 3 个文档案例
+│   └── docs/                       # 新增 3 个文档案例 + 1 个海报 + 1 个改版案例
 ├── docs/
-│   ├── environment-report.md  validation-report.md  discovery-tests.md   # 不动
+│   ├── environment-report.md  validation-report.md  discovery-tests.md  project-summary.md   # 不动
 │   ├── v2-plan.md                  # 本文件
-│   └── v2-validation-report.md     # 新增（V9–V14 验证矩阵）
+│   ├── v2-plan-ops.md              # 操作书
+│   ├── v2-revision-notes.md        # 修订说明（R1 → R2 逐条处理）
+│   ├── ppt-baseline.json           # PPT 回归基线
+│   └── v2-validation-report.md     # 新增（V9–V20 验证矩阵）
 └── dist/                           # 发布包
 ```
 
@@ -255,7 +304,7 @@ ai-ppt-design-system/
     "pageSize": "A4",
     "orientation": "portrait",
     "marginsIn": { "top": 0.9, "bottom": 0.9, "left": 1.0, "right": 1.0 },
-    "toc": { "enabled": true, "depth": 3 },
+    "toc": { "enabled": false, "depth": 3 },
     "numbering": { "figures": true, "tables": true, "headings": true },
     "header": { "text": "某园区冬季遮阴实测报告", "showOnFirstPage": false },
     "footer": { "pageNumber": true, "text": "" }
@@ -278,27 +327,29 @@ ai-ppt-design-system/
 | `title` | string | 是 | ≤30 字（超长触发 `DOC-03`） |
 | `pageSize` | string | 是 | `A4` / `A3` / `Letter` / 显式 `"WxH"`（英寸，如 `"8.268x11.693"`） |
 | `orientation` | enum | 是 | `portrait` / `landscape` |
-| `marginsIn` | object | 是 | 每个边 0.5–1.6 in；与 preset 不一致时告警 |
-| `toc.enabled` | bool | 否 | true 时生成器插入 TOC 域，并在交付说明里写"打开后按 F9 更新目录" |
-| `numbering.figures/tables` | bool | 否 | true 时图注写成"图 1 · 冠层剖面示意"这种格式，编号由生成器按出现顺序算 |
+| `marginsIn` | object | 是 | 每个边 0.5–1.6 in；与 preset 不一致时告警（`DOC-11`） |
+| `toc.enabled` | bool | 否 | **P1 起生效**：true 时生成器插 TOC 域，交付说明写"打开后按 F9 更新目录"。P0 阶段该字段必须为 false（置 true 直接退出码 1） |
+| `numbering.figures/tables` | bool | 否 | true 时图注写成"图 1 · 冠层剖面示意"，编号由生成器按出现顺序算 |
 | `header` / `footer` | object | 否 | 页码用 PAGE 域；首页是否显示单独控制 |
 
-### 5.3 12 种文档块
+### 5.3 12 种文档块（含首实现阶段）
 
-| `type` | 关键字段 | 渲染为 |
-|---|---|---|
-| `heading` | `level`(1–3)、`text` | Word 标题 1–3 样式，进目录 |
-| `paragraph` | `runs[]`、`align`、`indentFirstLine`、`spaceAfterPt` | 正文段落，中文首行缩进 2 字符（可关） |
-| `list` | `ordered`(bool)、`items[][]`（每项是 runs）、`level` | 项目符号 / 编号列表，编号连续由生成器维护 |
-| `table` | `caption`、`header[]`、`rows[][]`、`colWidthsIn[]`、`align[]`、`zebra` | Word 表格，表头跨页重复（`tblHeader`），行不跨页断开（`cantSplit`） |
-| `figure` | `src`、`widthIn`、`caption`、`source`、`alt` | 图片 + 图注 + 来源行；宽度缺省按正文栏宽等比缩放 |
-| `quote` | `text`、`cite` | 引文块（缩进 + 左侧竖线） |
-| `callout` | `kind`(`note`/`warn`/`key`)、`title`、`text` | 单格表格做的提示框（浅底 + 细边） |
-| `code` | `lang`、`text` | 等宽字体块（10 pt，灰底） |
-| `pageBreak` | — | 硬分页 |
-| `toc` | — | 目录域占位（位置由生成器插入） |
-| `bibliography` | `entries[]` | 参考文献列表（编号 `[1]`，与正文引用号人工对齐） |
-| `footnoteGroup` | `id` | **P2 阶段才做**；先降级为章末"注释" |
+| `type` | 首实现 | 关键字段 | 渲染为 |
+|---|---|---|---|
+| `heading` | **P0** | `level`(1–3)、`text` | Word 标题 1–3 样式 |
+| `paragraph` | **P0** | `runs[]`、`align`、`indentFirstLine`、`spaceAfterPt` | 正文段落，中文首行缩进 2 字符（可关） |
+| `list` | **P0** | `ordered`、`items[][]`、`level` | 项目符号 / 编号列表，编号由生成器维护 |
+| `table` | **P0** | `caption`、`header[]`、`rows[][]`、`colWidthsIn[]`、`align[]`、`zebra` | Word 表格，表头跨页重复、行不跨页断开 |
+| `figure` | **P0** | `src`、`widthIn`、`caption`、`source`、`alt` | 图片 + 图注 + 来源行 |
+| `pageBreak` | **P0** | — | 硬分页 |
+| `quote` | P1 | `text`、`cite` | 引文块（缩进 + 左侧竖线） |
+| `callout` | P1 | `kind`(`note`/`warn`/`key`)、`title`、`text` | 单格表格做的提示框 |
+| `code` | P1 | `lang`、`text` | 等宽字体块（灰底） |
+| `toc` | P1 | — | 目录域（插 `TOC` 域，生成后需 F9 更新） |
+| `bibliography` | P1 | `entries[]` | 参考文献列表（编号 `[1]`，与正文引用号人工对齐） |
+| `footnoteGroup` | P2 | `id` | 脚注组（先降级为章末"注释"） |
+
+**P0 的硬约束**：P0 的 `doc.schema.json` 只接受前 6 种；出现其余类型 → 退出码 1，报 `DOC-16 块类型未在该阶段实现`。
 
 ### 5.4 与 `deck.schema.json` 的本质差异
 
@@ -310,7 +361,7 @@ ai-ppt-design-system/
 | 失败模式 | 框太小装不下 | 断页断在表格中间、图注与图分离、目录页码不符 |
 | 谁负责美观 | 我们（坐标就是设计） | 样式表 + 上图下图注的间距（生成器只保证规则） |
 
-### 5.5 三条模型级约束（写成规则的）
+### 5.5 三条模型级约束
 
 **规则：块顺序即阅读顺序，不许用坐标把内容挪到别处**
 - **触发条件**：需要在文档里做"左右分栏""图上文下"之类的特殊摆放。
@@ -319,12 +370,12 @@ ai-ppt-design-system/
 
 **规则：图、表必须有编号、题注与来源**
 - **触发条件**：插入任何 `figure` 或 `table`。
-- **具体动作**：`caption` 写"图 N + 一句话结论式题注"，`source` 写数据出处与口径；缺任一项 `qa_doc.py` 判 `DOC-05`/`DOC-06`（P0）。
+- **具体动作**：`caption` 写"图 N + 一句话结论式题注"，`source` 写数据出处与口径；缺任一项判 `DOC-05`/`DOC-06`（P0）。
 - **常见错误**：把来源塞在正文里、或写"如图所示"却不给编号，读者无法回指。
 
 **规则：标题层级只能加深一级**
 - **触发条件**：写第 N 级标题。
-- **具体动作**：从 h1 到 h2 到 h3 依次加深，跳过即 `DOC-01`（P0）。
+- **具体动作**：h1 → h2 → h3 依次加深，跳过即 `DOC-01`（P0）。
 - **常见错误**：为了字号好看直接 h1 → h3，导致目录塌成两层、Word 导航窗格断链。
 
 ---
@@ -336,23 +387,23 @@ ai-ppt-design-system/
 | 命令 | 输入 | 输出 | 退出码 |
 |---|---|---|---|
 | `build_docx.py --doc D --out O [--check-only]` | `doc.json` | `.docx` | 0 成功 / 1 有 P0 级模型错误 / 2 参数或 I/O 错 |
-| `export_pdf.py --input F --out O [--pages all|"1-3"]` | `.docx`/`.pptx` | `.pdf` + `pdf-manifest.json` | 0 / 1 转换成功但缺字体 / 2 失败 |
-| `qa_doc.py --doc D --out O [--json J]` | `doc.json` | `qa.md` + `qa.json` | 0 无 P0 / 1 有 P0 |
-| `export_svg.py --deck D --slide N --out O` | `deck.json` | `.svg` | 0 / 1 有元素类型不支持（跳过并记录） / 2 失败 |
+| `export_pdf.py --input F --out O [--pages all\|"1-3"]` | `.docx`/`.pptx` | `.pdf` + `pdf-manifest.json` | 0 / 1 转换成功但缺字体 / 2 失败 |
+| `qa_doc.py --doc D [--docx F] [--pdf F] [--preview-dir DIR] --out O [--json J]` | 三类输入任意组合 | `qa.md` + `qa.json` | 0 无 P0 / 1 有 P0 / 2 参数错误 |
+| `export_svg.py --deck D --slide N --out O [--allow-raster]` | `deck.json` | `.svg` + 跳过报告 | 0 / 1 有元素不支持（已位图化） / 2 失败 |
 | `export_layers.py --deck D --slide N --out-dir O` | `deck.json` | `layers/*.png` + `layers.json` | 0 / 1 部分层为空 / 2 失败 |
 | `pdf_rebuild.py --pdf P --spec S --out-dir O` | 原 PDF + `rebuild.json` | 新 PDF + 对照图 + `changes.md` | 0 / 1 有页面未处理 / 2 失败 |
 | `render.py`（现状） | `.pptx`/`.pdf` | 逐页 `.png` | 0 / 2 无渲染器 |
 
 ### 6.2 `build_docx.py` 关键实现约定
 
-1. **样式注入而非手工排版**：只改 `Normal` / `Heading 1–3` / 自定义 `FigCaption`、`TblCaption`、`Source`、`Quote`、`Callout`、`Code` 七个样式；段落只引用样式，不逐段设字体。这样用户在 Word 里改样式能整套生效。
+1. **样式注入而非手工排版**：只改 `Normal` / `Heading 1–3` / 自定义 `FigCaption`、`TblCaption`、`Source`、`Quote`、`Callout`、`Code` 七个样式；段落只引用样式，不逐段设字体。用户在 Word 里改样式能整套生效。
 2. **中文字体必须双写**：`run.font.name`（西文）+ `rPr.rFonts` 的 `w:eastAsia`（中文），否则 Word 里中文回落到宋体（实测过，这是最常见的"字体没生效"）。
-3. **行距与段后**：正文行距 1.5 倍，段后 6 pt，首行缩进 2 字符（`paragraph_format.first_line_indent = Pt(21)` 对 10.5 pt 正文）。
-4. **目录**：插 `w:fldSimple` + `instr='TOC \o "1-3" \h \z \u'`，页面上留一行"目录（打开后按 F9 更新）"；**不假装目录页码已经正确**。
+3. **行距与段后**：正文行距 1.5 倍，段后 6 pt，首行缩进 2 字符（`first_line_indent = Pt(21)` 对 10.5 pt 正文）。
+4. **目录**：P1 起插 `w:fldSimple` + `instr='TOC \o "1-3" \h \z \u'`，页面上留一行"目录（打开后按 F9 更新）"；**不假装目录页码已经正确**。P0 不插域，目录页是静态文本。
 5. **页眉页脚**：页脚居中 `PAGE` 域 + 可选 `NUMPAGES`；页眉用 `different_first_page_header_footer` 控制首页不显示。
-6. **表头跨页**：给首行 `<w:tblHeader/>`，并给所有行 `<w:cantSplit/>`，防止表格在页底断成两半（这是文档形态最常见的低级错误）。
-7. **图片**：`widthIn` 缺省 = 正文栏宽（A4 竖版 6.27 in），按原图比例算高；超过一页高度时按页高 80% 反算宽度，并在 stderr 提示"图片过大已缩放"。
-8. **编号**：图/表编号由生成器按出现顺序算成纯文本（`图 1`、`表 2`），**不用 SEQ 域**——理由见 1.2。
+6. **表头跨页**：给首行 `<w:tblHeader/>`，所有行 `<w:cantSplit/>`，防止表格在页底断成两半。
+7. **图片**：`widthIn` 缺省 = 正文栏宽（A4 竖版 6.27 in），按比例算高；超过一页高度时按页高 80% 反算宽度，stderr 提示"图片过大已缩放"。
+8. **编号**：图/表编号由生成器按出现顺序算成纯文本（`图 1`、`表 2`），不用 SEQ 域。
 
 ### 6.3 `export_pdf.py` 校验项
 
@@ -360,334 +411,305 @@ ai-ppt-design-system/
 |---|---|---|
 | 输出存在且 >1 KB | 文件大小 | 退出码 2，打印后端原始报错 |
 | 页数 >0 | manifest 的 `pageCount` | 退出码 2 |
-| 缺字体列表 | `missingFonts == []` | 退出码 1，列出哪些字体 + 建议替换（微软雅黑/思源宋体/Noto Sans SC/Lato 可用） |
-| 可再次栅格化 | 用自己的 `render` 渲第 1 页成功 | 退出码 1（PDF 可能损坏，但能打开） |
+| 缺字体列表 | `missingFonts == []` | 退出码 1，列出字体 + 建议替换 |
+| 可再次栅格化 | 用自己的 `render` 渲第 1 页成功 | 退出码 1（PDF 可能损坏但能打开） |
 
-### 6.4 `qa_doc.py` 的 15 项（编号即判据）
+### 6.4 `qa_doc.py` 的三层结构与 16 项检查
 
-| ID | 检查 | 级别 | 判据（数字来自 `presets.json`） |
-|---|---|---|---|
-| `DOC-01` | 标题层级跳级 | P0 | 出现 h1→h3 直接判 |
-| `DOC-02` | 无 h1 或标题数 <2 | P1 | 文档型必须有章节结构 |
-| `DOC-03` | 标题字数超限 | P2 | title >30 字 / heading >24 字 |
-| `DOC-04` | 段落过长 | P2 | 单段 >300 字 |
-| `DOC-05` | 图表缺题注 | P0 | `figure`/`table` 的 `caption` 为空 |
-| `DOC-06` | 图表缺来源 | P0 | `source` 为空 |
-| `DOC-07` | 图片有效像素密度 | P1/P2 | <80 ppi 报 P1、<110 报 P2（复用 `IMG-01` 逻辑） |
-| `DOC-08` | 字体族超限 | P1 | >3 族 |
-| `DOC-09` | 正文字号不在档 | P1 | 不在 preset 的 body 区间（A4 打印 9–11 pt） |
-| `DOC-10` | 行距不在档 | P2 | 正文 1.4–1.6 之外 |
-| `DOC-11` | 页边距不在档 | P2 | 与 preset 差 >0.1 in |
-| `DOC-12` | 目录与标题数不符 | P1 | `toc.enabled` 时，目录条目数 ≠ h1–h3 总数 |
-| `DOC-13` | 页码缺失 | P1 | `footer.pageNumber=true` 但生成文件里找不到 PAGE 域 |
-| `DOC-14` | 表格列宽和≠正文宽 | P2 | 差 >0.15 in |
-| `DOC-15` | 中英文之间缺空格 | P3 | 启发式，仅提示 |
+**三层输入（缺哪层，该层的检查就记 `SKIP` 并计入"未验证"，不许算通过）**：
 
-`PRT-01`/`PRT-02`（给固定版面形态用）：`PRT-01` 打印边距不足（A4 <0.6 in、A3 <0.8 in，P1）；`PRT-02` 出血元素缺失（满版图未设 `zRole:"bgDecor"`，P2）。
-
-`PDF-01` 转换页数与源不符（P1）、`PDF-02` 缺字体（P1）、`PDF-03` 页面尺寸不符 preset（P1）。
-`EXP-01` SVG 元素越界（P1）、`EXP-02` 分层包缺 `layers.json` 或层为空（P1）、`EXP-03` SVG 中文字被转成路径（P2，允许但需在 README 说明）。
-
-### 6.5 `export_svg.py` 映射表
-
-| `deck.json` 元素 | SVG |
-|---|---|
-| `rect`（含 `corners`） | `<rect>` + `rx` |
-| `line` | `<line>`（`dash` → `stroke-dasharray`） |
-| `ellipse` | `<ellipse>` |
-| `polygon` | `<polygon points>` |
-| `text`（runs/paragraphs） | `<text>` + `<tspan>`，`font-family`/`font-size`/`letter-spacing`/`line-height` 逐项落；`textLength` 不用（会拉伸字形） |
-| `image` | `<image href="data:image/png;base64,...">`，内联保证单文件可移植 |
-| `chart`/`table` | **不支持**（v2.0 明确跳过并在 stderr 列出），需要时先 `render` 成图再当 `image` |
-
-坐标换算：`px = inch × 96`（SVG 用户单位），`viewBox="0 0 1280 720"`（16:9）或按画布算。
-
-### 6.6 `export_layers.py` 分组规则
-
-按 `zRole` 与元素类型分五层，顺序即绘制顺序：`01-bg`（背景色块/满版图）、`02-decor`（装饰线/色块）、`03-images`（图片）、`04-charts`（图表，渲染成位图）、`05-text`（文字，栅格化）。`layers.json` 记录每层的 `x/y/w/h`、不透明度、来源元素 id。
-
-**诚实说明**：分层 PNG 的文字层是位图，进 PS 后不能再改字；要改字请用 SVG。
-
-### 6.7 `pdf_rebuild.py` 流水线（形态 D）
-
-```text
-原 PDF ──render(150dpi)──→ pages/p1..pN.png
-        │
-        ├─ 读 rebuild.json：每页 { keep: full|none, mask:[{x,y,w,h,fill}], overlay:[元素],
-        │                          recolor:[{from:"#RRGGBB", to:"#RRGGBB", tolerance:0..40}] }
-        │
-        ├─ 底图：PIL 做色相/色值替换（tolerance 用欧氏距离）+ 遮挡矩形填充
-        ├─ 覆盖层：元素按 deck.json 语法写，走同一套 build_pptx → convert
-        └─ 输出：build/rebuild.pdf + compare/p1-before.png|p1-after.png + changes.md
+```bash
+# L1 只查模型
+$PY scripts/qa_doc.py --doc source/doc.json --out build/qa-schema.md
+# L2 查生成的 docx（样式、域、表格属性、图片嵌入）
+$PY scripts/qa_doc.py --doc source/doc.json --docx build/report.docx --out build/qa-docx.md
+# L3 查 pdf / 渲染图（页数、尺寸、字体、越界、视觉问题）
+$PY scripts/qa_doc.py --doc source/doc.json --docx build/report.docx \
+    --pdf build/report.pdf --preview-dir build/preview --out build/qa-full.md --json build/qa.json
 ```
 
-**能力边界（写进脚本 `--help` 与 `README`）**：文字被栅格化，改完是"重新设计的版本"；原文字不可选、不可搜；要改文字只能要源文件。
+报告头必须打印 `inputs: doc=… docx=… pdf=… preview=…`，并统计 `verified=… skipped=…`。
 
-### 6.8 错误处理表
+| ID | 层 | 检查 | 所需输入 | 阶段 | 级别 |
+|---|---|---|---|---|---|
+| `DOC-01` | L1 | 标题层级跳级 | doc | P0 | P0 |
+| `DOC-02` | L1 | 无 h1 或标题数 <2 | doc | P0 | P1 |
+| `DOC-03` | L1 | 标题字数超限（title >30 / heading >24） | doc | P0 | P2 |
+| `DOC-04` | L1 | 段落过长（>300 字） | doc | P0 | P2 |
+| `DOC-05` | L1 | 图/表缺题注 | doc | P0 | P0 |
+| `DOC-06` | L1 | 图/表缺来源 | doc | P0 | P0 |
+| `DOC-07` | L1/L3 | 图片有效像素密度（<80 P1、<110 P2） | doc + 图片文件 | P0 | P1/P2 |
+| `DOC-08` | L1 | 字体族 >3 | doc | P0 | P1 |
+| `DOC-09` | L1 | 正文字号不在 preset 档（A4 9–11 pt） | doc | P0 | P1 |
+| `DOC-10` | L1 | 行距不在档（1.4–1.6） | doc | P0 | P2 |
+| `DOC-11` | L1 | 页边距与 preset 差 >0.1 in | doc | P0 | P2 |
+| `DOC-12` | L2 | 目录与标题数不符（`toc.enabled` 时） | docx | P1 | P1 |
+| `DOC-13` | L2 | 应有 PAGE 域但找不到 | docx | P0 | P1 |
+| `DOC-14` | L1 | 表格列宽和 ≠ 正文宽（差 >0.15 in） | doc | P0 | P2 |
+| `DOC-15` | L1 | 中英文之间缺空格 | doc | P0 | P3 |
+| `DOC-16` | L1 | 块类型未在该阶段实现（P0 只允许 6 种） | doc | P0 | P0 |
 
-| 情况 | 处理 | 退出码 |
-|---|---|---|
-| `doc.json` 不合 schema | 打印首个错误路径（`$.sections[2].blocks[4].type`）+ 修法提示 | 2 |
-| 字体在本机不存在 | 换成同角色可用族（display→思源宋体/雅黑，body→雅黑，mono→Cascadia Mono），写进 manifest | 0（带 warning） |
-| 图片缺失 | 保留占位框 + 题注，写进 `missing` 列表 | 1 |
-| TOC 域未更新 | 交付说明里固定一句"打开后按 F9 更新目录" | 0 |
-| 转换缺字体 | 列出字体名 + 建议替换 | 1 |
-| PDF 页面尺寸与 preset 差 >0.05 in | 报 `PDF-03` | 0（P1 不阻断） |
+`PRT-01` 打印边距不足（A4 <0.6 in、A3 <0.8 in，P1）；`PRT-02` 出血元素缺 `zRole:"bgDecor"`（P2）。
+`PDF-01` 页数与源不符（P1）；`PDF-02` 缺字体（P1）；`PDF-03` 页面尺寸不符 preset（P1）。
+`EXP-01` SVG 元素越界（P1）；`EXP-02` 分层包缺 `layers.json` 或层为空（P1）；`EXP-03` SVG 中文字被转成路径（P2，允许但需在 README 说明）。
 
----
+### 6.5 `export_svg.py`：受支持元素与跳过报告
 
-## 7. 阈值与 preset
+**支持**（就地转 SVG 元素）：`rect`（含 `corners`）、`line`（`dash`→`stroke-dasharray`）、`ellipse`、`polygon`、`text`（runs/paragraphs → `<text>`+`<tspan>`，逐项落 `font-family`/`font-size`/`letter-spacing`/`line-height`；不用 `textLength`，会拉伸字形）、`image`（内联 base64）。
 
-### 7.1 四档 preset
+**不支持**：`chart`、`table`、`icon`（图标字体）。
 
-| preset | 画布 | 正文 | 行距 | 页边 | 行长 | 每页字数 |
-|---|---|---|---|---|---|---|
-| `slide-16x9`（现状） | 13.333×7.5 in | 16–24 pt | 1.25–1.55 | 0.6/0.45 in | ≤34 汉字 | ≤220 |
-| `print-A4` | 8.268×11.693 in | 9–11 pt | 1.4–1.6 | 0.8–1.1 in | ≤48 汉字 | 450–900 |
-| `print-A3` | 11.693×16.535 in | 10–13 pt | 1.4–1.6 | 1.0–1.4 in | ≤60 汉字 | 500–1200 |
-| `print-letter` | 8.5×11 in | 9–11 pt | 1.4–1.6 | 0.8–1.1 in | ≤48 汉字 | 450–900 |
+不支持的处置（必须显式，不许静默丢）：
 
-### 7.2 文档专用阈值（新增段）
+1. 默认 `--allow-raster` 关闭时：跳过并写进 `skip-report.md`，退出码 1；
+2. 开启时：该元素先渲染为 PNG（同一画布网格、同坐标），以 `<image>` 嵌入，退出码 1，报告里写"已位图化"，并在 SVG 的 `<desc>` 标注；
+3. 报告必须列：元素序号、类型、位置、处置（跳过/位图化）、原因。
 
-| 键 | 值 | 含义 |
-|---|---|---|
-| `doc.titleMaxChars` | 30 | 文档标题上限 |
-| `doc.headingMaxChars` | 24 | 任一级标题上限 |
-| `doc.paragraphMaxChars` | 300 | 单段上限（超过应拆段） |
-| `doc.bodySizeRange` | `{A4:[9,11], A3:[10,13]}` | 正文字号区间 |
-| `doc.lineSpacingRange` | `[1.4, 1.6]` | 正文行距区间 |
-| `doc.maxFontFamilies` | 3 | 字体族上限 |
-| `doc.figureCaptionMaxChars` | 60 | 题注上限 |
-| `doc.tableMaxCols` | 6 | 表格列数上限（A4 竖版） |
+**已写明的限制**：SVG 的 `<text>` 保留为文字对象，但**不同软件/不同机器字体与换行会变**；不能因为浏览器能 Ctrl+F 搜到标题，就声称"在设计软件里编辑体验良好"。本机无 Inkscape / Illustrator，**"在设计软件中可正常选择编辑"列为待验证项（V18）**，验证前不得写进 README 的能力声明。
 
-### 7.3 组织方式（重要：不破坏"唯一真值"）
+### 6.6 `export_layers.py`：分层 PNG 的真实边界
 
-- 所有数字仍只写在 `schema/thresholds.json`；`schema/presets.json` **只做引用**（`{"print-A4": {"canvas": "canvas.print.A4", "type": "type.print", ...}}`），不再复制一份数字。
-- `thresholds.json` 新增 `presets` 与 `print` 两段，`version` → `2.0.0`。
-- 读取顺序：**显式命令行 `--preset` > `meta.pageSize` 推导 > 默认 `slide-16x9`**，且脚本必须在报告头部打印实际生效的 preset（`preset: print-A4 (source: meta.pageSize)`）。
-
----
-
-## 8. QA 标准（文档形态）
-
-### 8.1 分级与阻断
-
-沿用现有规则：`P0` 阻断交付（`blockOnP0=true`），`P1` 必须修或书面接受，`P2` 建议修，`P3` 仅记录。文档形态额外一条：**P0 里包含"事实类"问题**（图表缺来源、数据无单位、引用号对不上），这类不做"接受"选项。
-
-### 8.2 人工判定项（脚本不实现，写进 `qa.md` 固定段落）
-
-| 项 | 谁判 | 判据 |
-|---|---|---|
-| 章节顺序是否符合读者的提问顺序 | 人 | 每章标题能回答上一章留下的问题 |
-| 表格数据是否与正文数字一致 | 人 | 抽查 3 处，逐一对照 |
-| 目录页码是否与正文一致 | 人 | 打开 PDF 抽查 3 处 |
-| 图注是否描述"结论"而非"图里有什么" | 人 | 题注应含判断，不只是"示意图" |
-
-### 8.3 报告格式
-
-复用现有的 `qa.md` + `qa.json` 结构与 9 列表格（编号 / 页码 / 类别 / 严重程度 / 检查项 / 问题描述 / 修复建议 / 状态 / 复查），头部多一行 `preset:`；`qa.json` 的 `summary` 增加 `preset` 与 `pageCount` 字段。
+- 五层：`01-bg` / `02-shapes` / `03-images` / `04-decor` / `05-text`，整画布同尺寸透明 PNG，逐层对齐。
+- `layers.json` 每层记录：`name`、`order`、`bounds{x,y,w,h}`、`opacity`、`sourceElementIds[]`、`rasterized`(bool)、`note`。
+- **文字层是位图**，不是可编辑文本：`rasterized: true`，`note` 固定写"文字层为栅格图，改字请用 SVG 或回源 `deck.json`"。
+- README 与交付说明都必须写明："分层 PNG 不是 PSD 的等价替代品；要改文字用 SVG 或源文件。"
 
 ---
 
-## 9. 分阶段实施
+## 7. 四档 preset（唯一权威定义）
 
-> 本章只写「做什么、什么算完」。**每阶段逐条怎么执行**（文件清单、创建顺序、S1..Sn 步骤、命令、期望输出、排错表、验收证据）见 [v2-plan-ops.md](v2-plan-ops.md)：那是操作书，本文是规划书。
+> 其它章节只引用本章，不重复数值。`schema/presets.json` 与 `schema/thresholds.json` 的 `print` 段必须与本章逐项一致；`scripts/selfcheck.py` 之外再加一项一致性检查（P0 阶段实现，见操作书 S3）。
 
-### 9.1 总览
+| preset | 画布（in） | 边距（in，四边） | 正文字号 | 行距 | 行长上限 | 页面字数预算 | 用途 |
+|---|---|---|---|---|---|---|---|
+| `slide-16x9` | 13.333 × 7.5 | 0.6 / 0.45 | 16–24 pt | 1.25–1.55 | 34 汉字 | 220 字/页 | 现有演示稿（不动） |
+| `print-A4` | 8.268 × 11.693 | 1.0 / 0.9 | 9–11 pt | 1.4–1.6 | 48 汉字 | 600–900 字/页 | 报告、研究摘要、一页纸 |
+| `print-A3` | 11.693 × 16.535 | 1.2 / 1.0 | 10–12 pt | 1.4–1.6 | 56 汉字 | 700–1000 字/页 | 展板、大图谱 |
+| `print-letter` | 8.5 × 11 | 1.0 / 0.9 | 9–11 pt | 1.4–1.6 | 48 汉字 | 600–900 字/页 | 英文交付 |
 
-| 阶段 | 内容 | 规模 | 依赖 | 落到哪个版本 |
-|---|---|---|---|---|
-| **P0** | 文档骨架：schema + build_docx 最小闭环 + export_pdf + qa_doc 前 6 项 | 中（新增约 900–1200 行） | 无 | v2.0.0 |
-| **P1** | 文档完整能力：表格跨页、目录、页眉页脚、图注编号、分节、callout/code | 中（+800 行） | P0 | v2.0.0 |
-| **P2** | 设计型导出：`export_svg.py`、`export_layers.py`、`print-*` preset、PRT 项 | 小-中（+600 行） | P0 的 preset 段 | v1.2.0 |
-| **P3** | 既有 PDF 改版：`pdf_rebuild.py`（底图 + 遮挡 + 覆盖 + 色彩重映射） | 中-大（+700 行） | P2（要覆盖层能力） | v2.1.0 |
-| **P4** | 案例与验收：3 个文档案例 + `docs/v2-validation-report.md`（V9–V14） | 中（产物多） | P0–P3 | 随各自版本 |
+**生效顺序（唯一规则）**：`命令行 --preset` > `meta.pageSize` 推导 > 默认 `slide-16x9`。报告头必须打印 `preset: <name> (source: cli|meta|default)`。
 
-### 9.2 P0 · 文档骨架（先证明"能出文档"）
-
-**交付**：`schema/doc.schema.json`、`scripts/build_docx.py`（仅 heading/paragraph/list/table/figure/pageBreak 六种块）、`scripts/export_pdf.py`、`scripts/qa_doc.py`（DOC-01/02/05/06/08/12/13 七项）、`examples/docs/report-min/`（6 页 A4，含封面、两章、一张表、一张图、目录）。
-
-**验收（四条全中才算过）**
-1. `python scripts/build_docx.py --doc examples/docs/report-min/source/doc.json --out build/report.docx` → 0，`.docx` >30 KB，用 python-docx 复读能拿到 6 个段落样式名。
-2. `python scripts/export_pdf.py --input build/report.docx --out build/report.pdf` → 0，页数 5–7，`missingFonts` 为空。
-3. `python scripts/qa_doc.py --doc … --out build/qa.md --json build/qa.json` → `P0=0`。
-4. 逐页 PNG 目视：标题层级、表格、图注、页码都对（我给截图）。
-
-**规模诚实说**：这是一个新脚本 + 一个新 schema + 一个案例，不是"改几行"。
-
-### 9.3 P1 · 文档完整能力
-
-**交付**：剩余 5 种块（quote/callout/code/toc/bibliography）、表格跨页表头、图片缩放规则、页眉页脚分节、图注自动编号、`references/document-typography.md`、`references/document-structure.md`、`workflows/05b_document-production.md`、`templates/doc-brief.md`、`templates/doc-outline.md`、`SKILL.md` 路由与判定表。
-
-**验收**
-1. 同一份 `doc.json` 改 `tokens`（字体 3 种 × 主色 4 种，共 12 组）重建 12 次，`qa_doc.py` 均 `P0=0`，无版面塌陷（逐组抽 1 页目视）。
-2. 一份 30 页长文档：目录条目数 = 标题数，页码连续，表格跨页处表头重复（抽 3 页目视）。
-3. `qa_doc.py` 15 项全部被真实触发过至少一次（用两份 fixture，同 slide 分支的做法）。
-
-### 9.4 P2 · 设计型导出与打印 preset
-
-**交付**：`schema/presets.json`、`thresholds.json` 的 `print` 段、`export_svg.py`、`export_layers.py`、`PRT-01/02`、A4 海报案例一份（`examples/docs/poster-a4/`）。
-
-**验收**
-1. A4 海报 → `build.pdf` 1 页 + `build.png` 1241×1754 @150 dpi，`qa_check.py` `P0=0`。
-2. SVG：浏览器打开，`Ctrl+F` 能搜到中文标题（证明文字未被转路径），与 PNG 叠图位置差 ≤2 px。
-3. 分层包：`layers.json` 五层齐全，PS 手动导入一次（我截图），文字层位图、说明已写入 README。
-
-### 9.5 P3 · 既有 PDF 改版（能力受限，先把边界写死）
-
-**交付**：`scripts/pdf_rebuild.py`、`examples/docs/pdf-rebuild-min/`（拿我们自己的一份 PDF 当输入，改成另一套 tokens）。
-
-**验收**
-1. 输入 8 页 PDF → 输出 8 页 PDF，页序与页数一致。
-2. 底图 150 dpi（`1241×1754` 量级），无叠影：`compare/pN-before.png` 与 `after.png` 并排，人工确认改动区域清单与 `changes.md` 一致。
-3. 色彩重映射：`recolor` 把主色从 `#C8501E` 换到 `#1F3B33`，容差 24，目标像素替换率 >95%（脚本统计并写进 `changes.md`）。
-4. `--help` 里第一段就是能力边界声明（文字不可编辑）。
-
-### 9.6 P4 · 案例与验证报告
-
-**交付**：三个文档案例（`technical-report` 12 页 / `research-brief` 6 页 / `one-pager` 2 页），各带 `brief.md`、`source/doc.json`、`build/`、`README.md`（节奏表 + 真实数字 + 诚实限制 + 检查清单）；`docs/v2-validation-report.md` 记 V9–V14：V9 文档最小闭环、V10 长文档 30 页、V11 A4 海报、V12 SVG/分层、V13 PDF 改版、V14 十二组 tokens 变体。
-
-**验收**：三案例 `qa_doc.py` 均 `P0=0`；验证报告每条都有命令 + 产物字节 + QA 摘要；`selfcheck.py --strict` 归零；重新打包 v2.0.0 zip 并解包复验。
-
-### 9.7 每阶段的"不达标就停"规则
-
-**规则：一阶段验收不过，不进下一阶段**
-- **触发条件**：阶段验收任一条不满足。
-- **具体动作**：停下来补，不平行推进；把失败写进 `docs/v2-validation-report.md` 的"未通过项"。
-- **常见错误**：为了"看起来有进度"先做下一阶段的文件，导致后一阶段建立在错的模型上（v1.1 阶段 6 曾因此返工一次）。
+**TOC 与 preset 无关**：`toc.enabled` 是块能力，`print-*` 不自动开目录。
 
 ---
 
-## 10. 验收总表（我看这张表决定是否签收）
+## 8. QA 检查项映射表（规划书与操作书共用）
 
-| 编号 | 验收项 | 判据 | 证据形式 | 状态 |
-|---|---|---|---|---|
-| A1 | 文档最小闭环 | 6 页 doc → docx + pdf，`P0=0` | 命令输出 + 产物字节 + 3 张截图 | 待做 |
-| A2 | 同源双出页码一致 | `PDF 实际页数 = 目录最后一条页码`（允许 ±1），并抽查 3 处标题 | pageCount + 3 处抽查 | 待做 |
-| A3 | 长文档 30 页 | 目录数=标题数、页码连续、表格跨页表头重复 | 3 页截图 + qa.md | 待做 |
-| A4 | 15 项文档检查全覆盖 | 每项至少被真实触发一次 | 两份 fixture 的 qa.md | 待做 |
-| A5 | A4 海报 | 1 页 PDF + 1241×1754 PNG，`P0=0` | 产物 + 截图 | 待做 |
-| A6 | SVG 文字可搜 | `Ctrl+F` 命中标题 | 截图 + 叠图比对 | 待做 |
-| A7 | 分层包可用 | 五层齐全、PS 导入成功 | 截图 + layers.json | 待做 |
-| A8 | PDF 改版 | 页数一致、无叠影、改动清单对得上 | before/after 对照 + changes.md | 待做 |
-| A9 | 三案例 | 各自 `P0=0` | 三份 qa.md | 待做 |
-| A10 | 全库自检 | `selfcheck.py --strict` 全 0 | 命令行输出 | 待做 |
-| A11 | 发布包 | 159+N 文件、解包复验通过、sha256 | 打包日志 | 待做 |
-| A12 | 现有 PPT 未被破坏 | demo + 3 个 slide 案例 QA 仍 `0/0/0/0` | 四份 qa.md | 待做 |
+> 编号、所属层、所需输入、阶段、级别、fixture：**两份文档与 `scripts/README.md` 必须逐行一致**。
+
+| ID | 层 | 输入对象 | 阶段 | 级别 | 对应 fixture |
+|---|---|---|---|---|---|
+| `DOC-01` | L1 | doc.json | P0 | P0 | `qa-doc-bad.json`（h1→h3） |
+| `DOC-02` | L1 | doc.json | P0 | P1 | `qa-doc-bad.json`（仅 1 个 h1） |
+| `DOC-03` | L1 | doc.json | P0 | P2 | `qa-doc-bad.json`（title 34 字） |
+| `DOC-04` | L1 | doc.json | P0 | P2 | `qa-doc-edge.json`（paragraph 340 字） |
+| `DOC-05` | L1 | doc.json | P0 | P0 | `qa-doc-bad.json`（figure 无 caption） |
+| `DOC-06` | L1 | doc.json | P0 | P0 | `qa-doc-bad.json`（table 无 source） |
+| `DOC-07` | L1+L3 | doc.json + 图片 | P0 | P1/P2 | `qa-doc-edge.json`（300×170 铺 6 in） |
+| `DOC-08` | L1 | doc.json | P0 | P1 | `qa-doc-edge.json`（4 字族） |
+| `DOC-09` | L1 | doc.json | P0 | P1 | `qa-doc-bad.json`（body 8.5 pt） |
+| `DOC-10` | L1 | doc.json | P0 | P2 | `qa-doc-bad.json`（行距 1.8） |
+| `DOC-11` | L1 | doc.json | P0 | P2 | `qa-doc-bad.json`（左 1.5 in 与 preset 差 0.5） |
+| `DOC-12` | L2 | docx | P1 | P1 | `qa-doc-toc-bad.docx` |
+| `DOC-13` | L2 | docx | P0 | P1 | `qa-doc-nopage.docx` |
+| `DOC-14` | L1 | doc.json | P0 | P2 | `qa-doc-edge.json`（列宽和差 0.4 in） |
+| `DOC-15` | L1 | doc.json | P0 | P3 | `qa-doc-edge.json`（"用Word打开"） |
+| `DOC-16` | L1 | doc.json | P0 | P0 | `qa-doc-p1block.json`（P0 用 quote） |
+| `PRT-01` | L1 | deck.json | P2 | P1 | `qa-prt-bad.json`（A4 边距 0.4 in） |
+| `PRT-02` | L1 | deck.json | P2 | P2 | `qa-prt-bad.json`（满版图无 bgDecor） |
+| `PDF-01` | L3 | pdf + manifest | P0 | P1 | `qa-pdf-pages.pdf`（8 页 vs 4） |
+| `PDF-02` | L3 | pdf + manifest | P0 | P1 | `qa-pdf-fonts.pdf`（缺 Courier） |
+| `PDF-03` | L3 | pdf | P0 | P1 | `qa-pdf-a3.pdf`（A3 尺寸 vs A4 preset） |
+| `EXP-01` | L1 | deck.json | P2 | P1 | `qa-exp-bad.json`（元素越界） |
+| `EXP-02` | L2 | layers 目录 | P2 | P1 | `layers-missing/`（缺 layers.json） |
+| `EXP-03` | L2 | svg 文件 | P2 | P2 | `svg-outlined.svg`（文字转路径） |
+
+合计：新增 **23 项**（DOC 16 + PRT 2 + PDF 3 + EXP 3，其中 `DOC-16` 是本轮为"阶段范围"新增），加上现有 42 项 → **65 项**。
 
 ---
 
-## 11. 风险与回退
+## 9. 五阶段与版本
 
-| 编号 | 风险 | 触发信号 | 回退动作 |
+### 9.1 阶段总览
+
+| 阶段 | 目标 | 交付物 | 发布版本 |
 |---|---|---|---|
-| R1 | 无 PDF 库导致"改 PDF 文字"期望落空 | 用户要"把第 3 页那句改掉" | 明确回绝 + 给两条替代（要源文件 / 按 D 重排），不假装能做到 |
-| R2 | python-docx 无脚注 API | 需要页脚注 | 降级为章末"注释"块（P2 再做）；不硬改 OOXML |
-| R3 | LibreOffice 分页与 Word 不一致 | docx 在 Word 里页数差 2 页以上 | 交付以 PDF 为准；README 写明"docx 打开可能 ±1 页，页码以 PDF 为准" |
-| R4 | 转换缺字体 | `missingFonts` 非空 | 替换为可用族（雅黑/思源宋体/Noto Sans SC/Lato）+ 记录替换表 |
-| R5 | 大文档性能（>60 页） | build 超过 60 秒 | 分节构建 + 只重建改动段；不做"一次生成 200 页"的承诺 |
-| R6 | PSD 需求无法满足 | 用户坚持要 `.psd` | 交付 SVG + 分层 PNG + PS 导入 JSX，并在 README 说明差异 |
-| R7 | 表格跨页断行难看 | 抽页发现表格被截断 | `tblHeader` + `cantSplit` + 必要时手动 `pageBreak` 前置 |
-| R8 | 改 PDF 后叠影/重影 | 底图与新元素位置错位 | 以底图 PNG 为基准做像素级对齐（`--align-to 150`），错位 >2 px 判失败 |
+| **P0** | 文档最小闭环：4 页样张，只用 6 种块 | `doc.schema.json`、`qa_doc.py` L1+L3、`build_docx.py`（无 TOC）、`export_pdf.py`、`examples/docs/report-min/` | **1.5.0** |
+| **P1** | 文档完整能力：10–15 页真实文档 + 30 页压力测试 | 其余 6 种块、TOC 域、L2 QA、`examples/docs/research-brief/`（10–15 页）、`examples/docs/technical-report/`（30 页压力） | **1.6.0** |
+| **P2** | 固定版面与设计型导出 | `presets` 生效、`export_svg.py`、`export_layers.py`、`PRT/EXP` 项、A4 海报案例 | **1.7.0** |
+| **P3** | 既有 PDF 受限改版 | `pdf_rebuild.py`、`rebuild.json`、对照图与 `changes.md`、8 页改版案例 | **1.8.0** |
+| **P4** | 综合验收与发布（**不是功能阶段**） | 五案例最终版、V9–V20 验证报告、发布包与解包复验 | **1.9.0**（只加案例与文档） |
+
+### 9.2 每阶段只依赖已实现的能力
+
+| 阶段 | 只许调用 | 不许调用（尚未实现） |
+|---|---|---|
+| P0 | `build_docx`（6 块）、`export_pdf`、`qa_doc`（L1/L3）、`render` | TOC 域、L2 QA、SVG、分层、改版 |
+| P1 | 上述 + L2 QA + 其余 6 块 + TOC | SVG、分层、改版 |
+| P2 | 上述 + `--preset` + SVG + 分层 | 改版 |
+| P3 | 上述 + 改版 | — |
+| P4 | 全部（只做案例、验证、打包） | 任何功能改动 |
+
+### 9.3 P0 完成标准（两份文档共用这一份，编号 A0-*）
+
+| 编号 | 判据 | 证据 |
+|---|---|---|
+| A0-1 | `build_docx.py --check-only` 退出码 0，无 schema 错误 | 命令输出 |
+| A0-2 | `.docx` 生成成功且 `office-cli convert` 能打开（不报错） | 命令输出 + 文件 |
+| A0-3 | `.pdf` 页数 == 4（P0 样张固定 4 页） | `pdf-manifest.json` 的 `pageCount` |
+| A0-4 | 逐页 PNG 4 张，150 dpi，A4 尺寸（1241×1754 ±2 px） | `build/preview/` + 尺寸打印 |
+| A0-5 | 三层 QA 都跑过：L1 `P0=0`、L3 `P0=0`、L2 记 `SKIP` 并计入未验证（P0 不实现 L2） | `qa.json` 的 `verified/skipped` |
+| A0-6 | 4 页逐页目视复核通过（6 项清单：层级、断页、题注、来源、页码、留白） | 目视记录写进 `build/qa.md` |
+| A0-7 | PPT 回归：demo + 三案例 QA 仍 `0/0/0/0`；pptx zip 成员 CRC 与 `docs/ppt-baseline.json` 一致 | 回归脚本输出 |
+
+### 9.4 P1 完成标准（A1-*）
+
+| 编号 | 判据 |
+|---|---|
+| A1-1 | 12 种块全部可用，`DOC-16` 不再触发 |
+| A1-2 | `research-brief`（10–15 页）三层 QA 全绿（`verified == total`，`skipped == 0`） |
+| A1-3 | TOC 域存在（L2 `DOC-12` 通过），目录条目覆盖全部 h1–h3 |
+| A1-4 | 30 页 `technical-report` 压力测试：无空白页、无表格跨页断裂、无图注分离 |
+| A1-5 | 换 tokens（≤6 值）重建后 QA 仍全绿 |
+
+### 9.5 P2 / P3 / P4 完成标准
+
+| 阶段 | 判据 |
+|---|---|
+| P2 | `preset=print-A4` 生效且报告头打印来源；A4 海报 `PRT-01/02` 无 P0/P1；SVG 跳过报告与实际元素一致；`layers.json` 字段齐全且 `05-text.rasterized == true` |
+| P3 | 8 页 PDF → 8 页 PDF；底图 ≥150 dpi；对照图逐页可比；`changes.md` 条目数与实际改动一致；`recolor` 替换率仅记录不进验收 |
+| P4 | 五案例齐全；V9–V20 全跑；解包复验（selfcheck 0 / demo QA 0 / 新增命令 `--help` 全通）；`docs/v2-validation-report.md` 落盘 |
+
+### 9.6 一阶段不过不进下一阶段
+
+每个阶段收尾必须同时满足：① 该阶段全部 A* 判据通过；② PPT 回归通过；③ `selfcheck.py --strict` 全 0；④ 操作书对应章节的"失败处理"没有被触发过的遗留项。任何一条不满足 → 停在该阶段，不往下开。
+
+---
+
+## 10. 验收总表（三类证据，不只靠文件大小）
+
+> 每条都回答五个问题：用什么命令查 / 查哪个输入 / 预期是什么 / 证据存哪 / 失败是否阻断。
+
+### 10.1 P0
+
+| 编号 | 类型 | 命令 | 输入 | 预期 | 证据 | 阻断 |
+|---|---|---|---|---|---|---|
+| A0-1 | 功能 | `$PY scripts/build_docx.py --doc source/doc.json --out build/report-min.docx --check-only` | doc.json | rc=0 | 终端输出存 `build/logs/` | 是 |
+| A0-2 | 功能 | `$PY scripts/build_docx.py --doc … --out build/report-min.docx` | doc.json | rc=0，文件存在 | 文件 + 大小 | 是 |
+| A0-3 | 功能 | `$NODE $CLI convert --input build/report-min.docx --output build/report-min.pdf` | docx | 200 状态、pdf >10 KB | `pdf-manifest.json` | 是 |
+| A0-4 | 结构 | `$PY scripts/qa_doc.py --doc … --pdf … --preview-dir build/preview --out build/qa.md --json build/qa.json` | doc+pdf+png | `PDF-01..03` 通过 | `qa.json` | 是 |
+| A0-5 | 结构 | 同上 | doc+docx | `DOC-13` 通过（PAGE 域存在） | `qa.json` | 是 |
+| A0-6 | 视觉 | 人工看 4 张 PNG | preview | 6 项清单全过 | 写进 `build/qa.md` 末节 | 是 |
+| A0-7 | 回归 | `$PY scripts/regress_ppt.py`（P0 新增，只读） | 基线 + 现仓 | CRC 差异 0、QA 全 0 | `build/regress.json` | 是 |
+
+### 10.2 P1–P4（摘要，细则见操作书）
+
+| 阶段 | 关键验收 | 辅助指标（不作为通过依据） |
+|---|---|---|
+| P1 | 12 块全可用；`research-brief` 三层 QA `verified==total`；TOC 条目覆盖；30 页压力测试无异常 | pdf 页数在 10–15；字数区间 |
+| P2 | `preset` 生效且来源可打印；SVG 跳过报告一致；`layers.json` 字段齐全 | svg 文件 >2 KB；层数 =5 |
+| P3 | 页数一致；底图 dpi；对照图；`changes.md` 一致 | 替换率 ≥90%（仅提示） |
+| P4 | 五案例齐全；V9–V20；解包复验 | zip 体积、文件数 |
+
+**不用作验收依据的**：文件大小、页数范围、PNG 数量、字数区间——它们只用来发现"明显异常"，单独出现不能证明功能通过。
+
+---
+
+## 11. 风险
+
+| 编号 | 风险 | 触发信号 | 处理 |
+|---|---|---|---|
+| R1 | LibreOffice 对 docx 的分页与 Word 不同 | 同一 docx 转换页数与预期差 >2 | 以 PDF 为准，Word 分页差异写进交付说明；不承诺"Word 里页数完全一致" |
+| R2 | 缺字体导致度量偏差 | `missingFonts` 非空 | 换字体或记录替换；`PDF-02` P1 |
+| R3 | 表格跨页表头失效 | 长表格翻页后无表头 | L2 `DOC-13` 扩展检查 `tblHeader` 属性 |
+| R4 | SVG 在不同软件表现不一 | Inkscape/AI 打开错位 | 待验证项 V18；验证前不承诺编辑体验 |
+| R5 | 改版遮挡留痕 | 对照图可见边缘 | 提示"背景复杂度高"，改人工重排；不做自动修复 |
+| R6 | 长文档生成慢 | 30 页 >10 s | 只做提示，不优化到牺牲正确性 |
+| R7 | 阶段越界（P0 用了 P1 能力） | `DOC-16` 触发 | 停，回到 P0 范围 |
+| R8 | 假验收（用文档属性冒充产物检查） | L2/L3 输入缺失却报通过 | 报告必须打印 `verified/skipped`；`skipped>0` 不许签收 |
+| R9 | 回归基线漂移（PPTX 时间戳） | 文件 sha 变了但内容没变 | 用 zip 成员 CRC 比对，不用文件 sha |
 
 ---
 
 ## 12. 版本与发布
 
-### 12.1 版本序列
+**发布版本号正常迭代**，不做特殊编号：
 
-| 版本 | 内容 | 语义 |
+| 版本 | 内容 | 发布条件 |
 |---|---|---|
-| `v1.2.0` | P2（SVG / 分层 PNG / print preset） | 加能力，不改既有行为 |
-| `v2.0.0` | P0 + P1（文档分支） | 技能范围从"演示稿"扩到"文档"，属破坏性扩范围 |
-| `v2.1.0` | P3（PDF 改版） | 新增受限形态 |
-| `v2.1.x` | 修 bug、补检查项 | 补丁 |
+| `1.4.1` | 本轮文档修订（R2） | 本文与操作书定稿 |
+| `1.5.0` | 文档分支 P0：4 页最小闭环 | A0-* 全过 |
+| `1.6.0` | 文档分支 P1：10–15 页 + 30 页压力 | A1-* 全过 |
+| `1.7.0` | 固定版面 + SVG + 分层 PNG（P2） | P2 判据全过 + 回归 |
+| `1.8.0` | 既有 PDF 受限改版（P3） | P3 判据全过 + 回归 |
+| `1.9.0` | 案例、验证报告、发布包（P4） | P4 判据全过 |
 
-### 12.2 发布步骤（每次发布都走这七步）
+**关于"版本号"的那条外部建议，本意是功能开发顺序，不是发布编号**：它要求的其实是"先做编号小的功能、功能顺序不能颠倒"。本方案的阶段顺序 P0 → P1 → P2 → P3 本来就单调，因此这条要求天然满足；发布号只是跟着发版一次次递增（1.5.0 → 1.6.0 → …）。
 
-1. 全库 `selfcheck.py --strict` → `P0 0 / P1 0 / P2 0`。
-2. `demo` + 3 个 slide 案例回归：`qa_check.py` 四份均 `0/0/0/0`。
-3. 新形态回归：对应阶段验收全部通过（第 10 章）。
-4. `CHANGELOG.md` 写版本段（做什么 / 为什么 / 怎么验）。
-5. 打包 `dist/ai-ppt-design-system-v<X>.zip`，排除 `__pycache__`、`.git`、`dist`。
-6. **解包复验**：解到临时目录 → 跑 selfcheck → 跑一次 build + 一次 QA（不能只信打包前）。
-7. 更新 README 的"当前版本"与文件数，删除旧 zip。
+**本文标题里的 `v2` 是功能线名称**（"文档与固定版面分支"这条线），不是版本号——不要把 `v2.0.0` 之类的编号写进 CHANGELOG 或交付文件名。
 
-### 12.3 CHANGELOG 规则
-
-- 每条写"改了什么 / 为什么 / 怎么验证"，不写"优化了体验"这类无法核对的句子。
-- 破坏性变化（如 v2.0.0 扩范围）必须在标题下第一段说明影响面：现有 slide 用户是否需要动任何文件（答案：不需要）。
+**阈值版本约定**：`schema/thresholds.json` 的 `version` 只随**阈值数字**变化；文档与规则的改动不改它（沿用 v1.3 起的老规矩）。
 
 ---
 
-## 附录 A · 新增术语
+## 附录 A · 术语速查
 
-| 术语 | 定义 |
+| 术语 | 一句话 |
 |---|---|
-| 同源双出 | 一份 `doc.json` 产出 docx + pdf，页码一致 |
-| 块级制作 | 文档形态下按"块"而非按"页"推进（页面由渲染器决定） |
-| 底图重排 | 既有 PDF 渲成 PNG 当底，新的元素画在其上，产出新 PDF |
-| 分层包 | 一组透明 PNG + `layers.json`，可在 PS 里逐层导入 |
+| spec-first | 先写 JSON 契约，再由脚本生成产物，产物可被机器复查 |
+| 三层 QA | Schema / DOCX / PDF·Render，按输入对象分，缺输入记 SKIP |
+| 静态目录占位 | P0 的目录页是普通文本，不是自动目录 |
+| 视觉验收 | 人看渲染图，检查层级、断页、题注、留白——机器不替代 |
+| 回归基线 | 冻结的代码/schema/产物 CRC/QA 摘要，每阶段收尾比对 |
+| 假验收 | 拿不到真实输入却报"通过"；本方案用 `verified/skipped` 拦住它 |
 
-## 附录 B · 六条硬边界（v2.0 期间不可越过）
+## 附录 B · 八条硬边界（六条沿用 + 两条新增）
 
-1. **不改 PDF 里已有的文字**，只重排/遮挡/覆盖。
-2. **不写 .psd 二进制**，改交付 SVG + 分层 PNG。
-3. **不改既有 slide 的行为**：`deck.schema.json` 与 `build_pptx.py` 输出保持一字节不差（新增字段只能可选、默认关闭）。
-4. **不假装目录页码已经正确**：TOC 是域，交付说明必须写"按 F9 更新"。
-5. **不为文档形态虚构"自动排版美学"**：生成器只保证规则（层级、间距、编号、跨页），美观仍由知识库与人工复核负责。
-6. **没有实测证据的能力不写进 README**：每条能力都要有命令、产物字节、QA 摘要。
+1. 不虚构事实、素材、来源、数字。
+2. 不设默认风格：每次从内容与受众推，不给"通用模板"。
+3. 不覆盖用户原件；所有改动写进新文件并带版本号。
+4. 不把"理论上可以"写成"已经实现"。
+5. 不用文件大小、页数、字数当作功能通过的证据。
+6. 不在未验证前声明设计软件兼容性（SVG/分层 PNG）。
+7. **新增**：不改既有 PPT 分支的默认行为；`--preset` 必须可选，不带参时输出与 v1.4.0 一致。
+8. **新增**：每个阶段只调用已实现的能力；越界即停（`DOC-16`）。
 
-## 附录 C · 操作序列（复制即用）
+## 附录 C · 命令序列（复制即用，PowerShell）
 
-**C1 出一份文档（docx + pdf）**
-```bash
-python scripts/build_docx.py --doc source/doc.json --out build/report.docx
-python scripts/export_pdf.py --input build/report.docx --out build/report.pdf
-python scripts/qa_doc.py --doc source/doc.json --out build/qa.md --json build/qa.json
-office-cli render --input build/report.pdf --output-dir build/preview --dpi 150
+```powershell
+$PY   = "<python.exe>"
+$NODE = "<HOST_ROOT>/.desktop-bin/node.cmd"
+$CLI  = "<office-cli.mjs>"
+$REPO = "<仓库根目录>"
+Set-Location $REPO\examples\docs\report-min
 ```
 
-**C2 出一页 A4 海报（固定版面）**
-```bash
-python scripts/build_pptx.py --deck source/deck.json --out build/poster.pptx --preset print-A4   # 新增可选参数；不带时输出与 v1.1.2 一致
-python scripts/export_pdf.py --input build/poster.pptx --out build/poster.pdf
-python scripts/qa_check.py --deck source/deck.json --out build/qa.md --json build/qa.json --preset print-A4
+```powershell
+# P0 全链路
+& $PY ..\..\..\scripts\build_docx.py --doc source\doc.json --out build\report-min.docx --check-only
+& $PY ..\..\..\scripts\build_docx.py --doc source\doc.json --out build\report-min.docx
+& $NODE $CLI convert --input build\report-min.docx --output build\report-min.pdf
+& $PY ..\..\..\scripts\render.py --pptx build\report-min.pdf --out-dir build\preview --dpi 150
+& $PY ..\..\..\scripts\qa_doc.py --doc source\doc.json --docx build\report-min.docx --pdf build\report-min.pdf --preview-dir build\preview --out build\qa.md --json build\qa.json
 ```
 
-**C3 出 SVG / 分层包（给设计师）**
-```bash
-python scripts/export_svg.py --deck source/deck.json --slide 1 --out build/p1.svg
-python scripts/export_layers.py --deck source/deck.json --slide 1 --out-dir build/layers-p1
-```
+## 附录 D · 三个决策点（需要你拍板）
 
-**C4 改既有 PDF（受限形态）**
-```bash
-python scripts/pdf_rebuild.py --pdf input/original.pdf --spec source/rebuild.json --out-dir build
-# → build/rebuild.pdf、build/compare/pN-before.png|after.png、build/changes.md
-```
-
-**C5 发布**
-```bash
-python scripts/selfcheck.py --strict
-python -c "..."   # 打包（见 12.2 第 5 步）
-```
-
-## 附录 D · 我建议你先看的三处决策点
-
-1. **第 1.2 节"不做"**：尤其"不改 PDF 文字"与"不写 .psd"，这两条决定你以后能不能拿它接这类活。若其中一条是硬需求，请现在推翻我，我换方案（例如：接受"装库"或"接外部工具"）。
-2. **第 9.1 节的顺序**：P0→P1→P2→P3→P4。也可以先 P2（设计型 + print preset，两周内能见到 SVG 与 A4 海报）再回头做文档。**我推荐按 9.1 原序**，因为文档是你这次的主要诉求。
-3. **第 7.1 节的打印字号档**（A4 正文 9–11 pt、行距 1.4–1.6）：这是排版惯例值，你可以按你的行业习惯调（比如正文统一 10.5 pt）。
-
----
+| 编号 | 决策 | 选项 | 我的建议 |
+|---|---|---|---|
+| D1 | P0 样张页数 | 4 页（推荐）/ 6 页（需补内容到每页 600–900 字） | 4 页：先证明链路，不证明长文档 |
+| D2 | 版本号策略 | 发布号正常迭代（1.5.0 → 1.9.0，推荐）/ 按功能线重新编号 | 正常迭代：“v2”只是功能线名称，不写进版本号 |
+| D3 | SVG 位图化默认开关 | 默认关闭（推荐，跳过并报错）/ 默认开启（图能出但文字少了） | 默认关闭：宁可少一个 chart，也不静默降级 |
 
 ## 检查清单
 
-- [ ] 第 1.2 节"明确不做"的五项，与你实际需求没有冲突（尤其 PDF 文字编辑、PSD 二进制）
-- [ ] 第 9.1 节的阶段顺序你认可（或指定调整）
-- [ ] 第 7.1 节的四档 preset 数值你认可（A4 正文 9–11 pt、页边 0.8–1.1 in）
-- [ ] 第 10.1 节验收总表 12 条，没有你想删或想加的项
-- [ ] 第 4.2 节列出的 7 个"要改的现有文件"，改动范围你能接受（只加段、不改旧行为）
-- [ ] 文档案例选型（技术报告 / 研究摘要 / 一页纸）覆盖你的真实使用场景
-- [ ] 版本号策略（v1.2.0 / v2.0.0 / v2.1.0）与你的发布节奏一致
-- [ ] 你确认本规划可以开工，且知道 P0 完成会先给你看一次 6 页样张再继续
+- [ ] 四种形态的边界与 1.2 的"不做"清单我已确认
+- [ ] 1.2.1 的"承诺/不承诺"与 1.2.2 的 recolor 口径可接受
+- [ ] P0 只做 6 种块、4 页样张、无自动目录——范围我认可
+- [ ] P1 的 10–15 页样张与 30 页压力测试定位清楚
+- [ ] 第 7 章 preset 是唯一权威，别处不再重复数值
+- [ ] 第 8 章 QA 映射表覆盖 DOC/PRT/PDF/EXP 全部 23 项
+- [ ] 第 9 章阶段依赖没有"用未来能力做当前阶段"的情况
+- [ ] 第 10 章验收不再以文件大小/页数为主证据
+- [ ] 第 12 章发布号为正常迭代，且阶段顺序 P0 → P1 → P2 → P3 未颠倒
+- [ ] 附录 B 八条硬边界、附录 D 三个决策点我已表态

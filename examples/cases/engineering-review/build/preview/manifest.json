@@ -3,7 +3,7 @@
   "backend": "native",
   "rasterEngine": "libreoffice",
   "source": "saved",
-  "inputPath": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\deck.pptx",
+  "inputPath": "examples/cases/engineering-review/build/deck.pptx",
   "sourceSha256": "4890a681bfe403ed2ddc97a894ca6c2553d4ec9961b1792f5d35affd605a98ac",
   "dpi": 144,
   "pageCount": 11,
@@ -11,7 +11,7 @@
     {
       "index": 1,
       "page": 1,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0001.png",
+      "path": "page-0001.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -25,7 +25,7 @@
     {
       "index": 2,
       "page": 2,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0002.png",
+      "path": "page-0002.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -39,7 +39,7 @@
     {
       "index": 3,
       "page": 3,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0003.png",
+      "path": "page-0003.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -53,7 +53,7 @@
     {
       "index": 4,
       "page": 4,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0004.png",
+      "path": "page-0004.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -67,7 +67,7 @@
     {
       "index": 5,
       "page": 5,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0005.png",
+      "path": "page-0005.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -81,7 +81,7 @@
     {
       "index": 6,
       "page": 6,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0006.png",
+      "path": "page-0006.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -95,7 +95,7 @@
     {
       "index": 7,
       "page": 7,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0007.png",
+      "path": "page-0007.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -109,7 +109,7 @@
     {
       "index": 8,
       "page": 8,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0008.png",
+      "path": "page-0008.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -123,7 +123,7 @@
     {
       "index": 9,
       "page": 9,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0009.png",
+      "path": "page-0009.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -137,7 +137,7 @@
     {
       "index": 10,
       "page": 10,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0010.png",
+      "path": "page-0010.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {
@@ -151,7 +151,7 @@
     {
       "index": 11,
       "page": 11,
-      "path": "C:\\Users\\h2965\\AppData\\Roaming\\dsh-desktop\\harness\\projects\\ai-ppt-design-system\\examples\\cases\\engineering-review\\build\\preview\\page-0011.png",
+      "path": "page-0011.png",
       "width": 1920,
       "height": 1081,
       "rectangle": {

@@ -64,8 +64,8 @@ try:
 except ImportError as _exc:  # pragma: no cover - 依赖缺失时给出可操作提示
     sys.stderr.write(
         "依赖缺失：无法导入 python-pptx / Pillow / lxml —— 请用本机 Office 运行时自带的解释器运行：\n"
-        "  \"D:\\Software\\DSH_Desktop\\DSH Desktop\\resources\\office-runtime\\primary-runtime\\"
-        "dependencies\\python\\python.exe\" scripts/build_pptx.py --help\n"
+        "  <python.exe 的绝对路径> scripts/build_pptx.py --help\n"
+        "  （路径可由 scripts/probe.py 输出）\n"
         f"（原始错误：{_exc}）\n"
     )
     raise SystemExit(2)

@@ -11,7 +11,7 @@
 解释器统一用仓库指定的运行时（3.12.14，自带 python-pptx 1.0.2 与 Pillow 12.3.0）：
 
 ```powershell
-$py = "D:\Software\DSH_Desktop\DSH Desktop\resources\office-runtime\primary-runtime\dependencies\python\python.exe"
+$py = "<python.exe>"
 ```
 
 ## 目录内的脚本

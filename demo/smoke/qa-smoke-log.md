@@ -150,7 +150,7 @@ SUMMARY P0=0 P1=2 P2=0 P3=1 issues=3 pages=3 exit=0
 ## 复现命令
 
 ```powershell
-$py = "D:\Software\DSH_Desktop\DSH Desktop\resources\office-runtime\primary-runtime\dependencies\python\python.exe"
+$py = "<python.exe>"
 
 & $py scripts/qa_check.py --deck demo/smoke/qa-fixture.json --out demo/smoke/qa-fixture-report.md --json demo/smoke/qa-fixture-report.json
 & $py scripts/qa_check.py --deck demo/smoke/qa-fixture-edge.json --out demo/smoke/qa-fixture-edge-report.md --json demo/smoke/qa-fixture-edge-report.json
