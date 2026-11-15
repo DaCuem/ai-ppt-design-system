@@ -103,6 +103,7 @@ docs/                    环境报告、验证报告、需求探索测试记录�
                          `project-summary.md` 做到哪 / 凭什么 / 还差什么
                          `v2-plan.md` + `v2-plan-ops.md` 文档与固定版面分支的规划书与操作书（尚未开工）
                          `v2-revision-notes.md` 上面两份按外部审阅意见修订的逐条处理记录
+                         `docs/governance.md` 协作治理：谁能改什么、规划如何不被改乱、fork 与发布边界
 ```
 
 ---

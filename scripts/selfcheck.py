@@ -181,7 +181,10 @@ def structure_summary():
         if not d.is_dir():
             rows.append((dirname, 0, 0))
             continue
-        files = [p for p in d.rglob("*") if p.is_file()]
+        files = [
+            p for p in d.rglob("*")
+            if p.is_file() and "__pycache__" not in p.parts and p.suffix.lower() not in {".pyc", ".pyo"}
+        ]
         rows.append((dirname, len(files), sum(p.stat().st_size for p in files)))
     return rows
 
