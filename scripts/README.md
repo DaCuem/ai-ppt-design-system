@@ -5,8 +5,8 @@
 
 - 只用标准库 + `python-pptx` + `Pillow`（`render.py` 额外调用本机 node 渲染器，见第 4 节），不联网、不安装依赖；
 - 错误信息为中文，Windows 控制台强制 UTF-8（`sys.stdout.reconfigure(encoding="utf-8")`）；
-- 量化阈值只有一个真值来源：`schema/thresholds.json`（当前 v1.1.0）。脚本内不写死判据数字。
-- `thresholds.version` 只随**阈值内容**变化；1.1.1 / 1.1.2 是规则与文档修订、没动任何数字，所以阈值仍是 1.1.0，qa.md 头部写 1.1.0 是正确的。
+- 量化阈值只有一个真值来源：`schema/thresholds.json`（**版本见该文件的 `version` 字段**，不要在其他文档里手抄版本号）。脚本内不写死判据数字。
+- `thresholds.version` 只随**阈值内容**变化：新增或改动判据数字才升版；只改规则、流程与文档不升版。`qa.md` 头部打印的是运行时实际读到的那一份。
 
 解释器统一用仓库指定的运行时（3.12.14，自带 python-pptx 1.0.2 与 Pillow 12.3.0）：
 
@@ -25,6 +25,7 @@ $py = "<python.exe>"
 | `contact_sheet.py` | 把逐页 PNG 拼成一张总览图 | PNG 目录 | `contact-sheet.png` |
 | `copy_check.py` | 文案机检：槽位字数、空话、AI 句式、句长、排比、数字出处、审校残留 | `deck.json`（可选 `copy-deck.md`） | `copy-report.md` + `copy.json` |
 | `selfcheck.py` | 仓库自身文档与契约自检（不检查用户 deck） | 仓库文件 | 问题列表 |
+| `stats.py` | 仓库规模统计；`--check` 校验 `docs/project-summary.md` 头部声明的文件数/体积/篇数/脚本数是否等于真实值 | 仓库文件 | 统计表或漂移清单 |
 
 退出码约定（四个可执行脚本一致）：
 

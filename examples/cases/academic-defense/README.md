@@ -109,7 +109,7 @@ h1 : body = 40 : 18 = 2.22，落在 TYP-02 的 1.3–3.0 之间。accent 只出�
 | 页数 | 13 | 构建摘要「页数：13」 |
 | 使用字体 | 3 种：Noto Sans SC、Source Han Serif SC、Cascadia Mono | 构建摘要「使用字体（3）」 |
 | 缺失图片 | 无 | 构建摘要「缺失图片：无」 |
-| QA 汇总 | `P0=0 P1=0 P2=0 P3=0 issues=0 pages=13 exit=0` | `scripts/qa_check.py`，阈值 `schema/thresholds.json` v1.1.0 |
+| QA 汇总 | `P0=0 P1=0 P2=0 P3=0 issues=0 pages=13 exit=0` | `scripts/qa_check.py`，阈值读 `schema/thresholds.json`（版本见该文件） |
 | 渲染后端 | `dsh-native`（native / libreoffice），144 dpi | `build/preview/render-manifest.json` 的 `backend` / `rasterEngine` / `dpi` |
 | 预览尺寸 | 13 张 1920×1081 px | manifest 的 `images[].width/height` |
 | 缺失字体 | `[]`（无回退） | manifest 的 `missingFonts` |

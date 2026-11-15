@@ -11,7 +11,7 @@
 | python-pptx | 1.0.2 |
 | 操作系统 | Windows，无 Office / WPS / COM |
 | 渲染后端 | `dsh-native`（LibreOffice 光栅化，1920 × 1081 px，144 dpi，缺失字体：无） |
-| 阈值文件 | `schema/thresholds.json` v1.1.0 |
+| 阈值文件 | `schema/thresholds.json`（版本见该文件的 `version` 字段） |
 
 ## 三份输入与结果
 

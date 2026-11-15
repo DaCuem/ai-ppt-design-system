@@ -2,6 +2,22 @@
 
 格式遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)；版本号遵循语义化版本。
 
+## [1.4.5] - 2026-11-15
+
+### 修复：`docs/project-summary.md` 数字漂移，并把这类漂移变成可执行检查（只改文档与新增一个脚本）
+
+外部复核指出：`docs/project-summary.md` 头部停在 v1.3.5（174 文件 / 17.10 MB / 69 篇 Markdown / 12 个脚本），而正文时间线已写到 1.4.4 ——「开头没更新、中间更新了」。逐条修：
+
+1. **头部规模声明** → v1.4.5：178 个文件 / 17.15 MB / 72 篇 Markdown / 14 个脚本 / 42 项机器检查。
+2. **表格结构坏了**：v1.4.0 那次编辑在「二、进度总览」的表头之上留了一行孤立的「偏好记忆」行，渲染成一串竖线。已移回表内（放在「文案环节」之后）。
+3. **表内与正文的过期数字**：`SKILL.md` 15.7 → 17.5 KB；设计知识库 13 份 / 188.5 KB → 14 份 / 195.1 KB；模板 8 份 / 23.5 KB → 9 份 / 26.1 KB；12 个 Python → 14 个；打包 177→178 文件（17.13 MB）→ 178 文件（17.15 MB，zip 15.37 MB）；§4.3 与检查清单里的 174 / 178 同步。
+4. **时间线**补 1.4.5 行，写明修漂移与新增检查。
+5. **阈值版本号不再手抄**：`scripts/README.md:8-9`、`examples/cases/academic-defense/README.md:112`、`demo/smoke/qa-smoke-log.md:14` 原先写死「阈值 v1.1.0」，实际已是 1.3.0。改为「版本见 `schema/thresholds.json` 的 `version` 字段」——同类漂移从"每次手改"变成"不可能写错"。同时把 7 份 qa 报告用当前阈值重跑，头部自动带上真实版本。
+6. **删掉一份重复报告**：`demo/smoke/` 下同时存在 `qa.md`（10:46 旧跑）与 `qa-smoke.md`（同一 deck 的正身），此前无人引用前者。删除旧的一份及其 `qa.json`，避免"两份同样内容、一份过期"。
+7. **新增 `scripts/stats.py`**：这就是复核里点出的盲区——`selfcheck.py` 只查禁用词、占位符、链接、三段式、检查清单收尾与 JSON/Schema 合法性，**不校验文档里写的文件数与体积是否等于真实值**。新脚本 `python scripts/stats.py` 打印真实规模，`--check` 比对 `docs/project-summary.md` 头部的四项声明，漂移则退出码 1。发版流程里加这一步，数字就不会再悄悄过期。
+
+未改动的（复核里明确说是"故意冻结的基线"）：`docs/v2-plan.md` 与 `docs/v2-revision-notes.md` 头部的「177 文件 / 17.13 MB / v1.4.0」、`CHANGELOG.md` 历史条目里的旧数字、`README.md` / `CONTRIBUTING.md` / `install.md`（与 1.4.4 一致）。
+
 ## [1.4.4] - 2026-11-15
 
 ### 规范：按外部审阅意见重写 CONTRIBUTING（只改文档）

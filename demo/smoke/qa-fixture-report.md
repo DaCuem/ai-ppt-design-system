@@ -1,6 +1,6 @@
 # QA 报告
 
-项目：demo/smoke/qa-fixture.json ｜ 生成：2026-11-14 23:59 ｜ 阈值版本：`schema/thresholds.json` v1.1.0
+项目：demo/smoke/qa-fixture.json ｜ 生成：2026-11-15 14:01 ｜ 阈值版本：`schema/thresholds.json` v1.3.0
 
 画布 13.333 × 7.500 in ｜ 安全边距 0.60 / 0.45 in ｜ 溢出容差 0.02 in ｜ 页数 6
 
